@@ -8,7 +8,6 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "cp": "",
     "package": "ng build ngx-apexcharts",
     "release": "cd ./projects/ngx-apexcharts && standard-version",
     "publish": "ng build ngx-apexcharts && copyfiles ./LICENSE ./dist/ngx-apexcharts && npm publish dist/ngx-apexcharts"
