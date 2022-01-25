@@ -17,4 +17,4 @@ const declerations = [ChartComponent];
   imports: [],
   exports: [...declerations],
 })
-export class NgApexchartsModule {}
+export class NgxApexchartsModule {}

@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {NgApexchartsModule} from 'ng-apexcharts';
+import {NgxApexchartsModule} from 'ngx-apexcharts';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { SeriesPipe } from './series.pipe';
 
@@ -17,7 +17,7 @@ import { SeriesPipe } from './series.pipe';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    NgApexchartsModule
+    NgxApexchartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

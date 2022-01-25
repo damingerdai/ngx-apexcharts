@@ -1,6 +1,6 @@
 import {Component, ViewChild} from '@angular/core';
 import {FormArray, FormControl, FormGroup} from '@angular/forms';
-import {ChartComponent} from 'ng-apexcharts';
+import {ChartComponent} from 'ngx-apexcharts';
 
 @Component({
   selector: 'app-root',

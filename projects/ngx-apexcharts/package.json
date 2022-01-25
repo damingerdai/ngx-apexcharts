@@ -1,5 +1,5 @@
 {
-  "name": "ng-apexcharts",
+  "name": "ngx-apexcharts",
   "version": "1.6.0",
   "description": "An angular implementation of ApexCharts",
   "peerDependencies": {
@@ -20,14 +20,14 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/apexcharts/ng-apexcharts/issues"
+    "url": "https://github.com/damingerdai/ngx-apexcharts/issues"
   },
-  "homepage": "https://github.com/apexcharts/ng-apexcharts",
+  "homepage": "https://github.com/damingerdai/ngx-apexcharts",
   "dependencies": {
     "tslib": "^2.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/apexcharts/ng-apexcharts.git"
+    "url": "https://github.com/damingerdai/ngx-apexcharts.git"
   }
 }

@@ -18,11 +18,11 @@
       "dom"
     ],
     "paths": {
-      "ng-apexcharts": [
-        "dist/ng-apexcharts"
+      "ngx-apexcharts": [
+        "dist/ngx-apexcharts"
       ],
-      "ng-apexcharts/*": [
-        "dist/ng-apexcharts/*"
+      "ngx-apexcharts/*": [
+        "dist/ngx-apexcharts/*"
       ]
     }
   }

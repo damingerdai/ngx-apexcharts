@@ -10,8 +10,8 @@
       ],
       "parserOptions": {
         "project": [
-          "projects/ng-apexcharts/tsconfig.lib.json",
-          "projects/ng-apexcharts/tsconfig.spec.json"
+          "projects/ngx-apexcharts/tsconfig.lib.json",
+          "projects/ngx-apexcharts/tsconfig.spec.json"
         ],
         "createDefaultProgram": true
       },

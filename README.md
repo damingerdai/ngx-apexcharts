@@ -24,7 +24,7 @@ More than 80+ examples of all the chart types with sample codes can be found on 
 1. Install using npm:
 
 ```ts
-npm install apexcharts ng-apexcharts --save
+npm install apexcharts ngx-apexcharts --save
 ```
 
 2. Open angular.json and under scripts add:
@@ -35,9 +35,9 @@ npm install apexcharts ng-apexcharts --save
 ]
 ```
 
-3. Add ng-apexcharts-module to imports
+3. Add ngx-apexcharts-module to imports
 ```ts
-import { NgApexchartsModule } from "ng-apexcharts";
+import { NgxApexchartsModule } from "ngx-apexcharts";
 
 ...
 
@@ -45,7 +45,7 @@ imports: [
   BrowserModule,
   FormsModule,
   ReactiveFormsModule,
-  NgApexchartsModule,
+  NgxApexchartsModule,
   ...
 ]
 ```
@@ -163,7 +163,7 @@ ApexCharts is an open source project. <br /> You can help by becoming a sponsor 
 
 ## License
 
-ng-ApexCharts is released under MIT license. You are free to use, modify and distribute this software, as long as the copyright header is left intact.
+ngx-ApexCharts is released under MIT license. You are free to use, modify and distribute this software, as long as the copyright header is left intact.
 
 ### Submitted by
 
