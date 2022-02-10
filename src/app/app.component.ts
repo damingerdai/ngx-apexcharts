@@ -5,7 +5,7 @@ import {ChartComponent} from 'ngx-apexcharts';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.less']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   @ViewChild('chart', {static: true}) chart: ChartComponent;

@@ -10,7 +10,7 @@
       "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "less",
+          "style": "scss",
           "skipTests": true
         },
         "@schematics/angular:class": {
@@ -44,7 +44,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.less"
+              "src/styles.scss"
             ],
             "scripts": [],
             "aot": false,
@@ -107,7 +107,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.less"
+              "src/styles.scss"
             ],
             "scripts": [],
             "assets": [
