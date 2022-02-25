@@ -190,6 +190,7 @@
   },
   "defaultProject": "ngx-apexcharts-demo",
   "cli": {
+    "analytics": "7b9189a8-da39-4f8c-bcb9-ef294ecabd2a",
     "defaultCollection": "@angular-eslint/schematics"
   }
 }
