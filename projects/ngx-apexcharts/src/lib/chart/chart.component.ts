@@ -30,6 +30,7 @@ import {
   ApexTooltip,
   ApexXAxis,
   ApexYAxis,
+  ApexForecastDataPoints,
 } from "../model/apex-types";
 import { asapScheduler } from "rxjs";
 
@@ -58,6 +59,7 @@ export class ChartComponent implements OnInit, OnChanges, OnDestroy {
   @Input() responsive: ApexResponsive[];
   @Input() xaxis: ApexXAxis;
   @Input() yaxis: ApexYAxis | ApexYAxis[];
+  @Input() forecastDataPoints: ApexForecastDataPoints;
   @Input() grid: ApexGrid;
   @Input() states: ApexStates;
   @Input() title: ApexTitleSubtitle;
@@ -149,6 +151,9 @@ export class ChartComponent implements OnInit, OnChanges, OnDestroy {
     }
     if (this.yaxis) {
       options.yaxis = this.yaxis;
+    }
+    if (this.forecastDataPoints) {
+      options.forecastDataPoints = this.forecastDataPoints;
     }
     if (this.grid) {
       options.grid = this.grid;
