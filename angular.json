@@ -1,5 +1,11 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "3baaf504-dbc1-40db-9aea-56a6da334a34",
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -187,10 +193,5 @@
         }
       }
     }
-  },
-  "defaultProject": "ngx-apexcharts-demo",
-  "cli": {
-    "analytics": "7b9189a8-da39-4f8c-bcb9-ef294ecabd2a",
-    "defaultCollection": "@angular-eslint/schematics"
   }
 }
