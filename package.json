@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "lint": "ng lint",
+    "lint": "ng lint ngx-apexcharts && ng lint ngx-apexcharts-demo",
     "e2e": "ng e2e",
     "package": "ng build ngx-apexcharts",
     "release": "cd ./projects/ngx-apexcharts && standard-version",
