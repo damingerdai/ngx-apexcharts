@@ -54,10 +54,10 @@
             ],
             "scripts": [],
             "vendorChunk": true,
-            "extractLicenses": false,
-            "buildOptimizer": false,
+            "extractLicenses": true,
+            "buildOptimizer": true,
             "sourceMap": true,
-            "optimization": false,
+            "optimization": true,
             "namedChunks": true
           },
           "configurations": {
