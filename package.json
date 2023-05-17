@@ -10,6 +10,9 @@
     "e2e": "ng e2e",
     "package": "ng build ngx-apexcharts",
     "release": "cd ./projects/ngx-apexcharts && standard-version",
+    "release:patch": "cd ./projects/ngx-apexcharts && standard-version --release-as patch",
+    "release:minor": "cd ./projects/ngx-apexcharts && standard-version --release-as minor",
+    "release:major": "cd ./projects/ngx-apexcharts && standard-version --release-as major",
     "publish": "ng build ngx-apexcharts && copyfiles ./LICENSE ./dist/ngx-apexcharts && npm publish dist/ngx-apexcharts",
     "prepare": "is-ci || husky install"
   },
