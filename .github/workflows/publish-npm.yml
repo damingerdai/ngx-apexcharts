@@ -1,0 +1,56 @@
+name: Node.js Package
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 18
+      - run: npm install -g yarn
+      - run: yarn
+      - run: yarn lint
+      - run: yarn package
+      - run: yarn build
+
+  publish-npm:
+    needs: tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 18
+          registry-url: https://registry.npmjs.org/
+      - run: npm install -g yarn
+      - run: yarn
+      - run: yarn package
+      - run: npm copyfile
+      - run: cd dist/ngx-apexcharts && npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+  release:
+    needs: publish-npm
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          body: |
+            Please refer to [CHANGELOG.md](https://github.com/damingerdai/ngx-apexcharts/blob/develop/projects/ngx-apexcharts/CHANGELOG.md) for details.
+          draft: false
+          prerelease: false

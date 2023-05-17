@@ -9,6 +9,7 @@
     "lint": "ng lint ngx-apexcharts && ng lint ngx-apexcharts-demo",
     "e2e": "ng e2e",
     "package": "ng build ngx-apexcharts",
+    "copyfile": "copyfiles ./LICENSE ./dist/ngx-apexcharts ",
     "release": "cd ./projects/ngx-apexcharts && standard-version",
     "release:patch": "cd ./projects/ngx-apexcharts && standard-version --release-as patch",
     "release:minor": "cd ./projects/ngx-apexcharts && standard-version --release-as minor",
