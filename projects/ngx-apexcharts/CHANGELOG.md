@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/damingerdai/ngx-apexcharts/compare/v0.2.0...v0.3.0) (2023-06-14)
+
+
+### Features
+
+* add ng-add schematics support ([#19](https://github.com/damingerdai/ngx-apexcharts/issues/19)) ([c9aa42a](https://github.com/damingerdai/ngx-apexcharts/commit/c9aa42a1e4bcf1abbdad9502ec868a95321e2a68))
+* add node20 support ([#20](https://github.com/damingerdai/ngx-apexcharts/issues/20)) ([90db1e0](https://github.com/damingerdai/ngx-apexcharts/commit/90db1e0abfedc8079f6d5779b6e7c13d1722bcc5))
+* bump angular from 16.0.1 to 16.1.0 ([f896be8](https://github.com/damingerdai/ngx-apexcharts/commit/f896be8b751f1afa0ff0dadcaebbf740fc8b6081))
+* update ApexChart type with ng-apexcharts@v1.7.7 ([96a180d](https://github.com/damingerdai/ngx-apexcharts/commit/96a180dfaf8777ef582beeb9617fe2e96159385e))
+
 ## [0.2.0](https://github.com/damingerdai/ngx-apexcharts/compare/v0.1.2...v0.2.0) (2023-05-28)
 
 
