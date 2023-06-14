@@ -59,6 +59,7 @@ export interface ApexChart {
     click?(e: any, chart?: any, options?: any): void;
     legendClick?(chart: any, seriesIndex?: number, options?: any): void;
     markerClick?(e: any, chart?: any, options?: any): void;
+    xAxisLabelClick?(e: any, chart?: any, options?: any): void;
     selection?(chart: any, options?: any): void;
     dataPointSelection?(e: any, chart?: any, options?: any): void;
     dataPointMouseEnter?(e: any, chart?: any, options?: any): void;
@@ -226,18 +227,23 @@ export type ApexAxisChartSeries = {
   name?: string;
   type?: string;
   color?: string;
+  group?: string;
   data:
     | (number | null)[]
     | {
         x: any;
         y: any;
+        fill?: ApexFill;
         fillColor?: string;
         strokeColor?: string;
         meta?: any;
         goals?: any;
+        barHeightOffset?: number;
+        columnWidthOffset?: number;
       }[]
     | [number, number | null][]
-    | [number, (number | null)[]][];
+    | [number, (number | null)[]][]
+    | number[][];
 }[];
 
 export type ApexNonAxisChartSeries = number[];
@@ -261,7 +267,6 @@ export interface ApexStroke {
 }
 
 export interface ApexAnnotations {
-  position?: string;
   yaxis?: YAxisAnnotations[];
   xaxis?: XAxisAnnotations[];
   points?: PointAnnotations[];
@@ -281,6 +286,7 @@ export interface AnnotationLabel {
   orientation?: string;
   mouseEnter?: Function;
   mouseLeave?: Function;
+  click?: Function;
 }
 export interface AnnotationStyle {
   background?: string;
@@ -332,6 +338,7 @@ export interface PointAnnotations {
   seriesIndex?: number;
   mouseEnter?: Function;
   mouseLeave?: Function;
+  click?: Function;
   marker?: {
     size?: number;
     fillColor?: string;
@@ -403,7 +410,7 @@ export interface ApexLocale {
       reset?: string;
       exportToSVG?: string;
       exportToPNG?: string;
-      exportToCSV: string;
+      exportToCSV?: string;
       menu?: string;
     };
   };
@@ -419,12 +426,19 @@ export interface ApexPlotOptions {
   };
   bar?: {
     horizontal?: boolean;
-    columnWidth?: string;
-    barHeight?: string;
+    columnWidth?: string | number;
+    barHeight?: string | number;
     distributed?: boolean;
     borderRadius?: number;
+    borderRadiusApplication?: "around" | "end";
+    borderRadiusWhenStacked?: "all" | "last";
+    hideZeroBarsWhenGrouped?: boolean;
     rangeBarOverlap?: boolean;
     rangeBarGroupRows?: boolean;
+    isDumbbell?: boolean;
+    dumbbellColors?: string[][];
+    isFunnel?: boolean;
+    isFunnel3d?: boolean;
     colors?: {
       ranges?: {
         from?: number;
@@ -440,9 +454,22 @@ export interface ApexPlotOptions {
       hideOverflowingLabels?: boolean;
       position?: string;
       orientation?: "horizontal" | "vertical";
+      total?: {
+        enabled?: boolean;
+        formatter?(val?: string, opts?: any): string;
+        offsetX?: number;
+        offsetY?: number;
+        style?: {
+          color?: string;
+          fontSize?: string;
+          fontFamily?: string;
+          fontWeight?: number | string;
+        };
+      };
     };
   };
   bubble?: {
+    zScaling?: boolean;
     minBubbleRadius?: number;
     maxBubbleRadius?: number;
   };
@@ -593,7 +620,7 @@ export interface ApexPlotOptions {
       show?: boolean;
       startAngle?: number;
       endAngle?: number;
-      background?: string;
+      background?: string | string[];
       strokeWidth?: string;
       opacity?: number;
       margin?: number;
@@ -840,6 +867,7 @@ export interface ApexXAxis {
       day?: string;
       hour?: string;
       minute?: string;
+      second?: string;
     };
     formatter?(
       value: string,
@@ -1009,7 +1037,7 @@ export interface ApexForecastDataPoints {
   count?: number;
   fillOpacity?: number;
   strokeWidth?: undefined | number;
-  dashArray: number;
+  dashArray?: number;
 }
 
 /**
@@ -1114,7 +1142,6 @@ export type ChartType =
   | "line"
   | "area"
   | "bar"
-  | "histogram"
   | "pie"
   | "donut"
   | "radialBar"
@@ -1126,4 +1153,5 @@ export type ChartType =
   | "radar"
   | "polarArea"
   | "rangeBar"
+  | "rangeArea"
   | "treemap";
