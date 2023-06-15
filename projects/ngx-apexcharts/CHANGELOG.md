@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.2](https://github.com/damingerdai/ngx-apexcharts/compare/v0.3.1...v0.3.2) (2023-06-15)
+
+
+### Bug Fixes
+
+* add schema.json into library ([99cbf5f](https://github.com/damingerdai/ngx-apexcharts/commit/99cbf5f1a64c805ef13f14eed50cb8522099d64c))
+
 ### [0.3.1](https://github.com/damingerdai/ngx-apexcharts/compare/v0.3.0...v0.3.1) (2023-06-15)
 
 
