@@ -70,7 +70,7 @@
     "ng-packagr": "^16.1.0",
     "protractor": "~7.0.0",
     "standard-version": "^9.3.2",
-    "ts-node": "~8.10.1",
+    "ts-node": "~10.9.0",
     "typescript": "~5.1.0"
   }
 }
