@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.1](https://github.com/damingerdai/ngx-apexcharts/compare/v0.3.0...v0.3.1) (2023-06-15)
+
+
+### Bug Fixes
+
+* copy collection.json to dist folder to fix ng add error ([fb8a5f4](https://github.com/damingerdai/ngx-apexcharts/commit/fb8a5f4e6ea6da9fe038df227c750dcbaf821043))
+* **deps:** update dependency rxjs to ~6.6.0 ([#27](https://github.com/damingerdai/ngx-apexcharts/issues/27)) ([859709c](https://github.com/damingerdai/ngx-apexcharts/commit/859709c85624fd68f74a6f6efe6dd3956d3b032b))
+
 ## [0.3.0](https://github.com/damingerdai/ngx-apexcharts/compare/v0.2.0...v0.3.0) (2023-06-14)
 
 
