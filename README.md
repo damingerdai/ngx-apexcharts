@@ -21,6 +21,14 @@ More than 80+ examples of all the chart types with sample codes can be found on 
 
 ## Download and Installation
 
+Use the Angular CLI's install [schematics](https://angular.io/guide/schematics) to set up ngx-apexcharts by running the following command:
+
+```bash
+ng add ngx-apexcharts
+```
+
+if you don't like the above way, the following is also supported.
+
 1. Install using npm:
 
 ```ts
