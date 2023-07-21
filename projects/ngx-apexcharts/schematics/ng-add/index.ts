@@ -9,6 +9,10 @@ import { InsertChange } from '@schematics/angular/utility/change';
 
 import * as ts from '@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript';
 
+interface NgxApexchartNgAddSchema {
+  project?: string;
+}
+
 export default function(options: NgxApexchartNgAddSchema): Rule {
   return async (_host: Tree, _context: SchematicContext) => {
     const workspace = await getWorkspace(_host);
@@ -20,7 +24,7 @@ export default function(options: NgxApexchartNgAddSchema): Rule {
     if (project.extensions.projectType === ProjectType.Application) {
       addNgxPendoModule(project as ProjectDefinition, _host);
     }
-    addPackageToPackageJson(_host, 'ngx-apexcharts', '~0.2.0');
+    addPackageToPackageJson(_host, 'ngx-apexcharts', '~0.3.0');
     addPackageToPackageJson(_host, 'apexcharts', '~3.36.3');
     _context.logger.log('info', '✅️ Added "ngx-apexcharts"');
     _context.addTask(new NodePackageInstallTask());
