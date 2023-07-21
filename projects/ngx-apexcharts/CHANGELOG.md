@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.3](https://github.com/damingerdai/ngx-apexcharts/compare/v0.3.2...v0.3.3) (2023-07-21)
+
+
+### Features
+
+* bump angular from 16.1.1 to 16.1.6 ([fac4f89](https://github.com/damingerdai/ngx-apexcharts/commit/fac4f89e69264140c2e48d9a9902b1b5e0916a76))
+* update model type ([da86f1f](https://github.com/damingerdai/ngx-apexcharts/commit/da86f1f8fb75beec483cfb03994de69beb312994))
+
+
+### Bug Fixes
+
+* **deps:** update dependency rxjs to v7 ([#38](https://github.com/damingerdai/ngx-apexcharts/issues/38)) ([f169d36](https://github.com/damingerdai/ngx-apexcharts/commit/f169d36043e56eb6a8e5f82d2378c862451f60ab))
+* **deps:** update dependency tslib to v2.6.0 ([#44](https://github.com/damingerdai/ngx-apexcharts/issues/44)) ([b07f7f7](https://github.com/damingerdai/ngx-apexcharts/commit/b07f7f7f24420f4a6e3d19714a4e6e182f5e701b))
+
 ### [0.3.2](https://github.com/damingerdai/ngx-apexcharts/compare/v0.3.1...v0.3.2) (2023-06-15)
 
 
