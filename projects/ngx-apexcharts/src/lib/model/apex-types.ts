@@ -229,21 +229,21 @@ export type ApexAxisChartSeries = {
   color?: string;
   group?: string;
   data:
-    | (number | null)[]
-    | {
-        x: any;
-        y: any;
-        fill?: ApexFill;
-        fillColor?: string;
-        strokeColor?: string;
-        meta?: any;
-        goals?: any;
-        barHeightOffset?: number;
-        columnWidthOffset?: number;
-      }[]
-    | [number, number | null][]
-    | [number, (number | null)[]][]
-    | number[][];
+  | (number | null)[]
+  | {
+    x: any;
+    y: any;
+    fill?: ApexFill;
+    fillColor?: string;
+    strokeColor?: string;
+    meta?: any;
+    goals?: any;
+    barHeightOffset?: number;
+    columnWidthOffset?: number;
+  }[]
+  | [number, number | null][]
+  | [number, (number | null)[]][]
+  | number[][];
 }[];
 
 export type ApexNonAxisChartSeries = number[];
@@ -255,10 +255,10 @@ export type ApexNonAxisChartSeries = number[];
 export interface ApexStroke {
   show?: boolean;
   curve?:
-    | "smooth"
-    | "straight"
-    | "stepline"
-    | ("smooth" | "straight" | "stepline")[];
+  | "smooth"
+  | "straight"
+  | "stepline"
+  | ("smooth" | "straight" | "stepline")[];
   lineCap?: "butt" | "square" | "round";
   colors?: string[];
   width?: number | number[];
