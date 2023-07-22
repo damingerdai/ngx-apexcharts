@@ -43,7 +43,6 @@ describe('ng add ngx-apexcharts', () => {
     if (typeof packageJson === 'string') {
       packageJson = JSON.parse(packageJson);
     }
-    console.log(packageJson, typeof packageJson);
     expect(packageJson.dependencies?.apexcharts).toBe('~3.36.3');
   });
 });

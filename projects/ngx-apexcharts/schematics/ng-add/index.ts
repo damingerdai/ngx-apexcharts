@@ -6,6 +6,7 @@ import { SchematicsException } from '@angular-devkit/schematics';
 import { addSymbolToNgModuleMetadata, insertImport } from '@schematics/angular/utility/ast-utils';
 import { ProjectType } from '@schematics/angular/utility/workspace-models';
 import { InsertChange } from '@schematics/angular/utility/change';
+import packageJson from '../../package.json';
 
 import * as ts from '@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript';
 

@@ -1,6 +1,6 @@
-import {Component, ViewChild} from '@angular/core';
-import {UntypedFormArray, UntypedFormControl, UntypedFormGroup} from '@angular/forms';
-import {ChartComponent} from 'ngx-apexcharts';
+import { Component, ViewChild } from '@angular/core';
+import { UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { ChartComponent } from 'ngx-apexcharts';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,7 @@ import {ChartComponent} from 'ngx-apexcharts';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  @ViewChild('chart', {static: true}) chart: ChartComponent;
+  @ViewChild('chart', { static: true }) chart: ChartComponent;
 
   form: UntypedFormGroup;
 
@@ -20,7 +20,7 @@ export class AppComponent {
     return this.form.get('xaxis') as UntypedFormArray;
   }
   private det = 0;
-  changeDet(): boolean{
+  changeDet(): boolean {
     console.log(`change${this.det++}`);
     return false;
   }
