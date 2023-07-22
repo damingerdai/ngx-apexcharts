@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": "tsconfig",
+    "esModuleInterop": true,
     "lib": [
       "es2018",
       "dom"
@@ -14,7 +15,6 @@
     "noImplicitThis": true,
     "noUnusedParameters": true,
     "noUnusedLocals": false,
-    "rootDir": "./",
     "outDir": "dist",
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
@@ -24,10 +24,14 @@
     "types": [
       "jasmine",
       "node"
-    ]
+    ],
+    "resolveJsonModule": true
   },
   "include": [
     "./**/*",
     "**.json"
+  ],
+  "exclude": [
+    "**/__tests__/**"
   ]
 }
