@@ -50,6 +50,7 @@ if(typeof window !== 'undefined') {
 @Component({
   selector: 'apx-chart',
   template: '<div #chart></div>',
+  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChartComponent implements OnInit, OnChanges, OnDestroy {
