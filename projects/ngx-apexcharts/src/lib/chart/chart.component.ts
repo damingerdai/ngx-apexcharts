@@ -3,13 +3,12 @@ import {
   ElementRef,
   Input,
   OnChanges,
-  OnInit,
   OnDestroy,
   SimpleChanges,
   ViewChild,
-  ChangeDetectionStrategy,
   NgZone,
-  inject,
+  ChangeDetectionStrategy,
+  inject
 } from '@angular/core';
 import {
   ApexAnnotations,
@@ -32,19 +31,16 @@ import {
   ApexXAxis,
   ApexYAxis,
   ApexForecastDataPoints,
+  ApexOptions
 } from '../model/apex-types';
 import { asapScheduler } from 'rxjs';
 
-import ApexCharts from 'apexcharts';
+import type ApexCharts from 'apexcharts';
 
 declare global {
   interface Window {
     ApexCharts: any;
   }
-}
-
-if(typeof window !== 'undefined') {
-  window.ApexCharts = ApexCharts;
 }
 
 @Component({
@@ -53,7 +49,7 @@ if(typeof window !== 'undefined') {
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ChartComponent implements OnInit, OnChanges, OnDestroy {
+export class ChartComponent implements OnChanges, OnDestroy {
   private readonly ngZone = inject(NgZone);
 
   @Input()
@@ -126,22 +122,16 @@ export class ChartComponent implements OnInit, OnChanges, OnDestroy {
   public autoUpdateSeries = true;
 
   @ViewChild('chart', { static: true })
-  public chartElement!: ElementRef;
+  public readonly chartElement!: ElementRef;
 
   private chartObj?: ApexCharts;
-
-
-  ngOnInit() {
-    asapScheduler.schedule(() => {
-      this.createElement();
-    });
-  }
+  private hasPendingLoad = false;
 
   ngOnChanges(changes: SimpleChanges): void {
     asapScheduler.schedule(() => {
       if (
         this.autoUpdateSeries &&
-        Object.keys(changes).filter((c) => c !== 'series').length === 0
+        Object.keys(changes).filter((c) => c !== "series").length === 0
       ) {
         this.updateSeries(this.series, true);
         return;
@@ -152,93 +142,32 @@ export class ChartComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.chartObj) {
-      this.chartObj.destroy();
-    }
+    this.destroy();
   }
 
-  private createElement() {
-    const options: any = {};
-
-    if (this.annotations) {
-      options.annotations = this.annotations;
-    }
-    if (this.chart) {
-      options.chart = this.chart;
-    }
-    if (this.colors) {
-      options.colors = this.colors;
-    }
-    if (this.dataLabels) {
-      options.dataLabels = this.dataLabels;
-    }
-    if (this.series) {
-      options.series = this.series;
-    }
-    if (this.stroke) {
-      options.stroke = this.stroke;
-    }
-    if (this.labels) {
-      options.labels = this.labels;
-    }
-    if (this.legend) {
-      options.legend = this.legend;
-    }
-    if (this.fill) {
-      options.fill = this.fill;
-    }
-    if (this.tooltip) {
-      options.tooltip = this.tooltip;
-    }
-    if (this.plotOptions) {
-      options.plotOptions = this.plotOptions;
-    }
-    if (this.responsive) {
-      options.responsive = this.responsive;
-    }
-    if (this.markers) {
-      options.markers = this.markers;
-    }
-    if (this.noData) {
-      options.noData = this.noData;
-    }
-    if (this.xaxis) {
-      options.xaxis = this.xaxis;
-    }
-    if (this.yaxis) {
-      options.yaxis = this.yaxis;
-    }
-    if (this.forecastDataPoints) {
-      options.forecastDataPoints = this.forecastDataPoints;
-    }
-    if (this.grid) {
-      options.grid = this.grid;
-    }
-    if (this.states) {
-      options.states = this.states;
-    }
-    if (this.title) {
-      options.title = this.title;
-    }
-    if (this.subtitle) {
-      options.subtitle = this.subtitle;
-    }
-    if (this.theme) {
-      options.theme = this.theme;
+  private createElement(): void {
+    // Do not run on server
+    if (typeof window === 'undefined' || this.hasPendingLoad) {
+      return;
     }
 
-    if (this.chartObj) {
-      this.chartObj.destroy();
-    }
+    this.hasPendingLoad = true;
+    this.ngZone.runOutsideAngular(async () => {
+      this.destroy();
 
-    this.ngZone.runOutsideAngular(() => {
+      const ApexCharts = (await import('apexcharts')).default;
+      const options = this.buildOptions();
+
       this.chartObj = new ApexCharts(this.chartElement.nativeElement, options);
-    });
 
-    this.render();
+      window.ApexCharts = ApexCharts;
+
+      this.render();
+      this.hasPendingLoad = false;
+    });
   }
 
-  render(): Promise<void> | undefined {
+  render(): Promise<void>|undefined {
     return this.ngZone.runOutsideAngular(() => this.chartObj?.render());
   }
 
@@ -247,7 +176,7 @@ export class ChartComponent implements OnInit, OnChanges, OnDestroy {
     redrawPaths?: boolean,
     animate?: boolean,
     updateSyncedCharts?: boolean
-  ): Promise<void> | undefined {
+  ): Promise<void>|undefined {
     return this.ngZone.runOutsideAngular(() => this.chartObj?.updateOptions(
       options,
       redrawPaths,
@@ -259,7 +188,7 @@ export class ChartComponent implements OnInit, OnChanges, OnDestroy {
   updateSeries(
     newSeries: ApexAxisChartSeries | ApexNonAxisChartSeries,
     animate?: boolean
-  ): Promise<void> | undefined {
+  ): Promise<void>|undefined {
     return this.ngZone.runOutsideAngular(() => this.chartObj?.updateSeries(newSeries, animate));
   }
 
@@ -345,7 +274,80 @@ export class ChartComponent implements OnInit, OnChanges, OnDestroy {
     this.ngZone.runOutsideAngular(() => this.chartObj?.clearAnnotations(options));
   }
 
-  dataURI(options?: any): Promise<{ imgURI: string } | { blob: Blob }> | undefined {
+  dataURI(options?: any): Promise<{ imgURI: string } | { blob: Blob }>|undefined {
     return this.chartObj?.dataURI(options);
+  }
+
+  private buildOptions(): ApexOptions {
+    const options: ApexOptions = {};
+
+    if (this.annotations) {
+      options.annotations = this.annotations;
+    }
+    if (this.chart) {
+      options.chart = this.chart;
+    }
+    if (this.colors) {
+      options.colors = this.colors;
+    }
+    if (this.dataLabels) {
+      options.dataLabels = this.dataLabels;
+    }
+    if (this.series) {
+      options.series = this.series;
+    }
+    if (this.stroke) {
+      options.stroke = this.stroke;
+    }
+    if (this.labels) {
+      options.labels = this.labels;
+    }
+    if (this.legend) {
+      options.legend = this.legend;
+    }
+    if (this.fill) {
+      options.fill = this.fill;
+    }
+    if (this.tooltip) {
+      options.tooltip = this.tooltip;
+    }
+    if (this.plotOptions) {
+      options.plotOptions = this.plotOptions;
+    }
+    if (this.responsive) {
+      options.responsive = this.responsive;
+    }
+    if (this.markers) {
+      options.markers = this.markers;
+    }
+    if (this.noData) {
+      options.noData = this.noData;
+    }
+    if (this.xaxis) {
+      options.xaxis = this.xaxis;
+    }
+    if (this.yaxis) {
+      options.yaxis = this.yaxis;
+    }
+    if (this.forecastDataPoints) {
+      options.forecastDataPoints = this.forecastDataPoints;
+    }
+    if (this.grid) {
+      options.grid = this.grid;
+    }
+    if (this.states) {
+      options.states = this.states;
+    }
+    if (this.title) {
+      options.title = this.title;
+    }
+    if (this.subtitle) {
+      options.subtitle = this.subtitle;
+    }
+    if (this.theme) {
+      options.theme = this.theme;
+    }
+
+    return options;
   }
 }
