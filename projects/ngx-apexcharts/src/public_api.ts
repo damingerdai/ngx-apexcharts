@@ -2,7 +2,7 @@
  * Public API Surface of ngx-apexcharts
  */
 
-export { NgApexchartsModule } from './lib/ngx-apexcharts.module';
+export { NgxApexchartsModule } from './lib/ngx-apexcharts.module';
 export { ChartComponent } from './lib/chart/chart.component';
 export {
   ChartType,
