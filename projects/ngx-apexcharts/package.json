@@ -32,8 +32,6 @@
   },
   "schematics": "./schematics/collection.json",
   "ng-update": {
-    "packageGroup": {
-      "apexcharts": "3.44.0"
-    }
+    "packageGroupName": "ngx-apexcharts"
   }
 }
