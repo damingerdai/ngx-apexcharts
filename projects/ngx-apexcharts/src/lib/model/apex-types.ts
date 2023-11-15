@@ -74,6 +74,7 @@ export interface ApexChart {
     enabled?: boolean;
     autoScaleYaxis?: boolean;
     target?: string;
+    targets?: string[];
   };
   id?: string;
   group?: string;
@@ -86,6 +87,7 @@ export interface ApexChart {
     enabled?: boolean;
   };
   stacked?: boolean;
+  stackOnlyBar?: boolean;
   stackType?: "normal" | "100%";
   toolbar?: {
     show?: boolean;
@@ -228,22 +230,23 @@ export type ApexAxisChartSeries = {
   type?: string;
   color?: string;
   group?: string;
+  zIndex?: number;
   data:
-  | (number | null)[]
-  | {
-    x: any;
-    y: any;
-    fill?: ApexFill;
-    fillColor?: string;
-    strokeColor?: string;
-    meta?: any;
-    goals?: any;
-    barHeightOffset?: number;
-    columnWidthOffset?: number;
-  }[]
-  | [number, number | null][]
-  | [number, (number | null)[]][]
-  | number[][];
+    | (number | null)[]
+    | {
+        x: any;
+        y: any;
+        fill?: ApexFill;
+        fillColor?: string;
+        strokeColor?: string;
+        meta?: any;
+        goals?: any;
+        barHeightOffset?: number;
+        columnWidthOffset?: number;
+      }[]
+    | [number, number | null][]
+    | [number, (number | null)[]][]
+    | number[][];
 }[];
 
 export type ApexNonAxisChartSeries = number[];
@@ -255,10 +258,11 @@ export type ApexNonAxisChartSeries = number[];
 export interface ApexStroke {
   show?: boolean;
   curve?:
-  | "smooth"
-  | "straight"
-  | "stepline"
-  | ("smooth" | "straight" | "stepline")[];
+    | "smooth"
+    | "straight"
+    | "stepline"
+    | "monotoneCubic"
+    | ("smooth" | "straight" | "stepline" | "monotoneCubic")[];
   lineCap?: "butt" | "square" | "round";
   colors?: string[];
   width?: number | number[];
@@ -514,6 +518,7 @@ export interface ApexPlotOptions {
     distributed?: boolean;
     reverseNegativeShade?: boolean;
     useFillColorAsStroke?: boolean;
+    dataLabels?: { format?: "scale" | "truncate" };
     colorScale?: {
       inverse?: boolean;
       ranges?: {
@@ -658,6 +663,11 @@ export interface ApexPlotOptions {
   };
 }
 
+type ApexColorStop = {
+  offset: number;
+  color: string;
+  opacity: number;
+};
 export interface ApexFill {
   colors?: any[];
   opacity?: number | number[];
@@ -670,7 +680,7 @@ export interface ApexFill {
     inverseColors?: boolean;
     opacityFrom?: number | number[];
     opacityTo?: number | number[];
-    stops?: number[];
+    colorStops?: ApexColorStop[][] | ApexColorStop[];
   };
   image?: {
     src?: string | string[];
@@ -798,6 +808,7 @@ export interface ApexTooltip {
   fillSeriesColor?: boolean;
   theme?: string;
   cssClass?: string;
+  hideEmptySeries?: boolean;
   style?: {
     fontSize?: string;
     fontFamily?: string;
