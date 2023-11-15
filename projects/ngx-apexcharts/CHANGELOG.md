@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://github.com/damingerdai/ngx-apexcharts/compare/v0.3.3...v0.4.0) (2023-11-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* stop supporting angular v13. v14 is the mini supported version now.
+* stop support for node v16.
+
+### Features
+
+* add standalone component support ([#69](https://github.com/damingerdai/ngx-apexcharts/issues/69)) ([d3605f1](https://github.com/damingerdai/ngx-apexcharts/commit/d3605f1803455de1ed3e8e82d9b4891722faa2af))
+* bump angular from 16.2.7 to 17.0.2 ([#70](https://github.com/damingerdai/ngx-apexcharts/issues/70)) ([98fe0b3](https://github.com/damingerdai/ngx-apexcharts/commit/98fe0b38470e633b720058c3b95519a143a34292))
+* bump apexcharts to 3.44.0 ([#74](https://github.com/damingerdai/ngx-apexcharts/issues/74)) ([b2d0f9b](https://github.com/damingerdai/ngx-apexcharts/commit/b2d0f9bf1d4913b589dbac8406a81b3bc6ee1a3a))
+* **schematics:** schematics will not included unit test code ([58e7373](https://github.com/damingerdai/ngx-apexcharts/commit/58e7373551af0f1f01273dc879ee52be3e9605c4))
+
+
+### Bug Fixes
+
+* **deps:** update dependency @schematics/angular to v16.1.5 ([#40](https://github.com/damingerdai/ngx-apexcharts/issues/40)) ([e4abe6a](https://github.com/damingerdai/ngx-apexcharts/commit/e4abe6a77b0452a467caa0723c67685c0b3b6cca))
+* **deps:** update dependency apexcharts to v3.42.0 ([#56](https://github.com/damingerdai/ngx-apexcharts/issues/56)) ([7126276](https://github.com/damingerdai/ngx-apexcharts/commit/7126276534aaac4ba6e6ee516f1233dc72cb47ed))
+* **deps:** update dependency tslib to v2.6.2 ([#53](https://github.com/damingerdai/ngx-apexcharts/issues/53)) ([9715573](https://github.com/damingerdai/ngx-apexcharts/commit/97155739540e6c2b57ba57d5b56034ffaeab6499))
+
+
+### build
+
+* drop node 16 support ([#72](https://github.com/damingerdai/ngx-apexcharts/issues/72)) ([6b5bbaa](https://github.com/damingerdai/ngx-apexcharts/commit/6b5bbaa7c2d9d682b9e96d83ecd19c7f9309572f)), closes [#71](https://github.com/damingerdai/ngx-apexcharts/issues/71)
+
 ### [0.3.3](https://github.com/damingerdai/ngx-apexcharts/compare/v0.3.2...v0.3.3) (2023-07-21)
 
 
