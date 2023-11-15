@@ -24,8 +24,8 @@ export default function(options: NgxApexchartNgAddSchema): Rule {
     if (project.extensions.projectType === ProjectType.Application) {
       addNgxPendoModule(project as ProjectDefinition, _host);
     }
-    addPackageToPackageJson(_host, 'ngx-apexcharts', '~0.3.0');
-    addPackageToPackageJson(_host, 'apexcharts', '~3.36.3');
+    // addPackageToPackageJson(_host, 'ngx-apexcharts', '~0.3.0');
+    addPackageToPackageJson(_host, 'apexcharts', '~3.44.0');
     _context.logger.log('info', '✅️ Added "ngx-apexcharts"');
     _context.addTask(new NodePackageInstallTask());
   };
