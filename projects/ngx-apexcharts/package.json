@@ -36,6 +36,6 @@
   "schematics": "./schematics/collection.json",
   "ng-update": {
     "packageGroupName": "ngx-apexcharts",
-    "migrations": "./migrations.json"
+    "migrations": "./schematics/migrations.json"
   }
 }
