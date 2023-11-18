@@ -22,7 +22,7 @@ export default function(options: NgxApexchartNgAddSchema): Rule {
       throw new Error(`can not find ${options.project} angular project`);
     }
     if (project.extensions.projectType === ProjectType.Application) {
-      addNgxPendoModule(project as ProjectDefinition, _host);
+      addNgxApexchartsModule(project as ProjectDefinition, _host);
     }
     // addPackageToPackageJson(_host, 'ngx-apexcharts', '~0.3.0');
     addPackageToPackageJson(_host, 'apexcharts', '~3.44.0');
@@ -31,7 +31,7 @@ export default function(options: NgxApexchartNgAddSchema): Rule {
   };
 }
 
-function addNgxPendoModule(project: ProjectDefinition, _host: Tree): void {
+function addNgxApexchartsModule(project: ProjectDefinition, _host: Tree): void {
   if (!project) {
     return;
   }
