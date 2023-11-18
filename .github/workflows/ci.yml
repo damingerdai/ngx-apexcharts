@@ -39,5 +39,7 @@ jobs:
         run: yarn
       - name: Lint
         run: yarn lint
+      - name: Schematics unit test
+        run: yarn test-schematics
       - name: Build
         run: yarn package && yarn build

@@ -1,3 +1,4 @@
+import { Path } from '@angular-devkit/core';
 import { Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
@@ -23,6 +24,9 @@ export default function(options: NgxApexchartNgAddSchema): Rule {
     }
     if (project.extensions.projectType === ProjectType.Application) {
       addNgxApexchartsModule(project as ProjectDefinition, _host);
+      // addRootImport(options.project,({ code, external}) => {
+      //   return code`${external('NgxApexchartsModule', 'ngx-apexcharts')}`
+      // });
     }
     // addPackageToPackageJson(_host, 'ngx-apexcharts', '~0.3.0');
     addPackageToPackageJson(_host, 'apexcharts', '~3.44.0');
@@ -104,12 +108,24 @@ function getProjectTargetOptions(project: ProjectDefinition, buildTarget: string
 
 function getProjectMainFile(project: ProjectDefinition): string {
   const buildOptions = getProjectTargetOptions(project, 'build');
-  if (!buildOptions || !buildOptions.main) {
-    throw new SchematicsException(`Could not find the project main file inside of the ` +
-      `workspace config (${project.sourceRoot})`);
+  if (!buildOptions) {
+    throw new SchematicsException(
+      `Could not find the project main file inside of the ` +
+        `workspace config (${project.sourceRoot})`,
+    );
+  }
+  // `browser` is for the `@angular-devkit/build-angular:application` builder while
+  // `main` is for the `@angular-devkit/build-angular:browser` builder.
+  const mainPath = (buildOptions['browser'] || buildOptions['main']) as Path | undefined;
+
+  if (!mainPath) {
+    throw new SchematicsException(
+      `Could not find the project main file inside of the ` +
+        `workspace config (${project.sourceRoot})`,
+    );
   }
 
-  return buildOptions.main.toString();
+  return mainPath;
 }
 
 export function getProjectFromWorkspace(

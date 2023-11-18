@@ -20,6 +20,7 @@ describe('ng add ngx-apexcharts', () => {
     style: Style.Scss,
     skipTests: false,
     skipPackageJson: false,
+    standalone: false
   };
 
   let appTree: UnitTestTree | undefined;
@@ -44,6 +45,6 @@ describe('ng add ngx-apexcharts', () => {
       packageJson = JSON.parse(packageJson);
     }
     console.log(packageJson, typeof packageJson);
-    expect(packageJson.dependencies?.apexcharts).toBe('~3.36.3');
+    expect(packageJson.dependencies?.apexcharts).toBe('~3.44.0');
   });
 });
