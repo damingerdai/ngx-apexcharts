@@ -42,6 +42,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          node-version: 20
+      - run: npm install -g conventional-changelog-cli
+      - run: cd ./projects/ngx-apexcharts && conventional-changelog -p angular -o c.md -r 2
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -50,7 +54,8 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: ${{ github.ref }}
-          body: |
-            Please refer to [CHANGELOG.md](https://github.com/damingerdai/ngx-apexcharts/blob/develop/projects/ngx-apexcharts/CHANGELOG.md) for details.
+          body_path: ./projects/ngx-apexcharts/c.md
+          # body: |
+          #   Please refer to [CHANGELOG.md](https://github.com/damingerdai/ngx-apexcharts/blob/develop/projects/ngx-apexcharts/CHANGELOG.md) for details.
           draft: false
           prerelease: false
