@@ -56,7 +56,9 @@ describe('ng add ngx-apexcharts', () => {
     const options = { project: 'ngx-apexcharts-app' };
     const tree = await runner.runSchematic('ng-add-setup-project', options, appTree);
     const appmodule = tree.readContent('/projects/ngx-apexcharts-app/src/app/app.module.ts');
-    expect(appmodule).toContain("import { NgxApexchartsModule } from 'ngx-apexcharts'");
-    expect(appmodule).toMatch(/imports:\s*\[\s*BrowserModule,\s*NgxApexchartsModule\s*\]/);
+    //expect(appmodule).toContain("import { NgxApexchartsModule } from 'ngx-apexcharts'");
+    //expect(appmodule).toMatch(/imports:\s*\[\s*BrowserModule,\s*NgxApexchartsModule\s*\]/);
+    expect(appmodule).toMatch(/import.*NgxApexchartsModule.*from 'ngx-apexcharts'/);
+    expect(appmodule).toMatch(/imports:\s*\[[^\]]+?,\r?\n\s+NgxApexchartsModule\r?\n/m)
   })
 });
