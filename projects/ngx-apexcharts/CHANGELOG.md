@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.4](https://github.com/damingerdai/ngx-apexcharts/compare/v0.4.3...v0.4.4) (2023-12-10)
+
+
+### Features
+
+* **schematics:** ng-add command support standalone mode ([#105](https://github.com/damingerdai/ngx-apexcharts/issues/105)) ([11acdcb](https://github.com/damingerdai/ngx-apexcharts/commit/11acdcbf3853de0be1bebbd33598d62ab293548f))
+
+
+### Bug Fixes
+
+* **deps:** update dependency apexcharts to v3.44.2 ([#98](https://github.com/damingerdai/ngx-apexcharts/issues/98)) ([b6b5195](https://github.com/damingerdai/ngx-apexcharts/commit/b6b519562d67891e38f44e57d00f05ee710c2892))
+
 ### [0.4.3](https://github.com/damingerdai/ngx-apexcharts/compare/v0.4.2...v0.4.3) (2023-11-21)
 
 
