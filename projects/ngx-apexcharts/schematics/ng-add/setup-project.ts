@@ -4,10 +4,28 @@ import {
   SchematicContext,
   Tree,
 } from "@angular-devkit/schematics";
-import { getWorkspace, ProjectDefinition } from "@schematics/angular/utility/workspace";
+import {
+  getWorkspace,
+  ProjectDefinition,
+} from "@schematics/angular/utility/workspace";
 import { ProjectType } from "@schematics/angular/utility/workspace-models";
-import { getAppModulePath, isStandaloneApp } from "@schematics/angular/utility/ng-ast-utils";
-import { addModuleImportToRootModule, getProjectFromWorkspace, getProjectMainFile, hasNgModuleImport } from "../utils";
+import {
+  getAppModulePath,
+  isStandaloneApp,
+} from "@schematics/angular/utility/ng-ast-utils";
+import { addRootImport } from "@schematics/angular/utility/standalone/rules";
+import {
+  importsProvidersFrom,
+  addFunctionalProvidersToStandaloneBootstrap,
+  callsProvidersFunction,
+  addModuleImportToStandaloneBootstrap,
+} from '@schematics/angular/private/components';
+import {
+  addModuleImportToRootModule,
+  getProjectFromWorkspace,
+  getProjectMainFile,
+  hasNgModuleImport,
+} from "../utils";
 import { NgxApexchartNgAddSchema } from "./schema";
 
 export default function (options: NgxApexchartNgAddSchema): Rule {
@@ -22,26 +40,34 @@ export default function (options: NgxApexchartNgAddSchema): Rule {
       return;
     }
 
-    return chain([
-      addNgxApexchartsModule(options),
-    ]);
+    return chain([addNgxApexchartsModule(options)]);
   };
 }
 
 function addNgxApexchartsModule(options: NgxApexchartNgAddSchema) {
-
   return async (host: Tree, context: SchematicContext) => {
     const workspace = await getWorkspace(host);
     const project = getProjectFromWorkspace(workspace, options.project);
     const mainFilePath = getProjectMainFile(project);
 
     if (isStandaloneApp(host, mainFilePath)) {
-      // addAnimationsToStandaloneApp(host, mainFilePath, context, options);
-      context.logger.warn("standalone app is not supported yet");
+      addNgxApexchartsToStandaloneApp(host, mainFilePath, context, options);
     } else {
       addNgxApexchartsToNonStandaloneApp(host, project, mainFilePath, context);
     }
-  }
+  };
+}
+
+function addNgxApexchartsToStandaloneApp(
+  host: Tree,
+  mainFile: string,
+  _context: SchematicContext,
+  _options: NgxApexchartNgAddSchema) {
+    const ngxApexchartModuleoduleName = "NgxApexchartsModule";
+    const libraryName = "ngx-apexcharts";
+    // TODO: addModuleImportToStandaloneBootstrap is removed from @schematics/angular but addRootImport does not work
+    // addRootImport(options.project!, ({code, external}) => code`${external(ngxApexchartModuleoduleName, libraryName)}`);
+    addModuleImportToStandaloneBootstrap(host, mainFile, ngxApexchartModuleoduleName, libraryName);
 }
 
 function addNgxApexchartsToNonStandaloneApp(
@@ -50,7 +76,7 @@ function addNgxApexchartsToNonStandaloneApp(
   mainFile: string,
   context: SchematicContext,
 ) {
-  const ngxApexchartModuleoduleName = 'NgxApexchartsModule';
+  const ngxApexchartModuleoduleName = "NgxApexchartsModule";
   const appModulePath = getAppModulePath(host, mainFile);
 
   if (hasNgModuleImport(host, appModulePath, ngxApexchartModuleoduleName)) {
@@ -63,7 +89,7 @@ function addNgxApexchartsToNonStandaloneApp(
     addModuleImportToRootModule(
       host,
       ngxApexchartModuleoduleName,
-      'ngx-apexcharts',
+      "ngx-apexcharts",
       project,
     );
   }
