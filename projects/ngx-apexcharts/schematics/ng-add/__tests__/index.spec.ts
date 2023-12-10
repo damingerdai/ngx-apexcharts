@@ -61,4 +61,12 @@ describe('ng add ngx-apexcharts', () => {
     expect(appmodule).toMatch(/import.*NgxApexchartsModule.*from 'ngx-apexcharts'/);
     expect(appmodule).toMatch(/imports:\s*\[[^\]]+?,\r?\n\s+NgxApexchartsModule\r?\n/m)
   })
+
+  it('should add ngx-apexcharts to AppComponent', async () => {
+    const options = { project: 'ngx-apexcharts-standalone-app' };
+    const tree = await runner.runSchematic('ng-add-setup-project', options, appTree);
+    const appconfig = tree.readContent('projects/ngx-apexcharts-standalone-app/src/app/app.config.ts');
+    expect(appconfig).toContain("import { NgxApexchartsModule } from 'ngx-apexcharts'");
+    expect(appconfig).toMatch(/providers:\s*\[importProvidersFrom\(NgxApexchartsModule\)\]/);
+  })
 });
