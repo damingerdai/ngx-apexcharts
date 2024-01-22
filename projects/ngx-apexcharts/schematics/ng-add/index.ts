@@ -1,7 +1,4 @@
-import {
-  Rule,
-  SchematicContext, Tree
-} from "@angular-devkit/schematics";
+import { Rule, SchematicContext, Tree } from "@angular-devkit/schematics";
 import {
   NodePackageInstallTask,
   RunSchematicTask,
@@ -11,7 +8,7 @@ import { addPackageToPackageJson } from "../utils";
 
 export default function (options: NgxApexchartNgAddSchema): Rule {
   return async (_host: Tree, _context: SchematicContext) => {
-    addPackageToPackageJson(_host, "apexcharts", "~3.44.0");
+    addPackageToPackageJson(_host, "apexcharts", "~3.45.0");
     const installTaskId = _context.addTask(new NodePackageInstallTask());
     _context.addTask(new RunSchematicTask("ng-add-setup-project", options), [
       installTaskId,
