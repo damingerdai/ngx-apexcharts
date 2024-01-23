@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.5](https://github.com/damingerdai/ngx-apexcharts/compare/v0.4.4...v0.4.5) (2024-01-23)
+
+
+### Features
+
+* bump angular 17.1.0 ([64742d8](https://github.com/damingerdai/ngx-apexcharts/commit/64742d8e36ab244617cca92d0ea47d41e42e3946))
+* **deps:** update dependency apexcharts to v3.45.2 ([#106](https://github.com/damingerdai/ngx-apexcharts/issues/106)) ([a5273b0](https://github.com/damingerdai/ngx-apexcharts/commit/a5273b0082e085a8a4d298f55f3b0fa3eb73821e))
+
 ### [0.4.4](https://github.com/damingerdai/ngx-apexcharts/compare/v0.4.3...v0.4.4) (2023-12-10)
 
 
