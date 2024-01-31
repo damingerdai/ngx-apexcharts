@@ -11,7 +11,6 @@
     "test-schematics": "ts-node --project ./tsconfig.schematics.json -r tsconfig-paths/register node_modules/jasmine/bin/jasmine.js --config=jasmine.json",
     "test": "yarn test-lib && yarn test-schematics",
     "lint": "ng lint ngx-apexcharts && ng lint ngx-apexcharts-demo",
-    "e2e": "ng e2e",
     "package": "yarn build-pkg && yarn build-schematics",
     "copyfile:lincense": "copyfiles ./LICENSE ./dist/ngx-apexcharts",
     "copyfile:schema": "copyfiles -f ./projects/ngx-apexcharts/schematics/ng-add/schema.json ./dist/ngx-apexcharts/schematics/ng-add",
@@ -41,8 +40,8 @@
     "zone.js": "~0.14.2"
   },
   "devDependencies": {
-    "@angular-devkit/core": "^17.1.0",
     "@angular-devkit/build-angular": "^17.1.0",
+    "@angular-devkit/core": "^17.1.0",
     "@angular-eslint/builder": "17.2.1",
     "@angular-eslint/eslint-plugin": "17.2.1",
     "@angular-eslint/eslint-plugin-template": "17.2.1",
@@ -71,7 +70,6 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "lint-staged": "^15.0.0",
     "ng-packagr": "^17.0.0",
-    "protractor": "~7.0.0",
     "standard-version": "^9.3.2",
     "ts-node": "~10.9.0",
     "typescript": "~5.2.2"
