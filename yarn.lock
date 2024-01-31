@@ -5801,6 +5801,19 @@ jasmine-spec-reporter@~7.0.0:
   dependencies:
     colors "1.4.0"
 
+jasmine@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/jasmine/-/jasmine-5.1.0.tgz#a3218fd425ff35aec12f3dc6cf70d8cebbf0042a"
+  integrity sha512-prmJlC1dbLhti4nE4XAPDWmfJesYO15sjGXVp7Cs7Ym5I9Xtwa/hUHxxJXjnpfLO72+ySttA0Ztf8g/RiVnUKw==
+  dependencies:
+    glob "^10.2.2"
+    jasmine-core "~5.1.0"
+
+jasminewd2@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/jasminewd2/-/jasminewd2-2.2.0.tgz#e37cf0b17f199cce23bea71b2039395246b4ec4e"
+  integrity sha512-Rn0nZe4rfDhzA63Al3ZGh0E+JTmM6ESZYXJGKuqKGZObsAB9fwXPD03GjtIEvJBDOhN94T5MzbwZSqzFHSQPzg==
+
 jest-diff@^29.4.1:
   version "29.7.0"
   resolved "https://registry.yarnpkg.com/jest-diff/-/jest-diff-29.7.0.tgz#017934a66ebb7ecf6f205e84699be10afd70458a"
