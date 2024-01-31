@@ -20,10 +20,10 @@
     ],
     "paths": {
       "ngx-apexcharts": [
-        "dist/ngx-apexcharts"
+        "projects/ngx-apexcharts/src/public_api.ts"
       ],
       "ngx-apexcharts/*": [
-        "dist/ngx-apexcharts/*"
+        "projects/ngx-apexcharts/src/lib/*"
       ]
     },
     "useDefineForClassFields": false
