@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.6](https://github.com/damingerdai/ngx-apexcharts/compare/v0.4.5...v0.4.6) (2024-01-31)
+
+
+### Features
+
+* await chart render ([dc83224](https://github.com/damingerdai/ngx-apexcharts/commit/dc832240443d3cd74fc4e825058ca701d9ea2a6c))
+
 ### [0.4.5](https://github.com/damingerdai/ngx-apexcharts/compare/v0.4.4...v0.4.5) (2024-01-23)
 
 
