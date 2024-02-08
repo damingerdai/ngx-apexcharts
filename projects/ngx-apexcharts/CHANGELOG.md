@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.7](https://github.com/damingerdai/ngx-apexcharts/compare/v0.4.6...v0.4.7) (2024-02-08)
+
+
+### Features
+
+* add stops param to ApexFill interface ([#125](https://github.com/damingerdai/ngx-apexcharts/issues/125)) ([f8b177d](https://github.com/damingerdai/ngx-apexcharts/commit/f8b177dd2199ff30960800ba752d1bd485a0ba87)), closes [#124](https://github.com/damingerdai/ngx-apexcharts/issues/124)
+
 ### [0.4.6](https://github.com/damingerdai/ngx-apexcharts/compare/v0.4.5...v0.4.6) (2024-01-31)
 
 
