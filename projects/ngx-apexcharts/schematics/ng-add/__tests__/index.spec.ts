@@ -68,8 +68,14 @@ describe("ng add ngx-apexcharts", () => {
   it("should add apexcharts to package.json", async () => {
     const options = { project: "ngx-apexcharts-app" };
     const tree = await runner.runSchematic("ng-add", options, appTree);
-    const packageJson = tree.readContent("/package.json");
-    expect(packageJson).toContain('"apexcharts": "~3.45.0"');
+    expect(runner.tasks.some(task => task.name === 'node-package'))
+      .withContext('Expected the package manager to be scheduled in order to update lock files.')
+      .toBe(true);
+    expect(runner.tasks.some(task => task.name === 'run-schematic'))
+      .withContext('Expected the setup-project schematic to be scheduled.')
+      .toBe(true);
+    const packageJson = JSON.parse(tree.readContent("/package.json"))
+    expect(packageJson.dependencies['apexcharts']).toBe("~3.45.0");
   });
 
   it("should add ngx-apexcharts to AppModule", async () => {
