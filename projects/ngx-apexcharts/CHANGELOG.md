@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.8](https://github.com/damingerdai/ngx-apexcharts/compare/v0.4.7...v0.4.8) (2024-02-29)
+
+
+### Features
+
+* bump angular from 17.1.0 to 17.2.3 ([7fb3c69](https://github.com/damingerdai/ngx-apexcharts/commit/7fb3c697e911c98b322409dc01950520d6fa0560))
+* **deps:** update dependency apexcharts to v3.46.0 ([#131](https://github.com/damingerdai/ngx-apexcharts/issues/131)) ([40ffec9](https://github.com/damingerdai/ngx-apexcharts/commit/40ffec91bbdbd4341e2a3367011872ee4de26108))
+* **deps:** update typescript-eslint monorepo to v7 ([#127](https://github.com/damingerdai/ngx-apexcharts/issues/127)) ([c9a65bf](https://github.com/damingerdai/ngx-apexcharts/commit/c9a65bffcc05fdb82b25e2bd58a9b9231d599a2e))
+
+
+### Bug Fixes
+
+* **deps:** update dependency @schematics/angular to v17.2.2 ([#113](https://github.com/damingerdai/ngx-apexcharts/issues/113)) ([ed873a0](https://github.com/damingerdai/ngx-apexcharts/commit/ed873a0ed81d962c08f46c8d3a8cc4080d3149d2))
+* **deps:** update dependency zone.js to v0.14.4 ([#114](https://github.com/damingerdai/ngx-apexcharts/issues/114)) ([9970553](https://github.com/damingerdai/ngx-apexcharts/commit/9970553cead634a32e0e8e402366043a986d8131))
+
 ### [0.4.7](https://github.com/damingerdai/ngx-apexcharts/compare/v0.4.6...v0.4.7) (2024-02-08)
 
 
