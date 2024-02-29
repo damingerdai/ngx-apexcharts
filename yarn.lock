@@ -3173,9 +3173,9 @@ anymatch@~3.1.2:
     picomatch "^2.0.4"
 
 apexcharts@^3.45.0:
-  version "3.45.2"
-  resolved "https://registry.yarnpkg.com/apexcharts/-/apexcharts-3.45.2.tgz#18a6343da122c12d71ac9f35260aacd31b16fbfb"
-  integrity sha512-PpuM4sJWy70sUh5U1IFn1m1p45MdHSChLUNnqEoUUUHSU2IHZugFrsVNhov1S8Q0cvfdrCRCvdBtHGSs6PSAWQ==
+  version "3.46.0"
+  resolved "https://registry.yarnpkg.com/apexcharts/-/apexcharts-3.46.0.tgz#ee0afd44a7df94e038c4cc0160ece21a0da387f5"
+  integrity sha512-ELAY6vj8JQD7QLktKasTzwm9Wt0qxqfQSo+3QWS7G7I774iK8HCkG1toGsqJH0mkK6PtYBtnSIe66uUcwoCw1w==
   dependencies:
     "@yr/monotone-cubic-spline" "^1.0.3"
     svg.draggable.js "^2.2.2"
@@ -6883,7 +6883,7 @@ neo-async@^2.6.2:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
-ng-packagr@^17.0.0:
+ng-packagr@^17.2.0:
   version "17.2.0"
   resolved "https://registry.yarnpkg.com/ng-packagr/-/ng-packagr-17.2.0.tgz#9692731ba0baa04776fdf4dcb81491810340553f"
   integrity sha512-M2N4IoXkoZQjxstIL2OkCUhBUWH6LhyOtRv8Xi5FFQKxQL7C8/4OL8oilZRbHt2W7DyE3QpQk60S8AbZEypk9w==
