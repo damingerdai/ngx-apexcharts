@@ -9,14 +9,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout damingerdai/ngx-apexcharts
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: 'damingerdai/ngx-apexcharts'
           path: 'ngx-apexcharts'
           fetch-depth: 0 # Important for version tags
 
       - name: Checkout apexcharts/ng-apexcharts
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: 'apexcharts/ng-apexcharts'
           path: 'ng-apexcharts'
