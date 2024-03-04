@@ -2,7 +2,7 @@ name: Sync Apex Types and Release
 
 on:
   schedule:
-    - cron: '0 0 1 * *' # Runs at 00:00 on the first day of every month
+    - cron: "0 0 1 * *" # Runs at 00:00 on the first day of every month
 
 jobs:
   sync-and-release:
@@ -11,24 +11,20 @@ jobs:
       - name: Checkout damingerdai/ngx-apexcharts
         uses: actions/checkout@v4
         with:
-          repository: 'damingerdai/ngx-apexcharts'
-          path: 'ngx-apexcharts'
+          repository: "damingerdai/ngx-apexcharts"
+          path: "ngx-apexcharts"
           fetch-depth: 0 # Important for version tags
 
       - name: Checkout apexcharts/ng-apexcharts
         uses: actions/checkout@v4
         with:
-          repository: 'apexcharts/ng-apexcharts'
-          path: 'ng-apexcharts'
+          repository: "apexcharts/ng-apexcharts"
+          path: "ng-apexcharts"
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '14' # Use the Node.js version that matches your pr, proceeding with version bump."
-            npm install
-            npm run release:patch
-oject requirements
-
+          node-version: "20.1.0"
       - name: Sync apex-types.ts
         run: |
           mkdir -p ./ngx-apexcharts/projects/ngx-apexcharts/src/lib/model/
@@ -43,3 +39,5 @@ oject requirements
             DATE=$(date +'%Y-%m-%d')
             git commit -m "feat: update apex type from upstream to ${DATE}."
             echo "Changes detected
+            npm ci
+            npm run release:patch
