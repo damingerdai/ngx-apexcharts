@@ -21,31 +21,16 @@ More than 80+ examples of all the chart types with sample codes can be found on 
 
 ## Download and Installation
 
-1. Install using npm:
+ngx-apexcharts supports [angular schematics](https://angular.io/guide/schematics)
 
-```ts
-npm install apexcharts ngx-apexcharts --save
+```bash
+ng add ngx-apexcharts
 ```
 
-2. Open angular.json and under scripts add:
+The `ng add` command will additionally perform the following actions:
 
-```ts
-"scripts": [
-  "node_modules/apexcharts/dist/apexcharts.min.js"
-]
-```
-
-3. Add ngx-apexcharts-module to imports
-
-```ts
-imports: [
-  BrowserModule,
-  FormsModule,
-  ReactiveFormsModule,
-  NgxApexchartsModule,
-  ...
-]
-```
+- add apexcharts and ngx-apexcharts to package.json
+- add NgxApexchartsModule to the AppModule in no-standalone application or the AppComponent in standalone application
 
 ## Usage
 
@@ -137,8 +122,8 @@ Example
 ```js
 window.ApexCharts.exec("ng-chart-example", "updateSeries", [
   {
-    data: [40, 55, 65, 11, 23, 44, 54, 33]
-  }
+    data: [40, 55, 65, 11, 23, 44, 54, 33],
+  },
 ]);
 ```
 
