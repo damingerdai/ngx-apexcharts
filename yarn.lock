@@ -102,18 +102,6 @@
     "@angular-devkit/architect" "0.1702.3"
     rxjs "7.8.1"
 
-"@angular-devkit/core@17.2.2":
-  version "17.2.2"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-17.2.2.tgz#81f1f9b7f98453fffb25716633f3ff21c6a93643"
-  integrity sha512-bKMi6bBkEeN4a3qTxCykhrAvE0ESHhKO38Qh1bN/8QSyvKVAEyVAVls5W9IN5GKRHvXgEn9aw+DSzRnPpy9nyw==
-  dependencies:
-    ajv "8.12.0"
-    ajv-formats "2.1.1"
-    jsonc-parser "3.2.1"
-    picomatch "4.0.1"
-    rxjs "7.8.1"
-    source-map "0.7.4"
-
 "@angular-devkit/core@17.2.3", "@angular-devkit/core@^17.2.3":
   version "17.2.3"
   resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-17.2.3.tgz#9e38dc4242212a6b00bf03e518add0f9b75b6e7f"
@@ -125,17 +113,6 @@
     picomatch "4.0.1"
     rxjs "7.8.1"
     source-map "0.7.4"
-
-"@angular-devkit/schematics@17.2.2":
-  version "17.2.2"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-17.2.2.tgz#d85e6b34d0e6130bf451cc2fbd1511c9e76a5e99"
-  integrity sha512-t6dBhHvto9BEIo+Kew0+YyIS3TV1SEd4MActUk+zF4NNQyJ8wRUHL+8glUKB6ZWPyCTYSinJ+QKn/3yytELTHg==
-  dependencies:
-    "@angular-devkit/core" "17.2.2"
-    jsonc-parser "3.2.1"
-    magic-string "0.30.7"
-    ora "5.4.1"
-    rxjs "7.8.1"
 
 "@angular-devkit/schematics@17.2.3":
   version "17.2.3"
@@ -2241,22 +2218,13 @@
   optionalDependencies:
     fsevents "~2.3.2"
 
-"@schematics/angular@17.2.3":
+"@schematics/angular@17.2.3", "@schematics/angular@^17.2.3":
   version "17.2.3"
   resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-17.2.3.tgz#0e618017da1139ec921071019ba0c0e13446a996"
   integrity sha512-rXsYmWC1a8uvGTC6RwICwg1GLLQlTw8jOSqHf6T2AFMzP4p1FV3/GFSGyPIMl9yPwn6JqbmfQy3Bvj0stQNM0Q==
   dependencies:
     "@angular-devkit/core" "17.2.3"
     "@angular-devkit/schematics" "17.2.3"
-    jsonc-parser "3.2.1"
-
-"@schematics/angular@^17.0.0":
-  version "17.2.2"
-  resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-17.2.2.tgz#32551e5ab958e41c672fd62ca508c562c7306f12"
-  integrity sha512-Q3VAQ/S4gj8D1JPWgWG4enDdDZUu8mUXWVRG1rOi4sHgOF5zgPieQFp3LXqMUgOncmzbXrctkbO6NKc4N2FAag==
-  dependencies:
-    "@angular-devkit/core" "17.2.2"
-    "@angular-devkit/schematics" "17.2.2"
     jsonc-parser "3.2.1"
 
 "@sigstore/bundle@^2.2.0":
