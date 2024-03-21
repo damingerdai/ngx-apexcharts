@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.11](https://github.com/damingerdai/ngx-apexcharts/compare/v0.4.10...v0.4.11) (2024-03-21)
+
+
+### Bug Fixes
+
+* **deps:** update dependency apexcharts to v3.48.0 ([#150](https://github.com/damingerdai/ngx-apexcharts/issues/150)) ([63e3a4b](https://github.com/damingerdai/ngx-apexcharts/commit/63e3a4bad64950ceb8c8817f84b2e00ab8012a63))
+
 ### [0.4.10](https://github.com/damingerdai/ngx-apexcharts/compare/v0.4.9...v0.4.10) (2024-03-19)
 
 
