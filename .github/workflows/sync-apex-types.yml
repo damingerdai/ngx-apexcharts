@@ -3,6 +3,7 @@ name: Sync Apex Types and Release
 on:
   schedule:
     - cron: "0 0 1 * *" # Runs at 00:00 on the first day of every month
+  workflow_dispatch: # Allows manual triggering of the workflow
 
 jobs:
   sync-and-release:
@@ -42,5 +43,5 @@ jobs:
             npm ci
             npm run release:patch
             git push --follow-tags develop
-        with:
-          env: GITHUB_TOKEN ${secrets.GITHUB_TOKEN}
+        env:
+            GITHUB_TOKEN: ${secrets.GITHUB_TOKEN}
