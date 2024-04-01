@@ -25,7 +25,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20.1.0"
+          node-version: 20
       - name: Sync apex-types.ts
         run: |
           mkdir -p ./ngx-apexcharts/projects/ngx-apexcharts/src/lib/model/
