@@ -15,6 +15,7 @@ jobs:
           repository: "damingerdai/ngx-apexcharts"
           path: "ngx-apexcharts"
           fetch-depth: 0 # Important for version tags
+          token: ${{ secrets.SYNC_TOKEN }}
 
       - name: Checkout apexcharts/ng-apexcharts
         uses: actions/checkout@v4
