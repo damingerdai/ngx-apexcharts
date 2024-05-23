@@ -45,3 +45,6 @@ Thumbs.db
 
 
 publish.txt
+
+# Nx
+.nx/
