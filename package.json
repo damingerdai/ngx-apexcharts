@@ -75,5 +75,9 @@
     "standard-version": "^9.3.2",
     "ts-node": "~10.9.0",
     "typescript": "~5.4.5"
+  },
+  "resolutions": {
+    "wrap-ansi": "7.0.0",
+    "string-width": "4.1.0"
   }
 }
