@@ -36,9 +36,9 @@ jobs:
       - name: Install yarn
         run: npm install -g yarn
       - name: Install package
-        run: yarn
+        run: yarn install --frozen-lockfile
       - name: Lint
-        run: yarn package && yarn build && yarn lint
+        run: yarn lint
       - name: Schematics unit test
         run: yarn test-schematics
       - name: Build
