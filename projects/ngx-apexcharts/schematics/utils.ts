@@ -5,7 +5,7 @@ import {
   SchematicsException,
   Tree,
 } from "@angular-devkit/schematics";
-import {InsertChange} from '@schematics/angular/utility/change';
+import { InsertChange } from "@schematics/angular/utility/change";
 import {
   ProjectDefinition,
   WorkspaceDefinition,
@@ -15,7 +15,6 @@ import { getAppModulePath } from "@schematics/angular/utility/ng-ast-utils";
 import * as stripJsonComments from "strip-json-comments";
 
 import * as ts from "@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript";
-
 
 export function readJsonInTree<T = any>(host: Tree, path: string): T {
   if (!host.exists(path)) {
@@ -125,7 +124,7 @@ export function getProjectMainFile(project: ProjectDefinition): string {
   if (!buildOptions) {
     throw new SchematicsException(
       `Could not find the project main file inside of the ` +
-      `workspace config (${project.sourceRoot})`,
+        `workspace config (${project.sourceRoot})`,
     );
   }
   // `browser` is for the `@angular-devkit/build-angular:application` builder while
@@ -137,7 +136,7 @@ export function getProjectMainFile(project: ProjectDefinition): string {
   if (!mainPath) {
     throw new SchematicsException(
       `Could not find the project main file inside of the ` +
-      `workspace config (${project.sourceRoot})`,
+        `workspace config (${project.sourceRoot})`,
     );
   }
 
@@ -147,11 +146,17 @@ export function getProjectMainFile(project: ProjectDefinition): string {
 /**
  * Whether the Angular module in the given path imports the specified module class name.
  */
-export function hasNgModuleImport(tree: Tree, modulePath: string, className: string): boolean {
+export function hasNgModuleImport(
+  tree: Tree,
+  modulePath: string,
+  className: string,
+): boolean {
   const moduleFileContent = tree.read(modulePath);
 
   if (!moduleFileContent) {
-    throw new SchematicsException(`Could not read Angular module file: ${modulePath}`);
+    throw new SchematicsException(
+      `Could not read Angular module file: ${modulePath}`,
+    );
   }
 
   const parsedFile = ts.createSourceFile(
@@ -163,19 +168,25 @@ export function hasNgModuleImport(tree: Tree, modulePath: string, className: str
   const ngModuleMetadata = findNgModuleMetadata(parsedFile);
 
   if (!ngModuleMetadata) {
-    throw new SchematicsException(`Could not find NgModule declaration inside: "${modulePath}"`);
+    throw new SchematicsException(
+      `Could not find NgModule declaration inside: "${modulePath}"`,
+    );
   }
 
   for (let property of ngModuleMetadata!.properties) {
     if (
       !ts.isPropertyAssignment(property) ||
-      property.name.getText() !== 'imports' ||
+      property.name.getText() !== "imports" ||
       !ts.isArrayLiteralExpression(property.initializer)
     ) {
       continue;
     }
 
-    if (property.initializer.elements.some(element => element.getText() === className)) {
+    if (
+      property.initializer.elements.some(
+        (element) => element.getText() === className,
+      )
+    ) {
       return true;
     }
   }
@@ -188,7 +199,9 @@ export function hasNgModuleImport(tree: Tree, modulePath: string, className: str
  * corresponding metadata for it. This function searches breadth first because
  * NgModule's are usually not nested within other expressions or declarations.
  */
-function findNgModuleMetadata(rootNode: ts.Node): ts.ObjectLiteralExpression | null {
+function findNgModuleMetadata(
+  rootNode: ts.Node,
+): ts.ObjectLiteralExpression | null {
   // Add immediate child nodes of the root node to the queue.
   const nodeQueue: ts.Node[] = [...rootNode.getChildren()];
 
@@ -219,18 +232,25 @@ function isNgModuleCallExpression(callExpression: ts.CallExpression): boolean {
   }
 
   // The `NgModule` call expression name is never referring to a `PrivateIdentifier`.
-  const decoratorIdentifier = resolveIdentifierOfExpression(callExpression.expression);
-  return decoratorIdentifier ? decoratorIdentifier.text === 'NgModule' : false;
+  const decoratorIdentifier = resolveIdentifierOfExpression(
+    callExpression.expression,
+  );
+  return decoratorIdentifier ? decoratorIdentifier.text === "NgModule" : false;
 }
 
 /**
  * Resolves the last identifier that is part of the given expression. This helps resolving
  * identifiers of nested property access expressions (e.g. myNamespace.core.NgModule).
  */
-function resolveIdentifierOfExpression(expression: ts.Expression): ts.Identifier | null {
+function resolveIdentifierOfExpression(
+  expression: ts.Expression,
+): ts.Identifier | null {
   if (ts.isIdentifier(expression)) {
     return expression;
-  } else if (ts.isPropertyAccessExpression(expression) && ts.isIdentifier(expression.name)) {
+  } else if (
+    ts.isPropertyAccessExpression(expression) &&
+    ts.isIdentifier(expression.name)
+  ) {
     return expression.name;
   }
   return null;
@@ -268,7 +288,7 @@ function addModuleImportToModule(
   const changes = addImportToModule(moduleSource, modulePath, moduleName, src);
   const recorder = host.beginUpdate(modulePath);
 
-  changes.forEach(change => {
+  changes.forEach((change) => {
     if (change instanceof InsertChange) {
       recorder.insertLeft(change.pos, change.toAdd);
     }
@@ -282,5 +302,10 @@ function parseSourceFile(host: Tree, path: string): ts.SourceFile {
   if (!buffer) {
     throw new SchematicsException(`Could not find file for path: ${path}`);
   }
-  return ts.createSourceFile(path, buffer.toString(), ts.ScriptTarget.Latest, true);
+  return ts.createSourceFile(
+    path,
+    buffer.toString(),
+    ts.ScriptTarget.Latest,
+    true,
+  );
 }

@@ -112,11 +112,12 @@ describe("ng add ngx-apexcharts", () => {
     const appconfig = tree.readContent(
       "projects/ngx-apexcharts-standalone-app/src/app/app.config.ts",
     );
+    console.log(appconfig);
     expect(appconfig).toContain(
       "import { NgxApexchartsModule } from 'ngx-apexcharts'",
     );
     expect(appconfig).toMatch(
-      /providers:\s*\[importProvidersFrom\(NgxApexchartsModule\)\]/,
+      /providers:\s*\[.*importProvidersFrom\(NgxApexchartsModule\).*\]/,
     );
   });
 });
