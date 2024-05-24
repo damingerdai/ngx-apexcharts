@@ -15,12 +15,6 @@ import {
 } from "@schematics/angular/utility/ng-ast-utils";
 import { addRootImport } from "@schematics/angular/utility/standalone/rules";
 import {
-  importsProvidersFrom,
-  addFunctionalProvidersToStandaloneBootstrap,
-  callsProvidersFunction,
-  addModuleImportToStandaloneBootstrap,
-} from '@schematics/angular/private/components';
-import {
   addModuleImportToRootModule,
   getProjectFromWorkspace,
   getProjectMainFile,
@@ -59,15 +53,18 @@ function addNgxApexchartsModule(options: NgxApexchartNgAddSchema) {
 }
 
 function addNgxApexchartsToStandaloneApp(
-  host: Tree,
-  mainFile: string,
+  _host: Tree,
+  _mainFile: string,
   _context: SchematicContext,
-  _options: NgxApexchartNgAddSchema) {
-    const ngxApexchartModuleoduleName = "NgxApexchartsModule";
-    const libraryName = "ngx-apexcharts";
-    // TODO: addModuleImportToStandaloneBootstrap is removed from @schematics/angular but addRootImport does not work
-    // addRootImport(options.project!, ({code, external}) => code`${external(ngxApexchartModuleoduleName, libraryName)}`);
-    addModuleImportToStandaloneBootstrap(host, mainFile, ngxApexchartModuleoduleName, libraryName);
+  options: NgxApexchartNgAddSchema,
+) {
+  const ngxApexchartModuleoduleName = "NgxApexchartsModule";
+  const libraryName = "ngx-apexcharts";
+  addRootImport(
+    options.project!,
+    ({ code, external }) =>
+      code`${external(ngxApexchartModuleoduleName, libraryName)}`,
+  );
 }
 
 function addNgxApexchartsToNonStandaloneApp(
