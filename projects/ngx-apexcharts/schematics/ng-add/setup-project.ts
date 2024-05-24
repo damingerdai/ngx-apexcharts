@@ -1,4 +1,5 @@
 import {
+  callRule,
   chain,
   Rule,
   SchematicContext,
@@ -39,55 +40,13 @@ export default function (options: NgxApexchartNgAddSchema): Rule {
 }
 
 function addNgxApexchartsModule(options: NgxApexchartNgAddSchema) {
-  return async (host: Tree, context: SchematicContext) => {
-    const workspace = await getWorkspace(host);
-    const project = getProjectFromWorkspace(workspace, options.project);
-    const mainFilePath = getProjectMainFile(project);
-
-    if (isStandaloneApp(host, mainFilePath)) {
-      addNgxApexchartsToStandaloneApp(host, mainFilePath, context, options);
-    } else {
-      addNgxApexchartsToNonStandaloneApp(host, project, mainFilePath, context);
-    }
+  return async (_host: Tree, _context: SchematicContext) => {
+    const ngxApexchartModuleoduleName = "NgxApexchartsModule";
+    const libraryName = "ngx-apexcharts";
+    return addRootImport(
+      options.project!,
+      ({ code, external }) =>
+        code`${external(ngxApexchartModuleoduleName, libraryName)}`,
+    );
   };
-}
-
-function addNgxApexchartsToStandaloneApp(
-  _host: Tree,
-  _mainFile: string,
-  _context: SchematicContext,
-  options: NgxApexchartNgAddSchema,
-) {
-  const ngxApexchartModuleoduleName = "NgxApexchartsModule";
-  const libraryName = "ngx-apexcharts";
-  addRootImport(
-    options.project!,
-    ({ code, external }) =>
-      code`${external(ngxApexchartModuleoduleName, libraryName)}`,
-  );
-}
-
-function addNgxApexchartsToNonStandaloneApp(
-  host: Tree,
-  project: ProjectDefinition,
-  mainFile: string,
-  context: SchematicContext,
-) {
-  const ngxApexchartModuleoduleName = "NgxApexchartsModule";
-  const appModulePath = getAppModulePath(host, mainFile);
-
-  if (hasNgModuleImport(host, appModulePath, ngxApexchartModuleoduleName)) {
-    context.logger.error(
-      `Could not set up "${ngxApexchartModuleoduleName}" ` +
-        `because "${ngxApexchartModuleoduleName}" is already imported.`,
-    );
-    context.logger.info(`Please manually set up browser animations.`);
-  } else {
-    addModuleImportToRootModule(
-      host,
-      ngxApexchartModuleoduleName,
-      "ngx-apexcharts",
-      project,
-    );
-  }
 }
