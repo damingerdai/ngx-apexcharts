@@ -53,6 +53,7 @@ jobs:
       - name: Genterate Changelog
         id: changelog
         run: |
+          git fetch origin --prune
           git fetch --tags --force
           LAST_TAG=$(git describe --tags --abbrev=0 $(git rev-list --tags --skip=1 --max-count=1))
           conventional-changelog -p angular -r 0 -o CHANGELOG.md --commit-path . --release-count 1
