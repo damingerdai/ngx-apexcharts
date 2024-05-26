@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.1](https://github.com/damingerdai/ngx-apexcharts/compare/v0.5.0...v0.5.1) (2024-05-26)
+
+
+### Bug Fixes
+
+* **schematics:** update migrations json file to update v0.5.0 ([023c05c](https://github.com/damingerdai/ngx-apexcharts/commit/023c05c46ffe952414a68e1eb86f01cd4dbeb5c1))
+
 ## [0.5.0](https://github.com/damingerdai/ngx-apexcharts/compare/v0.4.12...v0.5.0) (2024-05-24)
 
 
