@@ -16,7 +16,6 @@ import { SeriesPipe } from './series.pipe';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  standalone: true,
   imports: [
     ChartComponent,
     FormsModule,
@@ -24,7 +23,8 @@ import { SeriesPipe } from './series.pipe';
     RouterOutlet,
     JsonPipe,
     SeriesPipe
-]
+],
+  standalone: true,
 })
 export class AppComponent {
   public readonly form = new FormGroup({

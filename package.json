@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve dev-app",
     "build-pkg": "ng build ngx-apexcharts",
     "build-schematics": "tsc -p ./projects/ngx-apexcharts/schematics/tsconfig.json --outDir dist/ngx-apexcharts/schematics",
     "build": "ng build",
@@ -21,7 +21,8 @@
     "release:minor": "cd ./projects/ngx-apexcharts && standard-version --release-as minor",
     "release:major": "cd ./projects/ngx-apexcharts && standard-version --release-as major",
     "publish": "yarn package && yarn copyfile && npm publish dist/ngx-apexcharts/",
-    "prepare": "is-ci || husky"
+    "prepare": "is-ci || husky",
+    "serve:ssr:dev-app": "node dist/dev-app/server/server.mjs"
   },
   "private": true,
   "dependencies": {
@@ -32,9 +33,12 @@
     "@angular/forms": "^18.0.0",
     "@angular/platform-browser": "^18.0.0",
     "@angular/platform-browser-dynamic": "^18.0.0",
+    "@angular/platform-server": "^18.0.0",
     "@angular/router": "^18.0.0",
+    "@angular/ssr": "^18.0.1",
     "@schematics/angular": "^18.0.1",
     "apexcharts": "^3.49.0",
+    "express": "^4.18.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.14.4"
@@ -52,9 +56,10 @@
     "@angular/language-service": "^18.0.0",
     "@commitlint/cli": "^19.2.0",
     "@commitlint/config-conventional": "^19.1.0",
+    "@types/express": "^4.17.17",
     "@types/jasmine": "~5.1.0",
     "@types/jasminewd2": "~2.0.3",
-    "@types/node": "~20.12.0",
+    "@types/node": "^18.18.0",
     "@typescript-eslint/eslint-plugin": "^7.4.0",
     "@typescript-eslint/parser": "^7.4.0",
     "copyfiles": "^2.4.1",
