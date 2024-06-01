@@ -157,7 +157,6 @@ export class ChartComponent implements OnChanges, OnDestroy {
 
       const ApexCharts = (await import('apexcharts')).default;
       const options = this.buildOptions();
-
       this.chartObj = new ApexCharts(this.chartElement.nativeElement, options);
       window.ApexCharts = ApexCharts;
 

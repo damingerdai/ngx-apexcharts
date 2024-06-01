@@ -1,0 +1,9 @@
+import { NgModule } from '@angular/core';
+import { ChartComponent } from './chart.component';
+
+@NgModule({
+  declarations: [],
+  imports: [ChartComponent],
+  exports: [ChartComponent],
+})
+export class NgxApexchartsModule {}

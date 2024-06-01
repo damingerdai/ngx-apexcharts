@@ -22,6 +22,9 @@
       "ngx-apexcharts": [
         "projects/ngx-apexcharts/src/public_api.ts"
       ],
+      "ngx-apexcharts/signals": [
+        "projects/ngx-apexcharts/signals/public_api.ts"
+      ],
       "ngx-apexcharts/*": [
         "projects/ngx-apexcharts/src/lib/*"
       ]

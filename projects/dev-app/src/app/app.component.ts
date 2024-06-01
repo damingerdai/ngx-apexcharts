@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { JsonPipe } from '@angular/common';
-import { ChartComponent, ChartType } from 'ngx-apexcharts';
+import { ChartComponent, ChartType } from 'ngx-apexcharts/signals';
 
 import { SeriesPipe } from './series.pipe';
 
