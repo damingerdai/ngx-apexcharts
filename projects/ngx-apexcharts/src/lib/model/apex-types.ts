@@ -265,7 +265,7 @@ export interface ApexStroke {
     | "monotoneCubic"
     | ("smooth" | "straight" | "stepline" | "monotoneCubic")[];
   lineCap?: "butt" | "square" | "round";
-  colors?: string[];
+  colors?: any[];
   width?: number | number[];
   dashArray?: number | number[];
   fill?: ApexFill;
@@ -426,6 +426,9 @@ export interface ApexLocale {
  * See https://apexcharts.com/docs/options/plotoptions/bar/
  */
 export interface ApexPlotOptions {
+  line?: {
+    isSlopeChart?: boolean;
+  };
   area?: {
     fillTo?: "origin" | "end";
   };
@@ -692,6 +695,7 @@ export interface ApexFill {
     inverseColors?: boolean;
     opacityFrom?: number | number[];
     opacityTo?: number | number[];
+    stops?: number[];
     colorStops?: ApexColorStop[][] | ApexColorStop[];
   };
   image?: {
@@ -986,7 +990,7 @@ export interface ApexYAxis {
   show?: boolean;
   showAlways?: boolean;
   showForNullSeries?: boolean;
-  seriesName?: string;
+  seriesName?: string | string[];
   opposite?: boolean;
   reversed?: boolean;
   logarithmic?: boolean;
@@ -1115,7 +1119,16 @@ export interface ApexTheme {
   };
 }
 
-type ApexMarkerShape = "circle" | "square" | "rect" | string[];
+type MarkerShapeOptions =
+  | "circle"
+  | "square"
+  | "rect"
+  | "x"
+  | "X"
+  | "plus"
+  | "+";
+
+type ApexMarkerShape = MarkerShapeOptions | MarkerShapeOptions[];
 
 interface ApexDiscretePoint {
   seriesIndex?: number;
