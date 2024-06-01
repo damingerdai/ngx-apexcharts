@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.6.0](https://github.com/damingerdai/ngx-apexcharts/compare/v0.5.0...v0.6.0) (2024-06-01)
+
+
+### Features
+
+* add support for signals-based components ([5c29ea4](https://github.com/damingerdai/ngx-apexcharts/commit/5c29ea4a54dcbdc794504fa54073da15c794d6b9))
+
+
+### Bug Fixes
+
+* **schematics:** update migrations json file to update v0.5.0 ([023c05c](https://github.com/damingerdai/ngx-apexcharts/commit/023c05c46ffe952414a68e1eb86f01cd4dbeb5c1))
+
 ### [0.5.1](https://github.com/damingerdai/ngx-apexcharts/compare/v0.5.0...v0.5.1) (2024-05-26)
 
 
