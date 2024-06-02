@@ -1,33 +1,33 @@
-import { Path } from "@angular-devkit/core";
+import { Path } from '@angular-devkit/core';
 import {
   Rule,
   SchematicContext,
   SchematicsException,
   Tree,
-} from "@angular-devkit/schematics";
-import { InsertChange } from "@schematics/angular/utility/change";
+} from '@angular-devkit/schematics';
+import { InsertChange } from '@schematics/angular/utility/change';
 import {
   ProjectDefinition,
   WorkspaceDefinition,
-} from "@schematics/angular/utility/workspace";
-import { addImportToModule } from "@schematics/angular/utility/ast-utils";
-import { getAppModulePath } from "@schematics/angular/utility/ng-ast-utils";
-import * as stripJsonComments from "strip-json-comments";
+} from '@schematics/angular/utility/workspace';
+import { addImportToModule } from '@schematics/angular/utility/ast-utils';
+import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
+import * as stripJsonComments from 'strip-json-comments';
 
-import * as ts from "@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript";
+import * as ts from '@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript';
 
 export function readJsonInTree<T = any>(host: Tree, path: string): T {
   if (!host.exists(path)) {
     throw new Error(`Cannot find ${path}`);
   }
   const contents = stripJsonComments(
-    (host.read(path) as Buffer).toString("utf-8"),
+    (host.read(path) as Buffer).toString('utf-8'),
   );
   try {
     return JSON.parse(contents);
   } catch (e) {
     throw new Error(
-      `Cannot parse ${path}: ${e instanceof Error ? e.message : ""}`,
+      `Cannot parse ${path}: ${e instanceof Error ? e.message : ''}`,
     );
   }
 }
@@ -60,7 +60,7 @@ export function getProjectFromWorkspace(
   if (!projectName) {
     // TODO(crisbeto): some schematics APIs have the project name as optional so for now it's
     // simpler to allow undefined and checking it at runtime. Eventually we should clean this up.
-    throw new SchematicsException("Project name is required.");
+    throw new SchematicsException('Project name is required.');
   }
 
   const project = workspace.projects.get(projectName);
@@ -79,8 +79,8 @@ export function addPackageToPackageJson(
   pkg: string,
   version: string,
 ): Tree {
-  if (host.exists("package.json")) {
-    const sourceText = host.read("package.json")!.toString("utf-8");
+  if (host.exists('package.json')) {
+    const sourceText = host.read('package.json')!.toString('utf-8');
 
     const json = JSON.parse(sourceText);
 
@@ -93,7 +93,7 @@ export function addPackageToPackageJson(
       json.dependencies = sortObjectByKeys(json.dependencies);
     }
 
-    host.overwrite("package.json", JSON.stringify(json, null, 2));
+    host.overwrite('package.json', JSON.stringify(json, null, 2));
   }
 
   return host;
@@ -120,22 +120,22 @@ export function getProjectTargetOptions(
 }
 
 export function getProjectMainFile(project: ProjectDefinition): string {
-  const buildOptions = getProjectTargetOptions(project, "build");
+  const buildOptions = getProjectTargetOptions(project, 'build');
   if (!buildOptions) {
     throw new SchematicsException(
-      `Could not find the project main file inside of the ` +
+      'Could not find the project main file inside of the ' +
         `workspace config (${project.sourceRoot})`,
     );
   }
   // `browser` is for the `@angular-devkit/build-angular:application` builder while
   // `main` is for the `@angular-devkit/build-angular:browser` builder.
-  const mainPath = (buildOptions["browser"] || buildOptions["main"]) as
+  const mainPath = (buildOptions['browser'] || buildOptions['main']) as
     | Path
     | undefined;
 
   if (!mainPath) {
     throw new SchematicsException(
-      `Could not find the project main file inside of the ` +
+      'Could not find the project main file inside of the ' +
         `workspace config (${project.sourceRoot})`,
     );
   }
@@ -176,7 +176,7 @@ export function hasNgModuleImport(
   for (let property of ngModuleMetadata!.properties) {
     if (
       !ts.isPropertyAssignment(property) ||
-      property.name.getText() !== "imports" ||
+      property.name.getText() !== 'imports' ||
       !ts.isArrayLiteralExpression(property.initializer)
     ) {
       continue;
@@ -235,7 +235,7 @@ function isNgModuleCallExpression(callExpression: ts.CallExpression): boolean {
   const decoratorIdentifier = resolveIdentifierOfExpression(
     callExpression.expression,
   );
-  return decoratorIdentifier ? decoratorIdentifier.text === "NgModule" : false;
+  return decoratorIdentifier ? decoratorIdentifier.text === 'NgModule' : false;
 }
 
 /**

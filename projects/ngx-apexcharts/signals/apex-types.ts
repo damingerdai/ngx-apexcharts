@@ -89,7 +89,7 @@ export interface ApexChart {
   };
   stacked?: boolean;
   stackOnlyBar?: boolean;
-  stackType?: "normal" | "100%";
+  stackType?: 'normal' | '100%';
   toolbar?: {
     show?: boolean;
     offsetX?: number;
@@ -125,11 +125,11 @@ export interface ApexChart {
         filename?: undefined | string;
       };
     };
-    autoSelected?: "zoom" | "selection" | "pan";
+    autoSelected?: 'zoom' | 'selection' | 'pan';
   };
   zoom?: {
     enabled?: boolean;
-    type?: "x" | "y" | "xy";
+    type?: 'x' | 'y' | 'xy';
     autoScaleYaxis?: boolean;
     zoomedArea?: {
       fill?: {
@@ -167,7 +167,7 @@ export interface ApexChart {
   };
   animations?: {
     enabled?: boolean;
-    easing?: "linear" | "easein" | "easeout" | "easeinout";
+    easing?: 'linear' | 'easein' | 'easeout' | 'easeinout';
     speed?: number;
     animateGradually?: {
       enabled?: boolean;
@@ -208,7 +208,7 @@ export interface ApexStates {
  */
 export interface ApexTitleSubtitle {
   text?: string;
-  align?: "left" | "center" | "right";
+  align?: 'left' | 'center' | 'right';
   margin?: number;
   offsetX?: number;
   offsetY?: number;
@@ -259,12 +259,12 @@ export type ApexNonAxisChartSeries = number[];
 export interface ApexStroke {
   show?: boolean;
   curve?:
-    | "smooth"
-    | "straight"
-    | "stepline"
-    | "monotoneCubic"
-    | ("smooth" | "straight" | "stepline" | "monotoneCubic")[];
-  lineCap?: "butt" | "square" | "round";
+    | 'smooth'
+    | 'straight'
+    | 'stepline'
+    | 'monotoneCubic'
+    | ('smooth' | 'straight' | 'stepline' | 'monotoneCubic')[];
+  lineCap?: 'butt' | 'square' | 'round';
   colors?: string[];
   width?: number | number[];
   dashArray?: number | number[];
@@ -427,7 +427,7 @@ export interface ApexLocale {
  */
 export interface ApexPlotOptions {
   area?: {
-    fillTo?: "origin" | "end";
+    fillTo?: 'origin' | 'end';
   };
   bar?: {
     horizontal?: boolean;
@@ -435,8 +435,8 @@ export interface ApexPlotOptions {
     barHeight?: string | number;
     distributed?: boolean;
     borderRadius?: number;
-    borderRadiusApplication?: "around" | "end";
-    borderRadiusWhenStacked?: "all" | "last";
+    borderRadiusApplication?: 'around' | 'end';
+    borderRadiusWhenStacked?: 'all' | 'last';
     hideZeroBarsWhenGrouped?: boolean;
     rangeBarOverlap?: boolean;
     rangeBarGroupRows?: boolean;
@@ -458,7 +458,7 @@ export interface ApexPlotOptions {
       maxItems?: number;
       hideOverflowingLabels?: boolean;
       position?: string;
-      orientation?: "horizontal" | "vertical";
+      orientation?: 'horizontal' | 'vertical';
       total?: {
         enabled?: boolean;
         formatter?(val?: string, opts?: any): string;
@@ -519,7 +519,7 @@ export interface ApexPlotOptions {
     distributed?: boolean;
     reverseNegativeShade?: boolean;
     useFillColorAsStroke?: boolean;
-    dataLabels?: { format?: "scale" | "truncate" };
+    dataLabels?: { format?: 'scale' | 'truncate' };
     borderRadius?: number;
     colorScale?: {
       inverse?: boolean;
@@ -620,7 +620,7 @@ export interface ApexPlotOptions {
       imageOffsetX?: number;
       imageOffsetY?: number;
       imageClipped?: boolean;
-      position?: "front" | "back";
+      position?: 'front' | 'back';
       dropShadow?: ApexDropShadow;
     };
     track?: {
@@ -718,8 +718,8 @@ export interface ApexLegend {
   showForZeroSeries?: boolean;
   floating?: boolean;
   inverseOrder?: boolean;
-  position?: "top" | "right" | "bottom" | "left";
-  horizontalAlign?: "left" | "center" | "right";
+  position?: 'top' | 'right' | 'bottom' | 'left';
+  horizontalAlign?: 'left' | 'center' | 'right';
   fontSize?: string;
   fontFamily?: string;
   fontWeight?: string | number;
@@ -770,7 +770,7 @@ export interface ApexLegend {
 export interface ApexDataLabels {
   enabled?: boolean;
   enabledOnSeries?: undefined | number[];
-  textAnchor?: "start" | "middle" | "end";
+  textAnchor?: 'start' | 'middle' | 'end';
   distributed?: boolean;
   offsetX?: number;
   offsetY?: number;
@@ -858,7 +858,7 @@ export interface ApexTooltip {
  * See https://apexcharts.com/docs/options/xaxis/
  */
 export interface ApexXAxis {
-  type?: "category" | "datetime" | "numeric";
+  type?: 'category' | 'datetime' | 'numeric';
   categories?: any;
   overwriteCategories?: number[] | string[] | undefined;
   offsetX?: number;
@@ -925,7 +925,7 @@ export interface ApexXAxis {
   };
   tickPlacement?: string;
   stepSize?: number;
-  tickAmount?: number | "dataPoints";
+  tickAmount?: number | 'dataPoints';
   min?: number;
   max?: number;
   range?: number;
@@ -1005,7 +1005,7 @@ export interface ApexYAxis {
     offsetX?: number;
     offsetY?: number;
     rotate?: number;
-    align?: "left" | "center" | "right";
+    align?: 'left' | 'center' | 'right';
     padding?: number;
     style?: {
       colors?: string | string[];
@@ -1073,7 +1073,7 @@ export interface ApexGrid {
   show?: boolean;
   borderColor?: string;
   strokeDashArray?: number;
-  position?: "front" | "back";
+  position?: 'front' | 'back';
   xaxis?: {
     lines?: {
       show?: boolean;
@@ -1105,17 +1105,17 @@ export interface ApexGrid {
 }
 
 export interface ApexTheme {
-  mode?: "light" | "dark";
+  mode?: 'light' | 'dark';
   palette?: string;
   monochrome?: {
     enabled?: boolean;
     color?: string;
-    shadeTo?: "light" | "dark";
+    shadeTo?: 'light' | 'dark';
     shadeIntensity?: number;
   };
 }
 
-type ApexMarkerShape = "circle" | "square" | "rect" | string[];
+type ApexMarkerShape = 'circle' | 'square' | 'rect' | string[];
 
 interface ApexDiscretePoint {
   seriesIndex?: number;
@@ -1152,8 +1152,8 @@ export interface ApexMarkers {
 
 export interface ApexNoData {
   text?: string;
-  align?: "left" | "right" | "center";
-  verticalAlign?: "top" | "middle" | "bottom";
+  align?: 'left' | 'right' | 'center';
+  verticalAlign?: 'top' | 'middle' | 'bottom';
   offsetX?: number;
   offsetY?: number;
   style?: {
@@ -1164,19 +1164,19 @@ export interface ApexNoData {
 }
 
 export type ChartType =
-  | "line"
-  | "area"
-  | "bar"
-  | "pie"
-  | "donut"
-  | "radialBar"
-  | "scatter"
-  | "bubble"
-  | "heatmap"
-  | "candlestick"
-  | "boxPlot"
-  | "radar"
-  | "polarArea"
-  | "rangeBar"
-  | "rangeArea"
-  | "treemap";
+  | 'line'
+  | 'area'
+  | 'bar'
+  | 'pie'
+  | 'donut'
+  | 'radialBar'
+  | 'scatter'
+  | 'bubble'
+  | 'heatmap'
+  | 'candlestick'
+  | 'boxPlot'
+  | 'radar'
+  | 'polarArea'
+  | 'rangeBar'
+  | 'rangeArea'
+  | 'treemap';

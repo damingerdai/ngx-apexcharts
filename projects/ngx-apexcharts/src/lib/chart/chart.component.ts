@@ -131,7 +131,7 @@ export class ChartComponent implements OnChanges, OnDestroy {
     asapScheduler.schedule(() => {
       if (
         this.autoUpdateSeries &&
-        Object.keys(changes).filter((c) => c !== "series").length === 0
+        Object.keys(changes).filter((c) => c !== 'series').length === 0
       ) {
         this.updateSeries(this.series, true);
         return;

@@ -10,8 +10,7 @@
       ],
       "parserOptions": {
         "project": [
-          "tsconfig.json",
-          "e2e/tsconfig.json"
+          "tsconfig.json"
         ],
         "createDefaultProgram": true
       },
@@ -35,6 +34,20 @@
             "style": "camelCase",
             "type": "attribute"
           }
+        ],
+        "@angular-eslint/no-empty-lifecycle-method": [
+          "warn"
+        ],
+        "semi": [
+          "error",
+          "always"
+        ],
+        "quotes": [
+          "error",
+          "single"
+        ],
+        "no-unused-vars": [
+          "warn"
         ]
       }
     },

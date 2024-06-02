@@ -1,17 +1,15 @@
 import {
   Component,
   ElementRef,
-  OnChanges,
   OnDestroy,
-  SimpleChanges,
-  NgZone,
   ChangeDetectionStrategy,
   inject,
   input,
   viewChild,
   afterNextRender,
   afterRender,
-  DestroyRef
+  DestroyRef,
+  signal
 } from '@angular/core';
 import {
   ApexAnnotations,
@@ -54,7 +52,7 @@ declare global {
 })
 export class ChartComponent implements OnDestroy {
 
-  public chart = input<ApexChart>()
+  public chart = input<ApexChart>();
 
   public annotations = input<ApexAnnotations>();
 
@@ -66,13 +64,13 @@ export class ChartComponent implements OnDestroy {
 
   public stroke = input<ApexStroke>();
 
-  public labels = input<string[]>()
+  public labels = input<string[]>();
 
   public legend = input<ApexLegend>();
 
-  public markers = input<ApexMarkers>()
+  public markers = input<ApexMarkers>();
 
-  public noData = input<ApexNoData>()
+  public noData = input<ApexNoData>();
 
   public fill = input<ApexFill>();
 
@@ -103,18 +101,30 @@ export class ChartComponent implements OnDestroy {
   public readonly chartElement = viewChild.required<ElementRef>('chart');
 
   private chartObj?: ApexCharts;
-  private hasPendingLoad = false;
+  private hasPendingLoad = signal<boolean>(false);
 
   constructor() {
-
+    afterNextRender(async() => {
+      this.hasPendingLoad.set(true);
+      const ApexCharts = (await import('apexcharts')).default;
+      const options = this.buildOptions();
+      this.chartObj = new ApexCharts(this.chartElement().nativeElement, options);
+      window.ApexCharts = ApexCharts;
+      await this.render();
+      this.hasPendingLoad.set(true);
+    });
     afterRender(async() => {
+      if (this.hasPendingLoad() === true) {
+        return;
+      }
+      this.hasPendingLoad.set(true);
       this.chartObj?.destroy();
       const ApexCharts = (await import('apexcharts')).default;
-      const options = this.buildOptions();;
+      const options = this.buildOptions();
       this.chartObj = new ApexCharts(this.chartElement().nativeElement, options);
-      window.ApexCharts = ApexCharts;;
       await this.render();
-    })
+      this.hasPendingLoad.set(false);
+    });
 
     const destroyRef = inject(DestroyRef);
     destroyRef.onDestroy(() => this.chartObj?.destroy());
@@ -139,7 +149,7 @@ export class ChartComponent implements OnDestroy {
       redrawPaths,
       animate,
       updateSyncedCharts
-    )
+    );
   }
 
   updateSeries(
@@ -184,7 +194,7 @@ export class ChartComponent implements OnDestroy {
     seriesIndex: number,
     dataPointIndex?: number
   ): void {
-    this.chartObj?.toggleDataPointSelection(seriesIndex, dataPointIndex)
+    this.chartObj?.toggleDataPointSelection(seriesIndex, dataPointIndex);
   }
 
   destroy(): void {
@@ -224,11 +234,11 @@ export class ChartComponent implements OnDestroy {
   }
 
   removeAnnotation(id: string, options?: any): void {
-    this.chartObj?.removeAnnotation(id, options)
+    this.chartObj?.removeAnnotation(id, options);
   }
 
   clearAnnotations(options?: any): void {
-    this.chartObj?.clearAnnotations(options)
+    this.chartObj?.clearAnnotations(options);
   }
 
   dataURI(options?: any): Promise<{ imgURI: string } | { blob: Blob }> | undefined {

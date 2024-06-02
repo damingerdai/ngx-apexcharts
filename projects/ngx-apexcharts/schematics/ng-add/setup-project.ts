@@ -3,23 +3,23 @@ import {
   Rule,
   SchematicContext,
   Tree,
-} from "@angular-devkit/schematics";
+} from '@angular-devkit/schematics';
 import {
   getWorkspace,
-} from "@schematics/angular/utility/workspace";
-import { ProjectType } from "@schematics/angular/utility/workspace-models";
-import { addRootImport } from "@schematics/angular/utility/standalone/rules";
+} from '@schematics/angular/utility/workspace';
+import { ProjectType } from '@schematics/angular/utility/workspace-models';
+import { addRootImport } from '@schematics/angular/utility/standalone/rules';
 import {
   getProjectFromWorkspace,
-} from "../utils";
-import { NgxApexchartNgAddSchema } from "./schema";
+} from '../utils';
+import { NgxApexchartNgAddSchema } from './schema';
 
 export default function (options: NgxApexchartNgAddSchema): Rule {
   return async (host: Tree, context: SchematicContext) => {
     const workspace = await getWorkspace(host);
     const project = getProjectFromWorkspace(workspace, options.project);
 
-    if (project.extensions["projectType"] !== ProjectType.Application) {
+    if (project.extensions['projectType'] !== ProjectType.Application) {
       context.logger.warn(
         `project '${options.project}' is not an angular application. it look like angular library`,
       );
@@ -32,8 +32,8 @@ export default function (options: NgxApexchartNgAddSchema): Rule {
 
 function addNgxApexchartsModule(options: NgxApexchartNgAddSchema) {
   return async (_host: Tree, _context: SchematicContext) => {
-    const ngxApexchartModuleoduleName = "NgxApexchartsModule";
-    const libraryName = "ngx-apexcharts";
+    const ngxApexchartModuleoduleName = 'NgxApexchartsModule';
+    const libraryName = 'ngx-apexcharts';
     return addRootImport(
       options.project!,
       ({ code, external }) =>
