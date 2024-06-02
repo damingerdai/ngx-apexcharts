@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.6.1](https://github.com/damingerdai/ngx-apexcharts/compare/v0.6.0...v0.6.1) (2024-06-02)
+
+
+### Bug Fixes
+
+* **signal:** fix the issue of apexchart rendering repeatedly ([41262ce](https://github.com/damingerdai/ngx-apexcharts/commit/41262ce0981cabf4ac0c05b19634f60c73cc2cbe))
+
 ## [0.6.0](https://github.com/damingerdai/ngx-apexcharts/compare/v0.5.0...v0.6.0) (2024-06-01)
 
 
