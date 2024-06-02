@@ -1,5 +1,4 @@
 import {
-  callRule,
   chain,
   Rule,
   SchematicContext,
@@ -7,19 +6,11 @@ import {
 } from "@angular-devkit/schematics";
 import {
   getWorkspace,
-  ProjectDefinition,
 } from "@schematics/angular/utility/workspace";
 import { ProjectType } from "@schematics/angular/utility/workspace-models";
-import {
-  getAppModulePath,
-  isStandaloneApp,
-} from "@schematics/angular/utility/ng-ast-utils";
 import { addRootImport } from "@schematics/angular/utility/standalone/rules";
 import {
-  addModuleImportToRootModule,
   getProjectFromWorkspace,
-  getProjectMainFile,
-  hasNgModuleImport,
 } from "../utils";
 import { NgxApexchartNgAddSchema } from "./schema";
 
