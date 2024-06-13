@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.6.2](https://github.com/damingerdai/ngx-apexcharts/compare/v0.6.1...v0.6.2) (2024-06-13)
+
+
+### Features
+
+* bump angular from 18.0.1 to 18.0.3 ([5414edb](https://github.com/damingerdai/ngx-apexcharts/commit/5414edbfabf8a6f6b7013395819b427f69b1b0f7))
+
 ### [0.6.1](https://github.com/damingerdai/ngx-apexcharts/compare/v0.6.0...v0.6.1) (2024-06-02)
 
 
