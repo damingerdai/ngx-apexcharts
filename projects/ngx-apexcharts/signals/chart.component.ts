@@ -34,7 +34,6 @@ import {
   ApexForecastDataPoints,
   ApexOptions
 } from './apex-types';
-import { asapScheduler } from 'rxjs';
 
 import type ApexCharts from 'apexcharts';
 
