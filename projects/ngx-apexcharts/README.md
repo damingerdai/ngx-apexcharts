@@ -37,8 +37,8 @@ The `ng add` command will additionally perform the following actions:
 `ngx-apexcharts` is experimentally supporting Angular signals and zoneless. If you want to try Angular signals or use ngx-apexcharts in zoneless mode, you can change the import statement from *'ngx-apexcharts'* to *'ngx-apexcharts/signals'*. All other aspects remain the same.
 
 ```diff
-- import { ChartComponent, ChartType } from 'ngx-apexcharts/signals';
-+ import { ChartComponent, ChartType } from 'ngx-apexcharts';
+- import { ChartComponent, ChartType } from 'ngx-apexcharts';
++ import { ChartComponent, ChartType } from 'ngx-apexcharts/signals';
 ```
 
  ngx-apexcharts
