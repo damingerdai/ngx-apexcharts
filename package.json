@@ -21,7 +21,7 @@
     "release:minor": "cd ./projects/ngx-apexcharts && standard-version --release-as minor",
     "release:major": "cd ./projects/ngx-apexcharts && standard-version --release-as major",
     "publish": "yarn package && yarn copyfile && npm publish dist/ngx-apexcharts/",
-    "prepare": "husky",
+    "prepare": "is-ci || husky",
     "serve:ssr:dev-app": "node dist/dev-app/server/server.mjs"
   },
   "private": true,
