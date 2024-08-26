@@ -11,6 +11,7 @@
     "test-schematics": "ts-node --project ./tsconfig.schematics.json -r tsconfig-paths/register node_modules/jasmine/bin/jasmine.js --config=jasmine.json",
     "test": "yarn test-lib && yarn test-schematics",
     "lint": "ng lint ngx-apexcharts && ng lint ngx-apexcharts-demo && ng lint dev-app",
+    "lint:fix": "ng lint ngx-apexcharts --fix && ng lint ngx-apexcharts-demo --fix && ng lint dev-app --fix",
     "package": "yarn build-pkg && yarn build-schematics",
     "copyfile:lincense": "copyfiles ./LICENSE ./dist/ngx-apexcharts",
     "copyfile:schema": "copyfiles -f ./projects/ngx-apexcharts/schematics/ng-add/schema.json ./dist/ngx-apexcharts/schematics/ng-add",
