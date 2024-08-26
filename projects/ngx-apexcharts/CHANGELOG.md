@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.6.5](https://github.com/damingerdai/ngx-apexcharts/compare/v0.6.4...v0.6.5) (2024-08-26)
+
+
+### Features
+
+* bump @schematics/angular to 18.2.1 ([2598865](https://github.com/damingerdai/ngx-apexcharts/commit/2598865176ccf8438c53601b5dbcde0a80089a74))
+* bump angular eslint to v18.3.0 ([2985f0c](https://github.com/damingerdai/ngx-apexcharts/commit/2985f0cdf05812496008311119e2ceb3916436ac))
+* bump angular to v18.2.1 ([4e1057d](https://github.com/damingerdai/ngx-apexcharts/commit/4e1057d6f73276c8bbc27d14c1bb3956818115cb))
+* bump angulari cli to v18.2.1 ([0ee4abd](https://github.com/damingerdai/ngx-apexcharts/commit/0ee4abd5c37b7f06710490428362ce10045491da))
+
+
+### Bug Fixes
+
+* **deps:** update dependency apexcharts to v3.52.0 ([#185](https://github.com/damingerdai/ngx-apexcharts/issues/185)) ([306216f](https://github.com/damingerdai/ngx-apexcharts/commit/306216f6c330d6519d76265aad808b91b573befc))
+* **deps:** update dependency tslib to v2.7.0 ([#197](https://github.com/damingerdai/ngx-apexcharts/issues/197)) ([f585421](https://github.com/damingerdai/ngx-apexcharts/commit/f58542156c9c43da073107d38ddd57d99f12c868))
+
 ### [0.6.4](https://github.com/damingerdai/ngx-apexcharts/compare/v0.6.3...v0.6.4) (2024-07-03)
 
 
