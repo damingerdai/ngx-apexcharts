@@ -9,7 +9,7 @@ import {
   afterNextRender,
   afterRender,
   DestroyRef,
-  signal
+  signal,
 } from '@angular/core';
 import {
   ApexAnnotations,
@@ -32,7 +32,7 @@ import {
   ApexXAxis,
   ApexYAxis,
   ApexForecastDataPoints,
-  ApexOptions
+  ApexOptions,
 } from './apex-types';
 
 import type ApexCharts from 'apexcharts';
@@ -46,11 +46,11 @@ declare global {
 @Component({
   selector: 'apx-chart',
   template: '<div #chart></div>',
+  exportAs: 'apexChat',
   standalone: true,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChartComponent implements OnDestroy {
-
   public chart = input<ApexChart>();
 
   public annotations = input<ApexAnnotations>();
@@ -103,16 +103,19 @@ export class ChartComponent implements OnDestroy {
   private hasPendingLoad = signal<boolean>(false);
 
   constructor() {
-    afterNextRender(async() => {
+    afterNextRender(async () => {
       this.hasPendingLoad.set(true);
       const ApexCharts = (await import('apexcharts')).default;
       const options = this.buildOptions();
-      this.chartObj = new ApexCharts(this.chartElement().nativeElement, options);
+      this.chartObj = new ApexCharts(
+        this.chartElement().nativeElement,
+        options,
+      );
       window.ApexCharts = ApexCharts;
       await this.render();
       this.hasPendingLoad.set(true);
     });
-    afterRender(async() => {
+    afterRender(async () => {
       if (this.hasPendingLoad() === true) {
         return;
       }
@@ -120,7 +123,10 @@ export class ChartComponent implements OnDestroy {
       this.chartObj?.destroy();
       const ApexCharts = (await import('apexcharts')).default;
       const options = this.buildOptions();
-      this.chartObj = new ApexCharts(this.chartElement().nativeElement, options);
+      this.chartObj = new ApexCharts(
+        this.chartElement().nativeElement,
+        options,
+      );
       await this.render();
       this.hasPendingLoad.set(false);
     });
@@ -141,26 +147,26 @@ export class ChartComponent implements OnDestroy {
     options: any,
     redrawPaths?: boolean,
     animate?: boolean,
-    updateSyncedCharts?: boolean
+    updateSyncedCharts?: boolean,
   ): Promise<void> | undefined {
     return this.chartObj?.updateOptions(
       options,
       redrawPaths,
       animate,
-      updateSyncedCharts
+      updateSyncedCharts,
     );
   }
 
   updateSeries(
     newSeries: ApexAxisChartSeries | ApexNonAxisChartSeries,
-    animate?: boolean
+    animate?: boolean,
   ): Promise<void> | undefined {
     return this.chartObj?.updateSeries(newSeries, animate);
   }
 
   appendSeries(
     newSeries: ApexAxisChartSeries | ApexNonAxisChartSeries,
-    animate?: boolean
+    animate?: boolean,
   ): void {
     this.chartObj?.appendSeries(newSeries, animate);
   }
@@ -189,10 +195,7 @@ export class ChartComponent implements OnDestroy {
     this.chartObj?.zoomX(min, max);
   }
 
-  toggleDataPointSelection(
-    seriesIndex: number,
-    dataPointIndex?: number
-  ): void {
+  toggleDataPointSelection(seriesIndex: number, dataPointIndex?: number): void {
     this.chartObj?.toggleDataPointSelection(seriesIndex, dataPointIndex);
   }
 
@@ -211,7 +214,7 @@ export class ChartComponent implements OnDestroy {
   addXaxisAnnotation(
     options: any,
     pushToMemory?: boolean,
-    context?: any
+    context?: any,
   ): void {
     this.chartObj?.addXaxisAnnotation(options, pushToMemory, context);
   }
@@ -219,7 +222,7 @@ export class ChartComponent implements OnDestroy {
   addYaxisAnnotation(
     options: any,
     pushToMemory?: boolean,
-    context?: any
+    context?: any,
   ): void {
     this.chartObj?.addYaxisAnnotation(options, pushToMemory, context);
   }
@@ -227,7 +230,7 @@ export class ChartComponent implements OnDestroy {
   addPointAnnotation(
     options: any,
     pushToMemory?: boolean,
-    context?: any
+    context?: any,
   ): void {
     this.chartObj?.addPointAnnotation(options, pushToMemory, context);
   }
@@ -240,7 +243,9 @@ export class ChartComponent implements OnDestroy {
     this.chartObj?.clearAnnotations(options);
   }
 
-  dataURI(options?: any): Promise<{ imgURI: string } | { blob: Blob }> | undefined {
+  dataURI(
+    options?: any,
+  ): Promise<{ imgURI: string } | { blob: Blob }> | undefined {
     return this.chartObj?.dataURI(options);
   }
 

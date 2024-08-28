@@ -1,3 +1,4 @@
 export * from './apex-types';
-export * from './chart.component';
+export * from './ngx-apexchart.component';
+export * from './ngx-apexcharts.directive';
 export * from './ngx-apexcharts.module';

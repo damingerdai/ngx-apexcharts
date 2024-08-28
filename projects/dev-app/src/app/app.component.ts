@@ -4,11 +4,15 @@ import {
   ReactiveFormsModule,
   FormGroup,
   FormControl,
-  FormArray
+  FormArray,
 } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { JsonPipe } from '@angular/common';
-import { ChartComponent, ChartType } from 'ngx-apexcharts/signals';
+import {
+  ChartComponent,
+  ChartType,
+  NgxApexchartsDirective,
+} from 'ngx-apexcharts/signals';
 
 import { SeriesPipe } from './series.pipe';
 
@@ -17,13 +21,13 @@ import { SeriesPipe } from './series.pipe';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   imports: [
-    ChartComponent,
+    NgxApexchartsDirective,
     FormsModule,
     ReactiveFormsModule,
     RouterOutlet,
     JsonPipe,
-    SeriesPipe
-],
+    SeriesPipe,
+  ],
   standalone: true,
 })
 export class AppComponent {
@@ -39,20 +43,19 @@ export class AppComponent {
           new FormControl(this.getRandomArbitrary(0, 100)),
           new FormControl(this.getRandomArbitrary(0, 100)),
           new FormControl(this.getRandomArbitrary(0, 100)),
-          new FormControl(this.getRandomArbitrary(0, 100))
-        ])
-      })
+          new FormControl(this.getRandomArbitrary(0, 100)),
+        ]),
+      }),
     ]),
     xaxis: new FormArray([
       new FormControl('Jan'),
       new FormControl('Feb'),
       new FormControl('Mar'),
-      new FormControl('Apr')
-    ])
+      new FormControl('Apr'),
+    ]),
   });
 
   private det = 0;
-
 
   get series() {
     return this.form.get('series') as FormArray;
@@ -78,16 +81,18 @@ export class AppComponent {
   }
 
   addSeries(): void {
-    this.series.push(new FormGroup({
-      name: new FormControl('Series'),
-      type: new FormControl('line'),
-      data: new FormArray([
-        new FormControl(this.getRandomArbitrary(0, 100)),
-        new FormControl(this.getRandomArbitrary(0, 100)),
-        new FormControl(this.getRandomArbitrary(0, 100)),
-        new FormControl(this.getRandomArbitrary(0, 100))
-      ])
-    }));
+    this.series.push(
+      new FormGroup({
+        name: new FormControl('Series'),
+        type: new FormControl('line'),
+        data: new FormArray([
+          new FormControl(this.getRandomArbitrary(0, 100)),
+          new FormControl(this.getRandomArbitrary(0, 100)),
+          new FormControl(this.getRandomArbitrary(0, 100)),
+          new FormControl(this.getRandomArbitrary(0, 100)),
+        ]),
+      }),
+    );
   }
 
   private getRandomArbitrary(min: number, max: number): number {
