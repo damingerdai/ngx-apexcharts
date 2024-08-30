@@ -9,7 +9,7 @@ import {
   NgZone,
   ChangeDetectionStrategy,
   inject,
-} from "@angular/core";
+} from '@angular/core';
 import {
   ApexAnnotations,
   ApexAxisChartSeries,
@@ -32,10 +32,10 @@ import {
   ApexYAxis,
   ApexForecastDataPoints,
   ApexOptions,
-} from "../model/apex-types";
-import { asapScheduler } from "rxjs";
+} from '../model/apex-types';
+import { asapScheduler } from 'rxjs';
 
-import type ApexCharts from "apexcharts";
+import type ApexCharts from 'apexcharts';
 
 declare global {
   interface Window {
@@ -44,8 +44,8 @@ declare global {
 }
 
 @Component({
-  selector: "apx-chart",
-  template: "<div #chart></div>",
+  selector: 'apx-chart',
+  template: '<div #chart></div>',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -121,7 +121,7 @@ export class ChartComponent implements OnChanges, OnDestroy {
   @Input()
   public autoUpdateSeries = true;
 
-  @ViewChild("chart", { static: true })
+  @ViewChild('chart', { static: true })
   public readonly chartElement!: ElementRef;
 
   private chartObj?: ApexCharts;
@@ -131,7 +131,7 @@ export class ChartComponent implements OnChanges, OnDestroy {
     asapScheduler.schedule(() => {
       if (
         this.autoUpdateSeries &&
-        Object.keys(changes).filter((c) => c !== "series").length === 0
+        Object.keys(changes).filter((c) => c !== 'series').length === 0
       ) {
         this.updateSeries(this.series, true);
         return;
@@ -147,7 +147,7 @@ export class ChartComponent implements OnChanges, OnDestroy {
 
   private createElement(): void {
     // Do not run on server
-    if (typeof window === "undefined" || this.hasPendingLoad) {
+    if (typeof window === 'undefined' || this.hasPendingLoad) {
       return;
     }
 
@@ -155,7 +155,7 @@ export class ChartComponent implements OnChanges, OnDestroy {
     this.ngZone.runOutsideAngular(async () => {
       this.destroy();
 
-      const ApexCharts = (await import("apexcharts")).default;
+      const ApexCharts = (await import('apexcharts')).default;
       const options = this.buildOptions();
       this.chartObj = new ApexCharts(this.chartElement.nativeElement, options);
       window.ApexCharts = ApexCharts;
