@@ -1,6 +1,6 @@
-import { NgModule } from "@angular/core";
-import { ChartComponent } from "./chart/chart.component";
-import { NgxApexchartsDirective } from "./ngx-apexcharts.directive";
+import { NgModule } from '@angular/core';
+import { ChartComponent } from './chart/chart.component';
+import { NgxApexchartsDirective } from './ngx-apexcharts.directive';
 
 @NgModule({
   imports: [ChartComponent, NgxApexchartsDirective],

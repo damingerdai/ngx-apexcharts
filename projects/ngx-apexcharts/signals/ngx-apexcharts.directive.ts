@@ -7,7 +7,7 @@ import {
   inject,
   input,
   signal,
-} from "@angular/core";
+} from '@angular/core';
 import {
   ApexAnnotations,
   ApexAxisChartSeries,
@@ -30,14 +30,14 @@ import {
   ApexYAxis,
   ApexForecastDataPoints,
   ApexOptions,
-} from "./apex-types";
+} from './apex-types';
 
-import type ApexCharts from "apexcharts";
+import type ApexCharts from 'apexcharts';
 
 @Directive({
-  selector: "[apxChart]",
+  selector: '[apxChart]',
   standalone: true,
-  exportAs: "apxChart",
+  exportAs: 'apxChart',
 })
 export class NgxApexchartsDirective {
   public chart = input<ApexChart>();
@@ -93,7 +93,7 @@ export class NgxApexchartsDirective {
   constructor(private el: ElementRef) {
     afterNextRender(async () => {
       this.hasPendingLoad.set(true);
-      const ApexCharts = (await import("apexcharts")).default;
+      const ApexCharts = (await import('apexcharts')).default;
       const options = this.buildOptions();
       this.chartObj = new ApexCharts(this.el.nativeElement, options);
       window.ApexCharts = ApexCharts;
@@ -107,7 +107,7 @@ export class NgxApexchartsDirective {
       }
       this.hasPendingLoad.set(true);
       this.chartObj?.destroy();
-      const ApexCharts = (await import("apexcharts")).default;
+      const ApexCharts = (await import('apexcharts')).default;
       const options = this.buildOptions();
       this.chartObj = new ApexCharts(this.el.nativeElement, options);
       await this.render();

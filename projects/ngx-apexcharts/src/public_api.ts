@@ -2,9 +2,9 @@
  * Public API Surface of ngx-apexcharts
  */
 
-export { NgxApexchartsModule } from "./lib/ngx-apexcharts.module";
-export { ChartComponent } from "./lib/chart/chart.component";
-export { NgxApexchartsDirective } from "./lib/ngx-apexcharts.directive";
+export { NgxApexchartsModule } from './lib/ngx-apexcharts.module';
+export { ChartComponent } from './lib/chart/chart.component';
+export { NgxApexchartsDirective } from './lib/ngx-apexcharts.directive';
 export {
   ChartType,
   ApexNoData,
@@ -36,4 +36,4 @@ export {
   ApexStates,
   ApexChart,
   ApexOptions,
-} from "./lib/model/apex-types";
+} from './lib/model/apex-types';
