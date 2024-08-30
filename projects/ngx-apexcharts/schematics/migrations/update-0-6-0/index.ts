@@ -1,14 +1,14 @@
-import type { Rule } from "@angular-devkit/schematics";
-import { chain } from "@angular-devkit/schematics";
-import { updateDependencies } from "../utils/dependencies";
+import type { Rule } from '@angular-devkit/schematics';
+import { chain } from '@angular-devkit/schematics';
+import { updateDependencies } from '../utils/dependencies';
 
-const apexchartsVersion = "3.53.0";
+const apexchartsVersion = '3.53.0';
 
 export default function migration(): Rule {
   return chain([
     updateDependencies([
       {
-        packageName: "apexcharts",
+        packageName: 'apexcharts',
         version: apexchartsVersion,
       },
     ]),
