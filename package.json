@@ -79,7 +79,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "lint-staged": "15.2.9",
-    "ng-packagr": "^18.0.0",
+    "ng-packagr": "18.2.1",
     "standard-version": "^9.3.2",
     "ts-node": "~10.9.0",
     "tsconfig-paths": "^4.2.0",
