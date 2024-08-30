@@ -79,7 +79,7 @@ describe('ng add ngx-apexcharts', () => {
     const packageJson = JSON.parse(
       tree.readContent('/package.json'),
     ) as PackageJson;
-    expect(packageJson.dependencies['apexcharts']).toBe('3.52.0');
+    expect(packageJson.dependencies['apexcharts']).toBe('3.53.0');
   });
 
   it('should add ngx-apexcharts to AppModule', async () => {
