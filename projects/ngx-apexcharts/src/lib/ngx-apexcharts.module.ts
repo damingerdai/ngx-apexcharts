@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
-import { ChartComponent } from './chart/chart.component';
+import { NgModule } from "@angular/core";
+import { ChartComponent } from "./chart/chart.component";
+import { NgxApexchartsDirective } from "./ngx-apexcharts.directive";
 
 @NgModule({
-  declarations: [],
-  imports: [ChartComponent],
-  exports: [ChartComponent],
+  imports: [ChartComponent, NgxApexchartsDirective],
+  exports: [ChartComponent, NgxApexchartsDirective],
 })
 export class NgxApexchartsModule {}

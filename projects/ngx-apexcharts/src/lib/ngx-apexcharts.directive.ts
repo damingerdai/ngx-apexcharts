@@ -1,13 +1,13 @@
 import {
-  Component,
+  DestroyRef,
+  Directive,
   ElementRef,
+  Inject,
   Input,
-  OnChanges,
-  OnDestroy,
-  SimpleChanges,
-  ViewChild,
   NgZone,
-  ChangeDetectionStrategy,
+  OnChanges,
+  PLATFORM_ID,
+  SimpleChanges,
   inject,
 } from "@angular/core";
 import {
@@ -32,10 +32,11 @@ import {
   ApexYAxis,
   ApexForecastDataPoints,
   ApexOptions,
-} from "../model/apex-types";
+} from "./model/apex-types";
 import { asapScheduler } from "rxjs";
 
 import type ApexCharts from "apexcharts";
+import { isPlatformBrowser } from "@angular/common";
 
 declare global {
   interface Window {
@@ -43,13 +44,12 @@ declare global {
   }
 }
 
-@Component({
-  selector: "apx-chart",
-  template: "<div #chart></div>",
+@Directive({
+  selector: "[apxChart]",
   standalone: true,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  exportAs: "apxChart",
 })
-export class ChartComponent implements OnChanges, OnDestroy {
+export class NgxApexchartsDirective implements OnChanges {
   private readonly ngZone = inject(NgZone);
 
   @Input()
@@ -121,11 +121,21 @@ export class ChartComponent implements OnChanges, OnDestroy {
   @Input()
   public autoUpdateSeries = true;
 
-  @ViewChild("chart", { static: true })
-  public readonly chartElement!: ElementRef;
-
+  private destroyRef = inject(DestroyRef);
+  private isBrowser: boolean;
   private chartObj?: ApexCharts;
   private hasPendingLoad = false;
+
+  constructor(
+    @Inject(PLATFORM_ID) platformId: Object,
+    private el: ElementRef,
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
+    this.destroyRef.onDestroy(() => {
+      this.chartObj?.destroy();
+    });
+
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     asapScheduler.schedule(() => {
@@ -141,13 +151,9 @@ export class ChartComponent implements OnChanges, OnDestroy {
     });
   }
 
-  ngOnDestroy(): void {
-    this.destroy();
-  }
-
   private createElement(): void {
     // Do not run on server
-    if (typeof window === "undefined" || this.hasPendingLoad) {
+    if (!this.isBrowser || this.hasPendingLoad) {
       return;
     }
 
@@ -157,7 +163,7 @@ export class ChartComponent implements OnChanges, OnDestroy {
 
       const ApexCharts = (await import("apexcharts")).default;
       const options = this.buildOptions();
-      this.chartObj = new ApexCharts(this.chartElement.nativeElement, options);
+      this.chartObj = new ApexCharts(this.el.nativeElement, options);
       window.ApexCharts = ApexCharts;
 
       await this.render();
