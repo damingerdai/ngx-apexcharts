@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.6.6](https://github.com/damingerdai/ngx-apexcharts/compare/v0.6.5...v0.6.6) (2024-08-30)
+
+
+### Features
+
+* bump angular from 18.2.1 to 18.2.2 ([ba9ded3](https://github.com/damingerdai/ngx-apexcharts/commit/ba9ded349b9b8b746eadcf018f2e3f74d355be2f))
+* **deps:** update dependency apexcharts to v3.53.0 ([#200](https://github.com/damingerdai/ngx-apexcharts/issues/200)) ([3e855a4](https://github.com/damingerdai/ngx-apexcharts/commit/3e855a4b30e42f1853abaeb4a09f3baa76da311c))
+* **signals:** use directive to wrap apexchart ([f632d59](https://github.com/damingerdai/ngx-apexcharts/commit/f632d598502a1f8151f062c20e0d7d2e5618d978))
+* use directive to wrap apexchart ([aa181e3](https://github.com/damingerdai/ngx-apexcharts/commit/aa181e31d5af8f48a86250f001354eec2d0b6c54))
+
 ### [0.6.5](https://github.com/damingerdai/ngx-apexcharts/compare/v0.6.4...v0.6.5) (2024-08-26)
 
 
