@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.6.8](https://github.com/damingerdai/ngx-apexcharts/compare/v0.6.6...v0.6.8) (2024-09-02)
+
+
+### Features
+
+* update apex type from upstream to 2024-09-01. ([434970c](https://github.com/damingerdai/ngx-apexcharts/commit/434970ca9d717b21b20de9cb6a2702f57d0bf816))
+
+
+### Bug Fixes
+
+* **deps:** update dependency zone.js to ~0.15.0 ([#141](https://github.com/damingerdai/ngx-apexcharts/issues/141)) ([37ffdf4](https://github.com/damingerdai/ngx-apexcharts/commit/37ffdf4294d72051b66938d5e92d1dd8bee4ab8a))
+
 ### [0.6.7](https://github.com/damingerdai/ngx-apexcharts/compare/v0.6.6...v0.6.7) (2024-09-01)
 
 
