@@ -61,7 +61,6 @@ jobs:
           cat CHANGELOG.md >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
         shell: bash
-      - run: cd ./projects/ngx-apexcharts && conventional-changelog -p angular -o c.md -r 2
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
