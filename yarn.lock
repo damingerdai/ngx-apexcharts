@@ -96,18 +96,6 @@
     "@angular-devkit/architect" "0.1802.6"
     rxjs "7.8.1"
 
-"@angular-devkit/core@18.2.4":
-  version "18.2.4"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-18.2.4.tgz#24596ead7d7fbfbe6f4e10a1bb848c0db41558e4"
-  integrity sha512-svlgZ0vbLrfNJAQE5WePAutcYIyA7C0OfzKSTMsfV2X1I+1blYDaZIu/ocnHqofMHu6ZqdSaaU/p/rieqU8fcA==
-  dependencies:
-    ajv "8.17.1"
-    ajv-formats "3.0.1"
-    jsonc-parser "3.3.1"
-    picomatch "4.0.2"
-    rxjs "7.8.1"
-    source-map "0.7.4"
-
 "@angular-devkit/core@18.2.6", "@angular-devkit/core@^18.2.6":
   version "18.2.6"
   resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-18.2.6.tgz#9b3009779e534f3060b3f0c27c73af2bb85bcde6"
@@ -119,17 +107,6 @@
     picomatch "4.0.2"
     rxjs "7.8.1"
     source-map "0.7.4"
-
-"@angular-devkit/schematics@18.2.4":
-  version "18.2.4"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-18.2.4.tgz#65945d013df0c9c90c413e61cde59d2ff7829318"
-  integrity sha512-s2WdUhyLlKj5kOjb6vrvJg9/31KvgyRJGjy7PnzS43tpwF9MLuM3AYhuJsXHPhx+i0nyWn/Jnd8ZLjMzXljSxg==
-  dependencies:
-    "@angular-devkit/core" "18.2.4"
-    jsonc-parser "3.3.1"
-    magic-string "0.30.11"
-    ora "5.4.1"
-    rxjs "7.8.1"
 
 "@angular-devkit/schematics@18.2.6":
   version "18.2.6"
@@ -2738,22 +2715,13 @@
   optionalDependencies:
     fsevents "~2.3.2"
 
-"@schematics/angular@18.2.6":
+"@schematics/angular@18.2.6", "@schematics/angular@^18.2.6":
   version "18.2.6"
   resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-18.2.6.tgz#4b6143498cb71e23ca8082cbecd4d32dba80003c"
   integrity sha512-Y988EoOEQDLEyHu3414T6AeVUyx21AexBHQNbUNQkK8cxlxyB6m1eH1cx6vFgLRFUTsLVv+C6Ln/ICNTfLcG4A==
   dependencies:
     "@angular-devkit/core" "18.2.6"
     "@angular-devkit/schematics" "18.2.6"
-    jsonc-parser "3.3.1"
-
-"@schematics/angular@^18.2.4":
-  version "18.2.4"
-  resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-18.2.4.tgz#3208ff49608fd4ef6a2405c94b68436902573681"
-  integrity sha512-GxrPv4eOPrjMKoAVhch9eprW8H/DFhBy5Zgp7CgGui9NprYkkubxw/yyo11WfR5CFZ/q5AfsjV76dPCkhLwLmA==
-  dependencies:
-    "@angular-devkit/core" "18.2.4"
-    "@angular-devkit/schematics" "18.2.4"
     jsonc-parser "3.3.1"
 
 "@sigstore/bundle@^2.3.2":
