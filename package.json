@@ -70,16 +70,10 @@
     "@types/express": "^4.17.17",
     "@types/jasmine": "~5.1.0",
     "@types/jasminewd2": "~2.0.3",
-<<<<<<< HEAD
+    "@types/marked": "^2.0.0",
     "@types/node": "20.16.7",
     "@typescript-eslint/eslint-plugin": "8.8.0",
     "@typescript-eslint/parser": "8.8.0",
-=======
-    "@types/marked": "^2.0.0",
-    "@types/node": "^18.18.0",
-    "@typescript-eslint/eslint-plugin": "8.7.0",
-    "@typescript-eslint/parser": "8.7.0",
->>>>>>> be5b4da (docs: add new docs application)
     "copyfiles": "^2.4.1",
     "eslint": "9.11.1",
     "highlight.js": "10",
