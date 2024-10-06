@@ -182,8 +182,7 @@
             "outputPath": "dist/dev-app",
             "index": "projects/dev-app/src/index.html",
             "browser": "projects/dev-app/src/main.ts",
-            "polyfills": [
-            ],
+            "polyfills": [],
             "tsConfig": "projects/dev-app/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -271,6 +270,124 @@
             "lintFilePatterns": [
               "projects/dev-app/**/*.ts",
               "projects/dev-app/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "docs-app": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/docs-app",
+      "sourceRoot": "projects/docs-app/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/docs-app",
+            "index": "projects/docs-app/src/index.html",
+            "browser": "projects/docs-app/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/docs-app/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/docs-app/public"
+              },
+              {
+                "glob": "**/*",
+                "input": "./docs",
+                "output": "/docs-content"
+              }
+            ],
+            "styles": [
+              "projects/docs-app/src/styles.scss",
+              {
+                "input": "projects/docs-app/src/highlightjs/material-light.scss"
+              },
+            ],
+            "scripts": [],
+            "server": "projects/docs-app/src/main.server.ts",
+            "prerender": true,
+            "ssr": {
+              "entry": "projects/docs-app/server.ts"
+            }
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kB",
+                  "maximumError": "4kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "docs-app:build:production"
+            },
+            "development": {
+              "buildTarget": "docs-app:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/docs-app/tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/docs-app/public"
+              }
+            ],
+            "styles": [
+              "@angular/material/prebuilt-themes/azure-blue.css",
+              "projects/docs-app/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/docs-app/**/*.ts",
+              "projects/docs-app/**/*.html"
             ]
           }
         }

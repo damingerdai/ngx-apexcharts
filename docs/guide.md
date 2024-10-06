@@ -1,47 +1,39 @@
-<p align="center">
-  <img src="https://apexcharts.com/media/ng-apexcharts.png" height="150" />
-</p>
-
-<p align="center">
-  <a href="https://github.com/apexcharts/ng-apexcharts/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-MIT-brightgreen.svg" alt="License"></a>
-  <a href="https://www.npmjs.com/package/ng-apexcharts"><img src="https://img.shields.io/npm/v/ng-apexcharts.svg" alt="ver"></a>
-</p>
-
-<p align="center">
-  <a href="https://twitter.com/intent/tweet?text=ng-ApexCharts%20An%20Angular%20Chart%20library%20built%20on%20ApexCharts.js&url=https://www.apexcharts.com&hashtags=javascript,charts,angular,apexcharts"><img src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social"> </a>
-</p>
-
-<p align="center">Angular wrapper for <a href="https://github.com/apexcharts/apexcharts.js">ApexCharts</a> to build interactive visualizations in Angular.</p>
-
-<p align="center"><a href="https://apexcharts.com/angular-chart-demos/"><img src="https://apexcharts.com/media/apexcharts-banner.png"></a></p>
-
-## Examples
-
-More than 80+ examples of all the chart types with sample codes can be found on the <a href="https://apexcharts.com/angular-chart-demos/">Angular Demos</a> page of the website. Here's a basic <a href="https://codesandbox.io/s/apx-line-basic-o2mwb">line chart</a> example built in codesandbox.
-
 ## Download and Installation
 
-ngx-apexcharts supports [angular schematics](https://angular.io/guide/schematics)
+Use the Angular CLI's install [schematics](https://angular.io/guide/schematics) to set up ngx-apexcharts by running the following command:
 
 ```bash
 ng add ngx-apexcharts
 ```
 
-The `ng add` command will additionally perform the following actions:
+if you don't like the above way, the following is also supported.
 
-- add apexcharts and ngx-apexcharts to package.json
-- add NgxApexchartsModule to the AppModule in no-standalone application or the AppComponent in standalone application
+1. Install using npm:
 
-##  Angular Signals Experimental Support
-
-`ngx-apexcharts` is experimentally supporting Angular signals and zoneless. If you want to try Angular signals or use ngx-apexcharts in zoneless mode, you can change the import statement from *'ngx-apexcharts'* to *'ngx-apexcharts/signals'*. All other aspects remain the same.
-
-```diff
-- import { ChartComponent, ChartType } from 'ngx-apexcharts';
-+ import { ChartComponent, ChartType } from 'ngx-apexcharts/signals';
+```ts
+npm install apexcharts ngx-apexcharts --save
 ```
 
- ngx-apexcharts
+2. Open angular.json and under scripts add:
+
+```ts
+"scripts": [
+  "node_modules/apexcharts/dist/apexcharts.min.js"
+]
+```
+
+3. Add ngx-apexcharts-module to imports
+```ts
+import { NgxApexchartsModule } from "ngx-apexcharts";
+
+
+imports: [
+  BrowserModule,
+  FormsModule,
+  ReactiveFormsModule,
+  NgxApexchartsModule,
+]
+```
 
 ## Usage
 
@@ -133,8 +125,8 @@ Example
 ```js
 window.ApexCharts.exec("ngx-chart-example", "updateSeries", [
   {
-    data: [40, 55, 65, 11, 23, 44, 54, 33],
-  },
+    data: [40, 55, 65, 11, 23, 44, 54, 33]
+  }
 ]);
 ```
 
@@ -147,17 +139,3 @@ All other methods of ApexCharts can be called the same way.
 #### Turning off auto update of the series
 
 With the attribute `autoUpdateSeries` you can control if the chart component should call the `updateSeries` function automatically if the series attribute is changed. It is set to true by default, but in a mixed/combo chart, set this attribute to false if you are using and changing the type property in your series. This only has the effect that the whole chart rerenders even if only the series changes.
-
-## Supporting ApexCharts
-
-ApexCharts is an open source project. <br /> You can help by becoming a sponsor on <a href="https://patreon.com/junedchhipa">Patreon</a> or doing a one time donation on <a href="https://paypal.me/junedchhipa">PayPal</a> <br />
-
-<a href="https://patreon.com/junedchhipa"><img src="https://c5.patreon.com/external/logo/become_a_patron_button.png" alt="Become a Patron" /> </a>
-
-## License
-
-ngx-ApexCharts is released under MIT license. You are free to use, modify and distribute this software, as long as the copyright header is left intact.
-
-### Submitted by
-
-Special thanks to [Morris Janatzek](http://morrisj.net) for contributing to ApexCharts project by creating this angular wrapper.

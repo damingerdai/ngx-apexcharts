@@ -1,0 +1,24 @@
+@use '@angular/material' as mat;
+@use './app-theme';
+@use './styles/api';
+@use './styles/markdown';
+@use './styles/tables';
+@use './styles/general';
+
+$theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: mat.$azure-palette,
+    tertiary: mat.$blue-palette,
+  )
+));
+
+// Include material core styles.
+@include mat.core();
+@include mat.color-variants-backwards-compatibility($theme);
+@include app-theme.theme($theme);
+
+:root {
+  @include mat.all-component-themes($theme);
+}
+
