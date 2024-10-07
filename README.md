@@ -146,14 +146,14 @@ Sometimes, you may want to call methods of the core ApexCharts library from some
 Example
 
 ```js
-window.ApexCharts.exec("ng-chart-example", "updateSeries", [
+window.ApexCharts.exec("ngx-chart-example", "updateSeries", [
   {
     data: [40, 55, 65, 11, 23, 44, 54, 33]
   }
 ]);
 ```
 
-In the above method, `ng-chart-example` is the ID of chart, `updateSeries` is the name of the method you want to call and the third parameter is the new Series you want to update.
+In the above method, `ngx-chart-example` is the ID of chart, `updateSeries` is the name of the method you want to call and the third parameter is the new Series you want to update.
 
 More info on the `.exec()` method can be found <a href="https://apexcharts.com/docs/methods/#exec">here</a>
 

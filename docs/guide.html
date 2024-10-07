@@ -1,0 +1,156 @@
+<div class="docs-markdown">
+        <h2 id="download-and-installation" class="docs-header-link">
+          <span header-link="download-and-installation"></span>
+          Download and Installation
+        </h2>
+      <p>Use the Angular CLI&#39;s install <a href="https://angular.io/guide/schematics">schematics</a> to set up ngx-apexcharts by running the following command:</p>
+<pre><code class="language-bash">ng add ngx-apexcharts
+</code></pre>
+<p>if you don&#39;t like the above way, the following is also supported.</p>
+<ol>
+<li>Install using npm:</li>
+</ol>
+<pre><code class="language-ts">npm install apexcharts ngx-apexcharts --save
+</code></pre>
+<ol start="2">
+<li>Open angular.json and under scripts add:</li>
+</ol>
+<pre><code class="language-ts"><span class="hljs-string">&quot;scripts&quot;</span>: [
+  <span class="hljs-string">&quot;node_modules/apexcharts/dist/apexcharts.min.js&quot;</span>
+]
+</code></pre>
+<ol start="3">
+<li>Add ngx-apexcharts-module to imports
+```ts
+import { NgxApexchartsModule } from &quot;ngx-apexcharts&quot;;</li>
+</ol>
+<p>imports: [
+  BrowserModule,
+  FormsModule,
+  ReactiveFormsModule,
+  NgxApexchartsModule,
+]</p>
+<pre><code>
+## Usage
+
+In any component you can use the chart using:
+
+```html
+&lt;apx-chart [series]=&quot;series&quot; [chart]=&quot;chart&quot; [title]=&quot;title&quot;&gt;&lt;/apx-chart&gt;
+</code></pre>
+<p>You need to provide at least the series and chart attribute to make sure the
+chart can get created.</p>
+<p>You can also use any other attribute from the following options.</p>
+
+        <h3 id="options" class="docs-header-link">
+          <span header-link="options"></span>
+          Options
+        </h3>
+      <p>All options of the chart can be inserted using the attributes.
+This is a list of all available attributes:</p>
+<pre><code class="language-ts"><span class="hljs-meta">@Input</span>() chart: ApexChart;
+<span class="hljs-meta">@Input</span>() annotations: ApexAnnotations;
+<span class="hljs-meta">@Input</span>() colors: <span class="hljs-built_in">string</span>[];
+<span class="hljs-meta">@Input</span>() dataLabels: ApexDataLabels;
+<span class="hljs-meta">@Input</span>() series: ApexAxisChartSeries | ApexNonAxisChartSeries;
+<span class="hljs-meta">@Input</span>() stroke: ApexStroke;
+<span class="hljs-meta">@Input</span>() labels: <span class="hljs-built_in">string</span>[];
+<span class="hljs-meta">@Input</span>() legend: ApexLegend;
+<span class="hljs-meta">@Input</span>() fill: ApexFill;
+<span class="hljs-meta">@Input</span>() tooltip: ApexTooltip;
+<span class="hljs-meta">@Input</span>() plotOptions: ApexPlotOptions;
+<span class="hljs-meta">@Input</span>() responsive: ApexResponsive[];
+<span class="hljs-meta">@Input</span>() xaxis: ApexXAxis;
+<span class="hljs-meta">@Input</span>() yaxis: ApexYAxis | ApexYAxis[];
+<span class="hljs-meta">@Input</span>() grid: ApexGrid;
+<span class="hljs-meta">@Input</span>() states: ApexStates;
+<span class="hljs-meta">@Input</span>() title: ApexTitleSubtitle;
+<span class="hljs-meta">@Input</span>() subtitle: ApexTitleSubtitle;
+<span class="hljs-meta">@Input</span>() theme: ApexTheme;
+</code></pre>
+<p>You can visit the <a href="https://apexcharts.com/docs/">docs</a> to read more about all the options listed above.</p>
+
+        <h3 id="updating-the-chart" class="docs-header-link">
+          <span header-link="updating-the-chart"></span>
+          Updating the chart
+        </h3>
+      <p>Changing the attributes will automatically call the relevant update methods of ApexCharts and re-render it.</p>
+
+        <h3 id="calling-core-apexcharts-methods" class="docs-header-link">
+          <span header-link="calling-core-apexcharts-methods"></span>
+          Calling core ApexCharts methods
+        </h3>
+      <p>You don&#39;t actually need to call updateSeries() or updateOptions() manually. Changing the props will automatically update the chart. But, in certain cases you may need to call these methods, so here&#39;s the reference.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://apexcharts.com/docs/methods/#updateSeries">updateSeries</a></td>
+<td>Allows you to update the series array overriding the existing one</td>
+</tr>
+<tr>
+<td><a href="https://apexcharts.com/docs/methods/#updateOptions">updateOptions</a></td>
+<td>Allows you to update the configuration object</td>
+</tr>
+<tr>
+<td><a href="https://apexcharts.com/docs/methods/#toggleSeries">toggleSeries</a></td>
+<td>Allows you to toggle the visibility of series programatically. Useful when you have custom legend.</td>
+</tr>
+<tr>
+<td><a href="https://apexcharts.com/docs/methods/#appendData">appendData</a></td>
+<td>Allows you to append new data to the series array.</td>
+</tr>
+<tr>
+<td><a href="https://apexcharts.com/docs/methods/#addtext">addText</a></td>
+<td>The addText() method can be used to draw text after chart is rendered.</td>
+</tr>
+<tr>
+<td><a href="https://apexcharts.com/docs/methods/#addxaxisannotation">addXaxisAnnotation</a></td>
+<td>Draw x-axis annotations after chart is rendered.</td>
+</tr>
+<tr>
+<td><a href="https://apexcharts.com/docs/methods/#addyaxisannotation">addYaxisAnnotation</a></td>
+<td>Draw y-axis annotations after chart is rendered.</td>
+</tr>
+<tr>
+<td><a href="https://apexcharts.com/docs/methods/#addpointannotation">addPointAnnotation</a></td>
+<td>Draw point (xy) annotations after chart is rendered.</td>
+</tr>
+</tbody></table>
+<p>All the methods are proxied through the component so that you dont need to access the DOM by yourself.</p>
+<p>Just reference the component as a ViewChild in your Component by using:</p>
+<pre><code class="language-ts"><span class="hljs-meta">@ViewChild</span>(<span class="hljs-string">&#x27;chartObj&#x27;</span>) chart: ChartComponent;
+</code></pre>
+<p>and changing the template to this:</p>
+<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">apx-chart</span> #<span class="hljs-attr">chartObj</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">apx-chart</span>&gt;</span>
+</code></pre>
+<p>Now you&#39;re able to call methods from your Component.</p>
+<pre><code class="language-javascript"><span class="hljs-built_in">this</span>.chart.toggleSeries(<span class="hljs-string">&quot;series-1&quot;</span>);
+</code></pre>
+
+        <h2 id="how-to-call-the-methods-of-apexcharts-without-referencing-the-chart-component" class="docs-header-link">
+          <span header-link="how-to-call-the-methods-of-apexcharts-without-referencing-the-chart-component"></span>
+          How to call the methods of ApexCharts without referencing the chart component?
+        </h2>
+      <p>Sometimes, you may want to call methods of the core ApexCharts library from some other place, and you can do so on <code>this.$apexcharts</code> global variable directly. You need to target the chart by <code>chart.id</code> while calling this method</p>
+<p>Example</p>
+<pre><code class="language-js"><span class="hljs-built_in">window</span>.ApexCharts.exec(<span class="hljs-string">&quot;ngx-chart-example&quot;</span>, <span class="hljs-string">&quot;updateSeries&quot;</span>, [
+  {
+    <span class="hljs-attr">data</span>: [<span class="hljs-number">40</span>, <span class="hljs-number">55</span>, <span class="hljs-number">65</span>, <span class="hljs-number">11</span>, <span class="hljs-number">23</span>, <span class="hljs-number">44</span>, <span class="hljs-number">54</span>, <span class="hljs-number">33</span>]
+  }
+]);
+</code></pre>
+<p>In the above method, <code>ngx-chart-example</code> is the ID of chart, <code>updateSeries</code> is the name of the method you want to call and the third parameter is the new Series you want to update.</p>
+<p>More info on the <code>.exec()</code> method can be found <a href="https://apexcharts.com/docs/methods/#exec">here</a></p>
+<p>All other methods of ApexCharts can be called the same way.</p>
+
+        <h4 id="turning-off-auto-update-of-the-series" class="docs-header-link">
+          <span header-link="turning-off-auto-update-of-the-series"></span>
+          Turning off auto update of the series
+        </h4>
+      <p>With the attribute <code>autoUpdateSeries</code> you can control if the chart component should call the <code>updateSeries</code> function automatically if the series attribute is changed. It is set to true by default, but in a mixed/combo chart, set this attribute to false if you are using and changing the type property in your series. This only has the effect that the whole chart rerenders even if only the series changes.</p>
+</div>
