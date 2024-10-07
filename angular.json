@@ -312,7 +312,7 @@
               "projects/docs-app/src/styles.scss",
               {
                 "input": "projects/docs-app/src/highlightjs/material-light.scss"
-              },
+              }
             ],
             "scripts": [],
             "server": "projects/docs-app/src/main.server.ts",
@@ -389,6 +389,12 @@
               "projects/docs-app/**/*.ts",
               "projects/docs-app/**/*.html"
             ]
+          }
+        },
+        {
+          "deploy": {
+            "builder": "@angular/fire:deploy",
+            "options": {}
           }
         }
       }

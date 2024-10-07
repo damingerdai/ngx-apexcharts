@@ -48,3 +48,8 @@ publish.txt
 
 # Nx
 .nx/
+
+# Firebase
+.firebase
+*-debug.log
+.runtimeconfig.json
