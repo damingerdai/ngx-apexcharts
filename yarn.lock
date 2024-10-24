@@ -3274,7 +3274,7 @@
   optionalDependencies:
     fsevents "~2.3.2"
 
-"@schematics/angular@18.2.10":
+"@schematics/angular@18.2.10", "@schematics/angular@^18.2.10":
   version "18.2.10"
   resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-18.2.10.tgz#8ef1e67d266c334e71bac38cdef4cefab141f244"
   integrity sha512-2pDHT4aSzfs8Up4RQmHHuFd5FeuUebS1ZJwyt46MfXzRMFtzUZV/JKsIvDqyMwnkvFfLvgJyTCkl8JGw5jQObg==
@@ -3283,7 +3283,7 @@
     "@angular-devkit/schematics" "18.2.10"
     jsonc-parser "3.3.1"
 
-"@schematics/angular@^18.0.0", "@schematics/angular@^18.2.7":
+"@schematics/angular@^18.0.0":
   version "18.2.7"
   resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-18.2.7.tgz#0b6caf0491618c2e9b24506cc68fb629845b6c6c"
   integrity sha512-WOBzO11qstznHbC9tZXQf6/8+PqmaRI6QYcdTspqXNh9q9nNglvi43Xn4tSIpEhW8aSHea9hgWZV8sG+i/4W9Q==
