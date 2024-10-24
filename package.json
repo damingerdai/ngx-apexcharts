@@ -46,7 +46,7 @@
     "@angular/router": "^18.2.9",
     "@angular/ssr": "^18.2.10",
     "@schematics/angular": "^18.2.10",
-    "apexcharts": "3.54.0",
+    "apexcharts": "3.54.1",
     "express": "^4.21.0",
     "path-normalize": "^6.0.13",
     "rxjs": "~7.8.0",
