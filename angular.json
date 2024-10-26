@@ -1,10 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
-    "analytics": "3baaf504-dbc1-40db-9aea-56a6da334a34",
-    "schematicCollections": [
-      "@angular-eslint/schematics"
-    ]
+    "analytics": "3baaf504-dbc1-40db-9aea-56a6da334a34"
   },
   "version": 1,
   "newProjectRoot": "projects",
@@ -121,15 +118,6 @@
               "src/assets"
             ]
           }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": [
-              "src/**/*.ts",
-              "src/**/*.html"
-            ]
-          }
         }
       }
     },
@@ -152,15 +140,6 @@
             "main": "projects/ngx-apexcharts/src/test.ts",
             "tsConfig": "projects/ngx-apexcharts/tsconfig.spec.json",
             "karmaConfig": "projects/ngx-apexcharts/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": [
-              "projects/ngx-apexcharts/**/*.ts",
-              "projects/ngx-apexcharts/**/*.html"
-            ]
           }
         }
       }
@@ -262,15 +241,6 @@
               "projects/dev-app/src/styles.scss"
             ],
             "scripts": []
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": [
-              "projects/dev-app/**/*.ts",
-              "projects/dev-app/**/*.html"
-            ]
           }
         }
       }
@@ -382,30 +352,11 @@
             "scripts": []
           }
         },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": [
-              "projects/docs-app/**/*.ts",
-              "projects/docs-app/**/*.html"
-            ]
-          }
-        },
-        {
-          "deploy": {
-            "builder": "@angular/fire:deploy",
-            "options": {}
-          }
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }
-  },
-  "schematics": {
-    "@angular-eslint/schematics:application": {
-      "setParserOptionsProject": true
-    },
-    "@angular-eslint/schematics:library": {
-      "setParserOptionsProject": true
     }
   }
 }
