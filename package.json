@@ -5,8 +5,11 @@
     "ng": "ng",
     "start": "ng serve dev-app",
     "start:doc": "ng serve docs-app",
+    "prestart:doc": "node --loader ts-node/esm ./tools/markdown-to-html/transform-markdown.mts && ng serve docs-app",
     "build-pkg": "ng build ngx-apexcharts",
     "build-schematics": "tsc -p ./projects/ngx-apexcharts/schematics/tsconfig.json --outDir dist/ngx-apexcharts/schematics",
+    "build:doc": "node --loader ts-node/esm ./tools/markdown-to-html/transform-markdown.mts && ng build docs-app",
+    "build-docs-content": "node --loader ts-node/esm ./tools/markdown-to-html/transform-markdown.mts",
     "build": "ng build dev-app && ng build docs-app",
     "test-lib": "ng test",
     "test:lib:ci": "ng test ngx-apexcharts --browsers=ChromeHeadless --watch=false --code-coverage",
@@ -27,8 +30,7 @@
     "publish": "yarn package && yarn copyfile && npm publish dist/ngx-apexcharts/",
     "prepare": "is-ci || husky",
     "serve:ssr:dev-app": "node dist/dev-app/server/server.mjs",
-    "serve:ssr:docs-app": "node dist/docs-app/server/server.mjs",
-    "build-docs-content": "node --loader ts-node/esm ./tools/markdown-to-html/transform-markdown.mts"
+    "serve:ssr:docs-app": "node dist/docs-app/server/server.mjs"
   },
   "private": true,
   "dependencies": {
