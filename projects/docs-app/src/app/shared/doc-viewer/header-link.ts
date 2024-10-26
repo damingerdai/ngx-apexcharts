@@ -32,7 +32,7 @@ export class HeaderLink {
    * Id of the anchor element. Note that is uses "example" because we instantiate the
    * header link components through the ComponentPortal.
    */
-  example: string = '';
+  example = '';
 
   /** Base URL that is used to build an absolute fragment URL. */
   private _baseUrl: string;

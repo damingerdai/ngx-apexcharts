@@ -144,7 +144,7 @@ describe('DocViewer', () => {
 });
 
 @Component({
-  selector: 'test',
+  selector: 'test-app',
   template: `<doc-viewer [documentUrl]="documentUrl"></doc-viewer>`,
   standalone: true,
   imports: [DocViewerModule, DocsAppTestingModule],
@@ -153,8 +153,8 @@ class DocViewerTestComponent {
   documentUrl = 'http://material.angular.io/simple-doc.html';
 }
 
-const FAKE_DOCS: {[key: string]: string} = {
-  /* eslint-disable @typescript-eslint/naming-convention */
+const FAKE_DOCS: Record<string, string> = {
+   
   'http://material.angular.io/simple-doc.html': '<div>my docs page</div>',
   'http://material.angular.io/doc-with-example.html': `
       <div>Check out this example:</div>
@@ -168,5 +168,5 @@ const FAKE_DOCS: {[key: string]: string} = {
     '<div material-docs-example="demo-example"></div>',
   'http://material.angular.io/whole-snippet-example.html':
     '<div material-docs-example="whole-snippet-example" file="whole-snippet-example.ts"></div>',
-  /* eslint-enable @typescript-eslint/naming-convention */
+   
 };

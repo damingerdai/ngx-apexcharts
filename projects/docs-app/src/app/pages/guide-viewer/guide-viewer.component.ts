@@ -1,4 +1,4 @@
-import { Component, HostBinding } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 import { TableOfContents } from '../../shared/table-of-contents/table-of-contents';
 import { DocViewer } from '../../shared/doc-viewer/doc-viewer';
 import { NavigationFocus } from '../../shared/navigation-focus/navigation-focus';
@@ -25,7 +25,7 @@ export interface GuideItem {
   styleUrl: './guide-viewer.component.scss',
   host: {ngSkipHydration: 'true'},
 })
-export class GuideViewerComponent {
+export class GuideViewerComponent implements OnInit {
   @HostBinding('class.main-content') readonly mainContentClass = true;
   guide: GuideItem | undefined;
 

@@ -1,10 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
-    "analytics": "3baaf504-dbc1-40db-9aea-56a6da334a34",
-    "schematicCollections": [
-      "@angular-eslint/schematics"
-    ]
+    "analytics": "3baaf504-dbc1-40db-9aea-56a6da334a34"
   },
   "version": 1,
   "newProjectRoot": "projects",
@@ -160,7 +157,8 @@
             "lintFilePatterns": [
               "projects/ngx-apexcharts/**/*.ts",
               "projects/ngx-apexcharts/**/*.html"
-            ]
+            ],
+            "eslintConfig": "projects/ngx-apexcharts/eslint.config.js"
           }
         }
       }
@@ -270,7 +268,8 @@
             "lintFilePatterns": [
               "projects/dev-app/**/*.ts",
               "projects/dev-app/**/*.html"
-            ]
+            ],
+            "eslintConfig": "projects/dev-app/eslint.config.js"
           }
         }
       }
@@ -382,30 +381,21 @@
             "scripts": []
           }
         },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
+        },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
               "projects/docs-app/**/*.ts",
               "projects/docs-app/**/*.html"
-            ]
-          }
-        },
-        {
-          "deploy": {
-            "builder": "@angular/fire:deploy",
-            "options": {}
+            ],
+            "eslintConfig": "projects/docs-app/eslint.config.js"
           }
         }
       }
-    }
-  },
-  "schematics": {
-    "@angular-eslint/schematics:application": {
-      "setParserOptionsProject": true
-    },
-    "@angular-eslint/schematics:library": {
-      "setParserOptionsProject": true
     }
   }
 }

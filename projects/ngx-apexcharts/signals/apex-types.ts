@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-function-type */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface ApexOptions {
   annotations?: ApexAnnotations;
   chart?: ApexChart;
@@ -675,11 +677,11 @@ export interface ApexPlotOptions {
   };
 }
 
-type ApexColorStop = {
+interface ApexColorStop {
   offset: number;
   color: string;
   opacity: number;
-};
+}
 export interface ApexFill {
   colors?: any[];
   opacity?: number | number[];
@@ -799,12 +801,12 @@ export interface ApexResponsive {
   options?: any;
 }
 
-type ApexTooltipY = {
+interface ApexTooltipY {
   title?: {
     formatter?(seriesName: string): string;
   };
   formatter?(val: number, opts?: any): string;
-};
+}
 /**
  * Chart Tooltip options
  * See https://apexcharts.com/docs/options/tooltip/

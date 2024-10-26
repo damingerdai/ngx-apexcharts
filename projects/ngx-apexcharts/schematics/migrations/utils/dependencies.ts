@@ -7,7 +7,7 @@ export function updateDependencies(
   depsToUpdate: { packageName: string; version: string }[],
 ): Rule {
   return chain([
-    updateJsonInTree('package.json', (json) => {
+    updateJsonInTree<{ dependencies?: Record<string, string> | undefined; devDependencies?: Record<string, string> | undefined; } | undefined>('package.json', (json) => {
       for (const { packageName, version } of depsToUpdate) {
         updateIfExists(json, packageName, version);
       }

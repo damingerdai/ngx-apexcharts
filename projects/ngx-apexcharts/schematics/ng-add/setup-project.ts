@@ -31,6 +31,7 @@ export default function (options: NgxApexchartNgAddSchema): Rule {
 }
 
 function addNgxApexchartsModule(options: NgxApexchartNgAddSchema) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   return async (_host: Tree, _context: SchematicContext) => {
     const ngxApexchartModuleoduleName = 'NgxApexchartsModule';
     const libraryName = 'ngx-apexcharts';

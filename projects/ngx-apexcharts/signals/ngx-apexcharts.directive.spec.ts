@@ -1,4 +1,4 @@
-import { NgxApexchartsDirective } from './ngx-apexcharts.directive';
+//import { NgxApexchartsDirective } from './ngx-apexcharts.directive';
 
 describe('NgxApexchartsDirective', () => {
   it('should create an instance', () => {
