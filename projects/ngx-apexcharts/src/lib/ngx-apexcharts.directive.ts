@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   DestroyRef,
   Directive,
@@ -127,7 +128,7 @@ export class NgxApexchartsDirective implements OnChanges {
   private hasPendingLoad = false;
 
   constructor(
-    @Inject(PLATFORM_ID) platformId: Object,
+    @Inject(PLATFORM_ID) platformId: object,
     private el: ElementRef,
   ) {
     this.isBrowser = isPlatformBrowser(platformId);

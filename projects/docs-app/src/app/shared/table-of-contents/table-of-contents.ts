@@ -61,7 +61,7 @@ export class TableOfContents implements OnInit, AfterViewInit, OnDestroy {
     private _element: ElementRef,
     private _navigationFocusService: NavigationFocusService,
     @Inject(DOCUMENT) private _document: Document,
-    @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(PLATFORM_ID) private platformId: object,
     private _ngZone: NgZone,
     private _changeDetectorRef: ChangeDetectorRef) {
 

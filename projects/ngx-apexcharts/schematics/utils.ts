@@ -16,7 +16,7 @@ import * as stripJsonComments from 'strip-json-comments';
 
 import * as ts from '@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript';
 
-export function readJsonInTree<T = any>(host: Tree, path: string): T {
+export function readJsonInTree<T = unknown>(host: Tree, path: string): T {
   if (!host.exists(path)) {
     throw new Error(`Cannot find ${path}`);
   }
@@ -32,7 +32,7 @@ export function readJsonInTree<T = any>(host: Tree, path: string): T {
   }
 }
 
-export function updateJsonInTree<T = any, O = T>(
+export function updateJsonInTree<T = unknown, O = T>(
   path: string,
   callback: (json: T, context: SchematicContext) => O,
 ): Rule {
@@ -99,13 +99,14 @@ export function addPackageToPackageJson(
   return host;
 }
 
-function sortObjectByKeys(obj: any): any {
+
+function sortObjectByKeys<T extends object>(obj: T): T {
   return Object.keys(obj)
     .sort()
-    .reduce((result: any, key: any) => (result[key] = obj[key]) && result, {});
+    .reduce((result: T, key: string & keyof T) => (result[key] = obj[key]) && result, {} as T);
 }
 
-// eslint-disable-next-line
+ 
 export function getProjectTargetOptions(
   project: ProjectDefinition,
   buildTarget: string,
@@ -173,7 +174,7 @@ export function hasNgModuleImport(
     );
   }
 
-  for (let property of ngModuleMetadata!.properties) {
+  for (const property of ngModuleMetadata!.properties) {
     if (
       !ts.isPropertyAssignment(property) ||
       property.name.getText() !== 'imports' ||

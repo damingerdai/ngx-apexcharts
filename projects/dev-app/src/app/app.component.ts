@@ -9,7 +9,6 @@ import {
 import { RouterOutlet } from '@angular/router';
 import { JsonPipe } from '@angular/common';
 import {
-  ChartComponent,
   ChartType,
   NgxApexchartsDirective,
 } from 'ngx-apexcharts/signals';

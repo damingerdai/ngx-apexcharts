@@ -137,6 +137,7 @@ export class DocViewer implements OnDestroy {
   }
 
   /** Instantiate a ExampleViewer for each example. */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private _loadComponents(componentName: string, componentClass: any) {
     const exampleElements =
       this._elementRef.nativeElement.querySelectorAll(`[${componentName}]`);

@@ -65,10 +65,10 @@ export class ExampleViewer implements OnInit {
   @ViewChildren(CodeSnippet) readonly snippet!: QueryList<CodeSnippet>;
 
   /** The tab to jump to when expanding from snippet view. */
-  selectedTab: number = 0;
+  selectedTab = 0;
 
   /** Map of example files that should be displayed in the view-source tab in order. */
-  exampleTabs: { [tabName: string]: string } = {};
+  exampleTabs: Record<string, string> = {};
 
   /** Data for the currently selected example. */
   exampleData: LiveExample | null = null;
@@ -77,7 +77,7 @@ export class ExampleViewer implements OnInit {
   fileUrl: string | undefined;
 
   /** Component type for the current example. */
-  _exampleComponentType: Type<any> | null = null;
+  _exampleComponentType: Type<unknown> | null = null;
 
   /** View of the example component. */
   @Input() view: Views | undefined;
@@ -156,7 +156,7 @@ export class ExampleViewer implements OnInit {
     this.view = this.view === 'full' ? 'demo' : 'full';
   }
 
-  copySource(snippet: QueryList<CodeSnippet>, selectedIndex: number = 0) {
+  copySource(snippet: QueryList<CodeSnippet>, selectedIndex = 0) {
     const text = snippet.toArray()[selectedIndex].viewer.textContent || '';
     if (this.clipboard.copy(text)) {
       this.snackbar.open('Code copied', '', { duration: 2500 });
