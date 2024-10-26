@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.6.12](https://github.com/damingerdai/ngx-apexcharts/compare/v0.6.11...v0.6.12) (2024-10-26)
+
+
+### Features
+
+* bump @schematics/angular from 18.2.7 to 18.2.10 ([6f6f752](https://github.com/damingerdai/ngx-apexcharts/commit/6f6f7520cde0f020f4addcaf0cf14886b6d94f01))
+* bump angular from 18.2.7 to 18.2.9 ([148d4fd](https://github.com/damingerdai/ngx-apexcharts/commit/148d4fd4cb8b7a6d89362048cf06b261879715f3))
+
+
+### Bug Fixes
+
+* **deps:** bump @types/node from 20 to 22 ([4072741](https://github.com/damingerdai/ngx-apexcharts/commit/407274126baed61b80169db173580f4768235b37))
+
 ### [0.6.11](https://github.com/damingerdai/ngx-apexcharts/compare/v0.6.10...v0.6.11) (2024-10-07)
 
 
