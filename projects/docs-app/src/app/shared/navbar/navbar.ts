@@ -12,18 +12,17 @@ import {AppLogo} from '../logo/logo';
 // const SECTIONS_KEYS = Object.keys(SECTIONS);
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.html',
-  styleUrls: ['./navbar.scss'],
-  standalone: true,
-  imports: [
-    MatButtonModule,
-    RouterLink,
-    RouterLinkActive,
-    // ThemePicker,
-    AppLogo,
-    NgTemplateOutlet,
-  ],
+    selector: 'app-navbar',
+    templateUrl: './navbar.html',
+    styleUrls: ['./navbar.scss'],
+    imports: [
+        MatButtonModule,
+        RouterLink,
+        RouterLinkActive,
+        // ThemePicker,
+        AppLogo,
+        NgTemplateOutlet,
+    ]
 })
 export class NavBar implements OnDestroy {
   private subscriptions = new Subscription();

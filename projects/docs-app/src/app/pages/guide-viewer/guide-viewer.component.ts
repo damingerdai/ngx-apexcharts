@@ -13,17 +13,16 @@ export interface GuideItem {
 }
 
 @Component({
-  selector: 'app-guide-viewer',
-  standalone: true,
-  imports: [
-    DocViewer,
-    TableOfContents,
-    NavigationFocus,
-    NgIf
-  ],
-  templateUrl: './guide-viewer.component.html',
-  styleUrl: './guide-viewer.component.scss',
-  host: {ngSkipHydration: 'true'},
+    selector: 'app-guide-viewer',
+    imports: [
+        DocViewer,
+        TableOfContents,
+        NavigationFocus,
+        NgIf
+    ],
+    templateUrl: './guide-viewer.component.html',
+    styleUrl: './guide-viewer.component.scss',
+    host: { ngSkipHydration: 'true' }
 })
 export class GuideViewerComponent implements OnInit {
   @HostBinding('class.main-content') readonly mainContentClass = true;

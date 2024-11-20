@@ -144,10 +144,9 @@ describe('DocViewer', () => {
 });
 
 @Component({
-  selector: 'test-app',
-  template: `<doc-viewer [documentUrl]="documentUrl"></doc-viewer>`,
-  standalone: true,
-  imports: [DocViewerModule, DocsAppTestingModule],
+    selector: 'test-app',
+    template: `<doc-viewer [documentUrl]="documentUrl"></doc-viewer>`,
+    imports: [DocViewerModule, DocsAppTestingModule]
 })
 class DocViewerTestComponent {
   documentUrl = 'http://material.angular.io/simple-doc.html';

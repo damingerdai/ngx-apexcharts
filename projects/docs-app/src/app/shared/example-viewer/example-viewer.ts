@@ -48,18 +48,17 @@ const fileExtensionRegex = /(.*)\.(\w+)/;
 const preferredExampleFileOrder = ['HTML', 'TS', 'CSS'];
 
 @Component({
-  selector: 'example-viewer',
-  templateUrl: './example-viewer.html',
-  styleUrls: ['./example-viewer.scss'],
-  standalone: true,
-  imports: [
-    MatButtonModule,
-    MatTooltipModule,
-    MatIconModule,
-    MatTabsModule,
-    CodeSnippet,
-    NgComponentOutlet,
-  ],
+    selector: 'example-viewer',
+    templateUrl: './example-viewer.html',
+    styleUrls: ['./example-viewer.scss'],
+    imports: [
+        MatButtonModule,
+        MatTooltipModule,
+        MatIconModule,
+        MatTabsModule,
+        CodeSnippet,
+        NgComponentOutlet,
+    ]
 })
 export class ExampleViewer implements OnInit {
   @ViewChildren(CodeSnippet) readonly snippet!: QueryList<CodeSnippet>;

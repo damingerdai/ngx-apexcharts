@@ -13,18 +13,17 @@ import { NgxApexchartsModule, ChartType } from 'ngx-apexcharts';
 import { SeriesPipe } from './series.pipe';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  standalone: true,
-  imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    NgxApexchartsModule,
-    RouterOutlet,
-    JsonPipe,
-    SeriesPipe,
-  ],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        NgxApexchartsModule,
+        RouterOutlet,
+        JsonPipe,
+        SeriesPipe,
+    ]
 })
 export class AppComponent {
   public readonly form = new FormGroup({

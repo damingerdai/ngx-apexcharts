@@ -16,15 +16,14 @@ import {MatIconModule} from '@angular/material/icon';
  *    <a href="/guide#foo">Foo</a>
  */
 @Component({
-  selector: 'header-link',
-  template: `
+    selector: 'header-link',
+    template: `
     <a aria-label="Link to this heading" class="docs-markdown-a"
       [attr.aria-describedby]="example" [href]="_getFragmentUrl()">
       <mat-icon>link</mat-icon>
     </a>
   `,
-  standalone: true,
-  imports: [MatIconModule]
+    imports: [MatIconModule]
 })
 export class HeaderLink {
 
