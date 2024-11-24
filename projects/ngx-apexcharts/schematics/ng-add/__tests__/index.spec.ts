@@ -9,6 +9,7 @@ import {
 } from '@schematics/angular/application/schema';
 import { Schema as WorkspaceOtions } from '@schematics/angular/workspace/schema';
 import * as path from 'path';
+import { apexchartsVersion } from '../../version';
 
 interface PackageJson {
   dependencies: Record<string, string>;
@@ -79,7 +80,7 @@ describe('ng add ngx-apexcharts', () => {
     const packageJson = JSON.parse(
       tree.readContent('/package.json'),
     ) as PackageJson;
-    expect(packageJson.dependencies['apexcharts']).toBe('3.53.0');
+    expect(packageJson.dependencies['apexcharts']).toBe(apexchartsVersion);
   });
 
   it('should add ngx-apexcharts to AppModule', async () => {

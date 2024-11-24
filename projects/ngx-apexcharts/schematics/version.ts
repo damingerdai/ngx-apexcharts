@@ -1,0 +1,1 @@
+export const apexchartsVersion = '3.54.0';
