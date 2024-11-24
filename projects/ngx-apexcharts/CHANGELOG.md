@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.7.0-beta.0](https://github.com/damingerdai/ngx-apexcharts/compare/v0.6.12...v0.7.0-beta.0) (2024-11-24)
+
+
+### Features
+
+* bump @schematics/angular to v19 ([e47885c](https://github.com/damingerdai/ngx-apexcharts/commit/e47885c588d408fe0f521aa898ddc1ba2da7c8c3))
+* bump angular v19 ([1d7f91b](https://github.com/damingerdai/ngx-apexcharts/commit/1d7f91b0ed8397955c3aa642519e76188050f637))
+* bump apexcharts mini support version to 3.54.0 ([83847d6](https://github.com/damingerdai/ngx-apexcharts/commit/83847d6997468032bc2d864f77bf484e0d70282d))
+
 ### [0.6.12](https://github.com/damingerdai/ngx-apexcharts/compare/v0.6.11...v0.6.12) (2024-10-26)
 
 

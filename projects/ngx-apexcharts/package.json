@@ -1,6 +1,6 @@
 {
   "name": "ngx-apexcharts",
-  "version": "0.6.12",
+  "version": "0.7.0-beta.0",
   "description": "An angular implementation of ApexCharts",
   "peerDependencies": {
     "@angular/common": ">=14.0.0",
@@ -35,7 +35,9 @@
   },
   "schematics": "./schematics/collection.json",
   "ng-update": {
-    "packageGroup": ["ngx-apexcharts"],
+    "packageGroup": [
+      "ngx-apexcharts"
+    ],
     "migrations": "./schematics/migrations.json"
   }
 }
