@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.7.0-beta.1](https://github.com/damingerdai/ngx-apexcharts/compare/v0.7.0-beta.0...v0.7.0-beta.1) (2024-11-25)
+
+
+### Features
+
+* bump apexchart type to 4.0.0 ([cac980a](https://github.com/damingerdai/ngx-apexcharts/commit/cac980a8425e3a9f2d936e11d4031f64dc58c736))
+* bump apexcharts to 4.0.0 ([5ac9b73](https://github.com/damingerdai/ngx-apexcharts/commit/5ac9b730a7657b2581eed20f243fa8c1804e98e6))
+
 ## [0.7.0-beta.0](https://github.com/damingerdai/ngx-apexcharts/compare/v0.6.12...v0.7.0-beta.0) (2024-11-24)
 
 
