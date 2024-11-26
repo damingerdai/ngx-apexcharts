@@ -12,7 +12,6 @@ import {
 } from '@schematics/angular/utility/workspace';
 import { addImportToModule } from '@schematics/angular/utility/ast-utils';
 import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
-import * as stripJsonComments from 'strip-json-comments';
 
 import * as ts from '@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript';
 
@@ -20,9 +19,7 @@ export function readJsonInTree<T = unknown>(host: Tree, path: string): T {
   if (!host.exists(path)) {
     throw new Error(`Cannot find ${path}`);
   }
-  const contents = stripJsonComments(
-    (host.read(path) as Buffer).toString('utf-8'),
-  );
+  const contents = (host.read(path) as Buffer).toString('utf-8');
   try {
     return JSON.parse(contents);
   } catch (e) {
