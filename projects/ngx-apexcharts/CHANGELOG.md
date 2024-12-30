@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.7.0](https://github.com/damingerdai/ngx-apexcharts/compare/v0.7.0-beta.1...v0.7.0) (2024-12-30)
+
+
+### Features
+
+* bump angular eslint to v19 ([ac557bd](https://github.com/damingerdai/ngx-apexcharts/commit/ac557bd96523419f828b9c43e56928edf52d847d))
+
+
+### Bug Fixes
+
+* remove "strip-json-comments" in schematics ([8d17df9](https://github.com/damingerdai/ngx-apexcharts/commit/8d17df9adcdf94033a27fd74957f05481cc5603d))
+* **schematics:** remove tsconfig json file in pack code ([ed47190](https://github.com/damingerdai/ngx-apexcharts/commit/ed4719088de9c0f0cf47a1c05a37f55ca94bbbbf))
+
 ## [0.7.0-beta.1](https://github.com/damingerdai/ngx-apexcharts/compare/v0.7.0-beta.0...v0.7.0-beta.1) (2024-11-25)
 
 
