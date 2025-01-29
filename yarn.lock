@@ -3131,7 +3131,7 @@
   optionalDependencies:
     fsevents "~2.3.2"
 
-"@schematics/angular@19.1.4":
+"@schematics/angular@19.1.4", "@schematics/angular@^19.1.4":
   version "19.1.4"
   resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-19.1.4.tgz#333817e440866b5b4e92adc2e784b2f501dc68d7"
   integrity sha512-HFf83SoXbj1K4jkYSSfCg/oXkmSGBx0zG1Lh+dE5GZFdTQmykrBY519aSdrqLVyZzKYjTGfDfSewUeO4a0GE2A==
