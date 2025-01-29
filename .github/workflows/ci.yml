@@ -39,7 +39,7 @@ jobs:
         run: yarn install --frozen-lockfile --non-interactive
       - name: Lint
         run: yarn lint
-      - name: Unit test
-        run: yarn test:ci
+      - name: Unit Schematics test
+        run: yarn test-schematics
       - name: Build
         run: yarn package && yarn build
