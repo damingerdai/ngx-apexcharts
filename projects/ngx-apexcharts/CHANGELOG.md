@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.7.1](https://github.com/damingerdai/ngx-apexcharts/compare/v0.7.0...v0.7.1) (2025-03-14)
+
+
+### Features
+
+* bump @schematics/angular 19.2.3 ([01db6c6](https://github.com/damingerdai/ngx-apexcharts/commit/01db6c60e1ecb88cb19cf7422369f51597db198a))
+* bump angular cli to 19.2.1 ([718d62f](https://github.com/damingerdai/ngx-apexcharts/commit/718d62f58388f5f7de6119963a87aeb232025051))
+* bump angular fire to 19.0.0 ([72e2dbc](https://github.com/damingerdai/ngx-apexcharts/commit/72e2dbc861b7521df045eab25f1b99e7d48e22bb))
+* bump angular to 19.2.1 ([d9dcd7d](https://github.com/damingerdai/ngx-apexcharts/commit/d9dcd7dc3910576fb04c84e43341e8453b10e73c))
+
 ## [0.7.0](https://github.com/damingerdai/ngx-apexcharts/compare/v0.7.0-beta.1...v0.7.0) (2024-12-30)
 
 
