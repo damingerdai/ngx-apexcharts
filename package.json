@@ -48,7 +48,7 @@
     "@angular/platform-server": "^19.2.1",
     "@angular/router": "^19.2.1",
     "@angular/ssr": "^19.2.1",
-    "@schematics/angular": "^19.1.4",
+    "@schematics/angular": "^19.2.3",
     "apexcharts": "4.0.0",
     "express": "^4.21.0",
     "path-normalize": "^6.0.13",
