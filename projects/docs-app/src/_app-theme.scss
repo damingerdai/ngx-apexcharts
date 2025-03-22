@@ -1,8 +1,4 @@
 @use '@angular/material' as mat;
-
-@use './app/shared/navbar/navbar-theme';
-@use './app/shared/table-of-contents/table-of-contents-theme';
-
 @use './styles/api-theme';
 @use './styles/markdown-theme';
 @use './styles/svg-theme';
@@ -20,9 +16,6 @@
       color: mat.get-theme-color($theme, on-surface-variant);
     }
   }
-
-  @include navbar-theme.theme($theme);
-  @include table-of-contents-theme.theme($theme);
 
   @include api-theme.theme($theme);
   @include markdown-theme.theme($theme);

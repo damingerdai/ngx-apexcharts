@@ -1,12 +1,12 @@
 <!-- TODO: figure out if the <nav> should go inside of a <header> element. -->
 <nav class="docs-navbar-header" aria-label="Top Toolbar">
-  @if (skipLinkHidden) {
-    <div class="skip-link-wrapper" [class.cdk-visually-hidden]="skipLinkHidden">
-      <a mat-raised-button [href]="skipLinkHref" (focus)="skipLinkHidden = false" (blur)="skipLinkHidden = true" color="accent">
-        Skip to main content
-      </a>
-    </div>
-  }
+<!--  @if (skipLinkHidden) {-->
+<!--    <div class="skip-link-wrapper" [class.cdk-visually-hidden]="skipLinkHidden">-->
+<!--      <a mat-raised-button [href]="skipLinkHref" (focus)="skipLinkHidden = false" (blur)="skipLinkHidden = true" color="accent">-->
+<!--        Skip to main content-->
+<!--      </a>-->
+<!--    </div>-->
+<!--  }-->
   <a mat-button routerLink="/" aria-label="Ngx Apexcharts">
     <app-logo matButtonIcon/>
     Apexcharts

@@ -1,25 +1,43 @@
 @use '@angular/material' as mat;
+@use '@angular/cdk';
 @use './app-theme';
 @use './styles/api';
 @use './styles/markdown';
 @use './styles/tables';
 @use './styles/general';
 
-$theme: mat.define-theme((
-  color: (
-    theme-type: light,
-    primary: mat.$azure-palette,
-    tertiary: mat.$blue-palette,
-  )
-));
+html {
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
 
-// Include material core styles.
-@include mat.elevation-classes();
-@include mat.app-background();
-@include mat.color-variants-backwards-compatibility($theme);
-@include app-theme.theme($theme);
+  @include mat.theme((
+    color: (
+      theme-type: light,
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
 
-:root {
-  @include mat.all-component-themes($theme);
+  @include cdk.a11y-visually-hidden();
 }
+
+//$theme: mat.define-theme((
+//  color: (
+//    theme-type: light,
+//    primary: mat.$azure-palette,
+//    tertiary: mat.$blue-palette,
+//  )
+//));
+//
+//// Include material core styles.
+//@include mat.elevation-classes();
+//@include mat.app-background();
+//@include mat.color-variants-backwards-compatibility($theme);
+//@include app-theme.theme($theme);
+//
+//:root {
+//  @include mat.all-component-themes($theme);
+//}
 
