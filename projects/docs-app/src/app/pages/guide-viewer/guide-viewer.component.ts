@@ -3,7 +3,6 @@ import { TableOfContents } from '../../shared/table-of-contents/table-of-content
 import { DocViewer } from '../../shared/doc-viewer/doc-viewer';
 import { NavigationFocus } from '../../shared/navigation-focus/navigation-focus';
 import { ComponentPageTitle } from '../../shared/page-title/page-title';
-import { NgIf } from '@angular/common';
 
 export interface GuideItem {
   id: string;
@@ -13,16 +12,16 @@ export interface GuideItem {
 }
 
 @Component({
-    selector: 'app-guide-viewer',
-    imports: [
-        DocViewer,
-        TableOfContents,
-        NavigationFocus,
-        NgIf
-    ],
-    templateUrl: './guide-viewer.component.html',
-    styleUrl: './guide-viewer.component.scss',
-    host: { ngSkipHydration: 'true' }
+  selector: 'app-guide-viewer',
+  imports: [
+    DocViewer,
+    TableOfContents,
+    NavigationFocus,
+  ],
+  templateUrl: './guide-viewer.component.html',
+  styleUrl: './guide-viewer.component.scss',
+  standalone: true,
+  host: {ngSkipHydration: 'true'}
 })
 export class GuideViewerComponent implements OnInit {
   @HostBinding('class.main-content') readonly mainContentClass = true;
