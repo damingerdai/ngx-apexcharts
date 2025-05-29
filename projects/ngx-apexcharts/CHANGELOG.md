@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.7.2](https://github.com/damingerdai/ngx-apexcharts/compare/v0.7.0-beta.1...v0.7.2) (2025-05-29)
+
+
+### Features
+
+* bump @schematics/angular 19.2.3 ([01db6c6](https://github.com/damingerdai/ngx-apexcharts/commit/01db6c60e1ecb88cb19cf7422369f51597db198a))
+* bump angular cli to 19.2.1 ([718d62f](https://github.com/damingerdai/ngx-apexcharts/commit/718d62f58388f5f7de6119963a87aeb232025051))
+* bump angular eslint to v19 ([ac557bd](https://github.com/damingerdai/ngx-apexcharts/commit/ac557bd96523419f828b9c43e56928edf52d847d))
+* bump angular fire to 19.0.0 ([72e2dbc](https://github.com/damingerdai/ngx-apexcharts/commit/72e2dbc861b7521df045eab25f1b99e7d48e22bb))
+* bump angular to 19.2.1 ([d9dcd7d](https://github.com/damingerdai/ngx-apexcharts/commit/d9dcd7dc3910576fb04c84e43341e8453b10e73c))
+* bump apexchart from 4.0.0 to 4.7.0 ([37f947e](https://github.com/damingerdai/ngx-apexcharts/commit/37f947eac1fc97cc7121b443840aacba99bc8083))
+
+
+### Bug Fixes
+
+* remove "strip-json-comments" in schematics ([8d17df9](https://github.com/damingerdai/ngx-apexcharts/commit/8d17df9adcdf94033a27fd74957f05481cc5603d))
+* **schematics:** remove tsconfig json file in pack code ([ed47190](https://github.com/damingerdai/ngx-apexcharts/commit/ed4719088de9c0f0cf47a1c05a37f55ca94bbbbf))
+
 ### [0.7.1](https://github.com/damingerdai/ngx-apexcharts/compare/v0.7.0...v0.7.1) (2025-03-14)
 
 
