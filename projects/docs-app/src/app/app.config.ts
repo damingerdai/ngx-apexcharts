@@ -12,7 +12,6 @@ import {
 
 import { routes } from "./app.routes";
 
-
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
@@ -28,8 +27,8 @@ export const appConfig: ApplicationConfig = {
         storageBucket: "ngx-apexcharts.appspot.com",
         messagingSenderId: "614372460583",
         appId: "1:614372460583:web:cc6c843befee578d6ee602",
-        measurementId: "G-VV21NCZ2XR"
-      })
+        measurementId: "G-VV21NCZ2XR",
+      }),
     ),
     provideAnalytics(() => getAnalytics()),
     ScreenTrackingService,
