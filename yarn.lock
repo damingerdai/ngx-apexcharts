@@ -172,14 +172,13 @@
   optionalDependencies:
     lmdb "3.3.0"
 
-"@angular/cdk@19.2.2":
-  version "19.2.2"
-  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-19.2.2.tgz#862d7559eba7eb7e81ce27a05aebf9dd21a5c3ac"
-  integrity sha512-YLiydMiTSf7s/LKaLgNeWawspulqdo/47zcjs1sEkHOcmyN1yR2Q0zQdgSbtsvuNikaR4NMNgTybNTDnULl64A==
+"@angular/cdk@20.0.1":
+  version "20.0.1"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-20.0.1.tgz#8f981a93f7407ec60df7b12902f592e448c00bab"
+  integrity sha512-llJIyKdF9D0hJ9/PNy9A5vmayNgHr7MtQrtjpeLyPuK8qkUnxQd9Hzv5olqixRrbxxDs/Lt0l1T2ViHGy7WYhg==
   dependencies:
-    tslib "^2.3.0"
-  optionalDependencies:
     parse5 "^7.1.2"
+    tslib "^2.3.0"
 
 "@angular/cli@^20.0.0":
   version "20.0.0"
@@ -261,10 +260,10 @@
   resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-20.0.0.tgz#ea58c25cb2b86fe6890264cba3ffdf97ac338ef7"
   integrity sha512-lprUUz56dk3ORWGD6Z7Hmzo2MqxezW5qXaxpJHOow3+8/Jx6q+PPWCZrFSEyTtaKr/oRGzHLVCEzB+tmB980Fw==
 
-"@angular/material@19.2.2":
-  version "19.2.2"
-  resolved "https://registry.yarnpkg.com/@angular/material/-/material-19.2.2.tgz#85ff3adc0a7c16cf2fa80767f452de230439b862"
-  integrity sha512-ChaxmiQkdtYJZCuTzh/LuOofg3/TLKDM/NtmlPrOA8GCEGX5oHQiu9NgJmdwi8LmGJL0lvFS1ftfVSjBTgHlxA==
+"@angular/material@20.0.1":
+  version "20.0.1"
+  resolved "https://registry.yarnpkg.com/@angular/material/-/material-20.0.1.tgz#4bf5b9e7516850df413715104088905f319ce940"
+  integrity sha512-ip1hLYSVi2+UtMsONnRFocof0bk+0mCXErrdfH3MLg1j5ZtJ8XEOUY9TeGqWFCkVf8J37mIAI5g2TZW1YuJLUg==
   dependencies:
     tslib "^2.3.0"
 
@@ -2478,7 +2477,7 @@
   optionalDependencies:
     fsevents "~2.3.2"
 
-"@schematics/angular@20.0.0":
+"@schematics/angular@20.0.0", "@schematics/angular@^20.0.0":
   version "20.0.0"
   resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-20.0.0.tgz#8768c43bdf332eb901161bb1f0b1f2ae7169ba97"
   integrity sha512-lK5TvxEoeaoPnxM31qeNWhHUJ3kKMnRHknYhOfOmS8xfme78nS01FdU7TODLkg2p4GNEVVtXoxhj3FmrG3srKw==
@@ -2487,7 +2486,7 @@
     "@angular-devkit/schematics" "20.0.0"
     jsonc-parser "3.3.1"
 
-"@schematics/angular@^19.0.0", "@schematics/angular@^19.2.3":
+"@schematics/angular@^19.0.0":
   version "19.2.3"
   resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-19.2.3.tgz#5a773ac23f2a9431d43be8672d100f615a4a13cf"
   integrity sha512-bhtGJtetkiqyB/OR506ftC+o98xLQXnOlvFO/zbkTddkLgMdPpyOt2A9Fuu+z4OVigqBiLBkzmR8i0w8xUUAmw==
