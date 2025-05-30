@@ -8,9 +8,10 @@ import {
   NgZone,
   ChangeDetectorRef,
   input,
-  PLATFORM_ID
+  PLATFORM_ID,
+  DOCUMENT
 } from '@angular/core';
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
