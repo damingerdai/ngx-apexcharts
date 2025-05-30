@@ -8,10 +8,10 @@ import {
   input,
   viewChild,
   afterNextRender,
-  afterRender,
+  afterEveryRender,
   DestroyRef,
   signal,
-} from '@angular/core';
+} from "@angular/core";
 import {
   ApexAnnotations,
   ApexAxisChartSeries,
@@ -34,9 +34,9 @@ import {
   ApexYAxis,
   ApexForecastDataPoints,
   ApexOptions,
-} from './apex-types';
+} from "./apex-types";
 
-import type ApexCharts from 'apexcharts';
+import type ApexCharts from "apexcharts";
 
 declare global {
   interface Window {
@@ -45,9 +45,9 @@ declare global {
 }
 
 @Component({
-  selector: 'apx-chart',
-  template: '<div #chart></div>',
-  exportAs: 'apexChat',
+  selector: "apx-chart",
+  template: "<div #chart></div>",
+  exportAs: "apexChat",
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -98,7 +98,7 @@ export class ChartComponent implements OnDestroy {
 
   public autoUpdateSeries = input<boolean>(true);
 
-  public readonly chartElement = viewChild.required<ElementRef>('chart');
+  public readonly chartElement = viewChild.required<ElementRef>("chart");
 
   private chartObj?: ApexCharts;
   private hasPendingLoad = signal<boolean>(false);
@@ -106,7 +106,7 @@ export class ChartComponent implements OnDestroy {
   constructor() {
     afterNextRender(async () => {
       this.hasPendingLoad.set(true);
-      const ApexCharts = (await import('apexcharts')).default;
+      const ApexCharts = (await import("apexcharts")).default;
       const options = this.buildOptions();
       this.chartObj = new ApexCharts(
         this.chartElement().nativeElement,
@@ -116,13 +116,13 @@ export class ChartComponent implements OnDestroy {
       await this.render();
       this.hasPendingLoad.set(true);
     });
-    afterRender(async () => {
+    afterEveryRender(async () => {
       if (this.hasPendingLoad() === true) {
         return;
       }
       this.hasPendingLoad.set(true);
       this.chartObj?.destroy();
-      const ApexCharts = (await import('apexcharts')).default;
+      const ApexCharts = (await import("apexcharts")).default;
       const options = this.buildOptions();
       this.chartObj = new ApexCharts(
         this.chartElement().nativeElement,
