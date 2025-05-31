@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.8.0](https://github.com/damingerdai/ngx-apexcharts/compare/v0.7.2...v0.8.0) (2025-05-31)
+
+
+### Features
+
+* **schematics:** bump @schematics/angular to v20 ([#263](https://github.com/damingerdai/ngx-apexcharts/issues/263)) ([d2e37f3](https://github.com/damingerdai/ngx-apexcharts/commit/d2e37f3d8506b4ecfb6aa0b0902271ce8a66d231))
+* update angular cli to v20 ([#260](https://github.com/damingerdai/ngx-apexcharts/issues/260)) ([d45f12f](https://github.com/damingerdai/ngx-apexcharts/commit/d45f12f43fe63516ace77ec3b5f8f30d1e36ebef))
+
+
+### Bug Fixes
+
+* rename afterRender to afterEveryRender ([1221647](https://github.com/damingerdai/ngx-apexcharts/commit/1221647af6ad624998c8ca8244cfa719a1154ef6))
+
 ### [0.7.2](https://github.com/damingerdai/ngx-apexcharts/compare/v0.7.0-beta.1...v0.7.2) (2025-05-29)
 
 
