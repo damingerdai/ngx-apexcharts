@@ -5278,15 +5278,15 @@ jasmine-core@^4.1.0:
   resolved "https://registry.yarnpkg.com/jasmine-core/-/jasmine-core-4.6.1.tgz#5ebb8afa07282078f8d7b15871737a83b74e58f2"
   integrity sha512-VYz/BjjmC3klLJlLwA4Kw8ytk0zDSmbbDLNs794VnWmkcCB7I9aAL/D48VNQtmITyPvea2C3jdUMfc3kAoy0PQ==
 
-jasmine-core@~5.3.0:
-  version "5.3.0"
-  resolved "https://registry.yarnpkg.com/jasmine-core/-/jasmine-core-5.3.0.tgz#ed784e5a10af43988d8408bad80b9f08e240a3f8"
-  integrity sha512-zsOmeBKESky4toybvWEikRiZ0jHoBEu79wNArLfMdSnlLMZx3Xcp6CSm2sUcYyoJC+Uyj8LBJap/MUbVSfJ27g==
-
 jasmine-core@~5.6.0:
   version "5.6.0"
   resolved "https://registry.yarnpkg.com/jasmine-core/-/jasmine-core-5.6.0.tgz#4b979c254e7d9b1fe8e767ab00c5d2901c00bd4f"
   integrity sha512-niVlkeYVRwKFpmfWg6suo6H9CrNnydfBLEqefM5UjibYS+UoTjZdmvPJSiuyrRLGnFj1eYRhFd/ch+5hSlsFVA==
+
+jasmine-core@~5.9.0:
+  version "5.9.0"
+  resolved "https://registry.yarnpkg.com/jasmine-core/-/jasmine-core-5.9.0.tgz#140199862ee83f906bf0ff88287e7c440a1776e7"
+  integrity sha512-OMUvF1iI6+gSRYOhMrH4QYothVLN9C3EJ6wm4g7zLJlnaTl8zbaPOr0bTw70l7QxkoM7sVFOWo83u9B2Fe2Zng==
 
 jasmine-spec-reporter@~7.0.0:
   version "7.0.0"
@@ -5295,13 +5295,13 @@ jasmine-spec-reporter@~7.0.0:
   dependencies:
     colors "1.4.0"
 
-jasmine@5.3.1:
-  version "5.3.1"
-  resolved "https://registry.yarnpkg.com/jasmine/-/jasmine-5.3.1.tgz#7b72543d5e9d4af41dab2d4b9934a2e71f28e6c5"
-  integrity sha512-3zeUCfr3d1iga3s+NgDpggCP+ex5sdbNgqNn+Tq4yw/QfnwGrWC/ZvXX1IRm5deSIZ1LnvoeGY55F/ztbVOXPQ==
+jasmine@5.9.0:
+  version "5.9.0"
+  resolved "https://registry.yarnpkg.com/jasmine/-/jasmine-5.9.0.tgz#aff3c5d3b79fea0e4ce0678ae02bbcfe47b55d3a"
+  integrity sha512-SspK51QMnuC92z5zpF4kOkWN+MyZZDOBv8zgzlMAYvMD0UoGwcq5yYaDe1mrpN7wXZ2CFXh5y8Ua2ugwE4OmXQ==
   dependencies:
     glob "^10.2.2"
-    jasmine-core "~5.3.0"
+    jasmine-core "~5.9.0"
 
 jasminewd2@^2.2.0:
   version "2.2.0"
