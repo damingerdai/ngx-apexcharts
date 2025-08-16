@@ -2708,7 +2708,7 @@
   optionalDependencies:
     fsevents "~2.3.2"
 
-"@schematics/angular@20.1.6":
+"@schematics/angular@20.1.6", "@schematics/angular@^20.1.6":
   version "20.1.6"
   resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-20.1.6.tgz#b617e9124182336c1e33585e0c94164876feed88"
   integrity sha512-1dE+GkpSZbsQxnir/S24g3+pA5sE0XOMxa4Wxhon0dxArP/gH72hsinoVaLDfcQkYOtbbTw/Q8VV41uWBI9eGg==
