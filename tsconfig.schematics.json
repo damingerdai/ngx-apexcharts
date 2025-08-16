@@ -1,8 +1,8 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "target": "ES2017", // For NodeJS 8 compat, see https://www.typescriptlang.org/tsconfig#target for more info
-    "module": "CommonJS",
+    "target": "esnext", // For NodeJS 8 compat, see https://www.typescriptlang.org/tsconfig#target for more info
+    "module": "nodenext",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": false
   }

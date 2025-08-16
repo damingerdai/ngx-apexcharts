@@ -14,7 +14,7 @@
     "build": "ng build dev-app && ng build docs-app",
     "test-lib": "ng test",
     "test:lib:ci": "ng test ngx-apexcharts --browsers=ChromeHeadless --watch=false --code-coverage",
-    "test-schematics": "ts-node --project ./tsconfig.schematics.json -r tsconfig-paths/register node_modules/jasmine/bin/jasmine.js --config=jasmine.json",
+    "test-schematics": "tsx node_modules/jasmine/bin/jasmine.js --config=jasmine.json",
     "test": "yarn test-lib && yarn test-schematics",
     "test:ci": "yarn test:lib:ci && yarn test-schematics",
     "lint": "ng lint ngx-apexcharts && ng lint ngx-apexcharts-demo && ng lint dev-app && ng lint docs-app",
@@ -93,6 +93,7 @@
     "standard-version": "^9.3.2",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
+    "tsx": "^4.20.4",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.33.1"
   },
