@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.1](https://github.com/damingerdai/ngx-apexcharts/compare/v0.8.0...v0.8.1) (2025-08-16)
+
+
+### Features
+
+* bump anguar fire to v20 ([f7b1909](https://github.com/damingerdai/ngx-apexcharts/commit/f7b190997c24b2abdfca36763decf62dbe3b988d))
+* bump angular eslint to v20 ([3a0569c](https://github.com/damingerdai/ngx-apexcharts/commit/3a0569c428ddf1e90f11f0f6fcb96cc31e59db62))
+* Prefer using the inject() function over constructor parameter injection ([97d5940](https://github.com/damingerdai/ngx-apexcharts/commit/97d5940e862754f6a5f6b6a3f51e8d70d1d65ead))
+
 ## [0.8.0](https://github.com/damingerdai/ngx-apexcharts/compare/v0.7.2...v0.8.0) (2025-05-31)
 
 ### Features
