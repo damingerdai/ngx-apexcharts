@@ -7,19 +7,20 @@ import {
   QueryList,
   Type,
   ViewChildren,
-} from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Clipboard } from '@angular/cdk/clipboard';
+  inject,
+} from "@angular/core";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { Clipboard } from "@angular/cdk/clipboard";
 
-import { CodeSnippet } from './code-snippet';
-import { normalizePath } from '../normalize-path';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatIconModule } from '@angular/material/icon';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatButtonModule } from '@angular/material/button';
-import { NgComponentOutlet } from '@angular/common';
+import { CodeSnippet } from "./code-snippet";
+import { normalizePath } from "../normalize-path";
+import { MatTabsModule } from "@angular/material/tabs";
+import { MatIconModule } from "@angular/material/icon";
+import { MatTooltipModule } from "@angular/material/tooltip";
+import { MatButtonModule } from "@angular/material/button";
+import { NgComponentOutlet } from "@angular/common";
 
-export type Views = 'snippet' | 'full' | 'demo';
+export type Views = "snippet" | "full" | "demo";
 
 export declare interface LiveExample {
   /** Title of the example. */
@@ -40,27 +41,30 @@ export declare interface LiveExample {
   importPath: string;
 }
 
-
 /** Regular expression that matches a file name and its extension */
 const fileExtensionRegex = /(.*)\.(\w+)/;
 
 /** Preferred order for files of an example displayed in the viewer. */
-const preferredExampleFileOrder = ['HTML', 'TS', 'CSS'];
+const preferredExampleFileOrder = ["HTML", "TS", "CSS"];
 
 @Component({
-    selector: 'example-viewer',
-    templateUrl: './example-viewer.html',
-    styleUrls: ['./example-viewer.scss'],
-    imports: [
-        MatButtonModule,
-        MatTooltipModule,
-        MatIconModule,
-        MatTabsModule,
-        CodeSnippet,
-        NgComponentOutlet,
-    ]
+  selector: "example-viewer",
+  templateUrl: "./example-viewer.html",
+  styleUrls: ["./example-viewer.scss"],
+  imports: [
+    MatButtonModule,
+    MatTooltipModule,
+    MatIconModule,
+    MatTabsModule,
+    CodeSnippet,
+    NgComponentOutlet,
+  ],
 })
 export class ExampleViewer implements OnInit {
+  private readonly snackbar = inject(MatSnackBar);
+  private readonly clipboard = inject(Clipboard);
+  private readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+
   @ViewChildren(CodeSnippet) readonly snippet!: QueryList<CodeSnippet>;
 
   /** The tab to jump to when expanding from snippet view. */
@@ -85,7 +89,7 @@ export class ExampleViewer implements OnInit {
   @Input() showCompactToggle = false;
 
   /** String key of the currently displayed example. */
-  @HostBinding('attr.id')
+  @HostBinding("attr.id")
   @Input()
   get example() {
     return this._example;
@@ -95,8 +99,8 @@ export class ExampleViewer implements OnInit {
       this._example = exampleName;
       // this.exampleData = EXAMPLE_COMPONENTS[exampleName];
       this._generateExampleTabs();
-      this._loadExampleComponent().catch(error =>
-        console.error(`Could not load example '${exampleName}': ${error}`)
+      this._loadExampleComponent().catch((error) =>
+        console.error(`Could not load example '${exampleName}': ${error}`),
       );
     } else {
       console.error(`Could not find example: ${exampleName}`);
@@ -110,12 +114,6 @@ export class ExampleViewer implements OnInit {
   /** Name of file to display in compact view. */
   @Input() file?: string;
 
-  constructor(
-    private readonly snackbar: MatSnackBar,
-    private readonly clipboard: Clipboard,
-    private readonly elementRef: ElementRef<HTMLElement>
-  ) { }
-
   ngOnInit() {
     if (this.file) {
       this.fileUrl = this.generateUrl(this.file);
@@ -128,12 +126,15 @@ export class ExampleViewer implements OnInit {
       return;
     }
 
-    const extension = this.file.substring(this.file.lastIndexOf('.') + 1);
+    const extension = this.file.substring(this.file.lastIndexOf(".") + 1);
     const exampleTabNames = this._getExampleTabNames();
 
     for (let i = 0; i < exampleTabNames.length; i++) {
       const tabName = exampleTabNames[i];
-      if (tabName.toLowerCase() === extension || tabName.endsWith(`.${extension}`)) {
+      if (
+        tabName.toLowerCase() === extension ||
+        tabName.endsWith(`.${extension}`)
+      ) {
         this.selectedTab = i;
         return;
       }
@@ -143,29 +144,31 @@ export class ExampleViewer implements OnInit {
   }
 
   toggleCompactView() {
-    if (this.view === 'snippet') {
-      this.view = 'full';
+    if (this.view === "snippet") {
+      this.view = "full";
       this.selectCorrectTab();
     } else {
-      this.view = 'snippet';
+      this.view = "snippet";
     }
   }
 
   toggleSourceView(): void {
-    this.view = this.view === 'full' ? 'demo' : 'full';
+    this.view = this.view === "full" ? "demo" : "full";
   }
 
   copySource(snippet: QueryList<CodeSnippet>, selectedIndex = 0) {
-    const text = snippet.toArray()[selectedIndex].viewer.textContent || '';
+    const text = snippet.toArray()[selectedIndex].viewer.textContent || "";
     if (this.clipboard.copy(text)) {
-      this.snackbar.open('Code copied', '', { duration: 2500 });
+      this.snackbar.open("Code copied", "", { duration: 2500 });
     } else {
-      this.snackbar.open('Copy failed. Please try again!', '', { duration: 2500 });
+      this.snackbar.open("Copy failed. Please try again!", "", {
+        duration: 2500,
+      });
     }
   }
 
   generateUrl(file: string): string {
-    const lastDotIndex = file.lastIndexOf('.');
+    const lastDotIndex = file.lastIndexOf(".");
     const contentBeforeDot = file.substring(0, lastDotIndex);
     const contentAfterDot = file.substring(lastDotIndex + 1);
     let fileName: string;
@@ -178,37 +181,39 @@ export class ExampleViewer implements OnInit {
 
     return this.exampleData
       ? `/docs-content/examples-highlighted/${this.exampleData.packagePath}/${fileName}`
-      : '';
+      : "";
   }
 
   _getExampleTabNames() {
     return this.exampleTabs
       ? Object.keys(this.exampleTabs).sort((a, b) => {
-        let indexA = preferredExampleFileOrder.indexOf(a);
-        let indexB = preferredExampleFileOrder.indexOf(b);
-        // Files which are not part of the preferred example file order should be
-        // moved after all items with a preferred index.
-        if (indexA === -1) {
-          indexA = preferredExampleFileOrder.length;
-        }
+          let indexA = preferredExampleFileOrder.indexOf(a);
+          let indexB = preferredExampleFileOrder.indexOf(b);
+          // Files which are not part of the preferred example file order should be
+          // moved after all items with a preferred index.
+          if (indexA === -1) {
+            indexA = preferredExampleFileOrder.length;
+          }
 
-        if (indexB === -1) {
-          indexB = preferredExampleFileOrder.length;
-        }
+          if (indexB === -1) {
+            indexB = preferredExampleFileOrder.length;
+          }
 
-        return indexA - indexB || 1;
-      })
+          return indexA - indexB || 1;
+        })
       : [];
   }
 
   _copyLink() {
     // Reconstruct the URL using `origin + pathname` so we drop any pre-existing hash.
-    const fullUrl = location.origin + location.pathname + '#' + this._example;
+    const fullUrl = location.origin + location.pathname + "#" + this._example;
 
     if (this.clipboard.copy(fullUrl)) {
-      this.snackbar.open('Link copied', '', { duration: 2500 });
+      this.snackbar.open("Link copied", "", { duration: 2500 });
     } else {
-      this.snackbar.open('Link copy failed. Please try again!', '', { duration: 2500 });
+      this.snackbar.open("Link copy failed. Please try again!", "", {
+        duration: 2500,
+      });
     }
   }
 
@@ -219,7 +224,6 @@ export class ExampleViewer implements OnInit {
     //   // Lazily loads the example package that contains the requested example.
     //   const moduleExports = await loadExample(this._example);
     //   this._exampleComponentType = moduleExports[componentName];
-
     //   // Since the data is loaded asynchronously, we can't count on the native behavior
     //   // that scrolls the element into view automatically. We do it ourselves while giving
     //   // the page some time to render.
@@ -245,7 +249,10 @@ export class ExampleViewer implements OnInit {
       for (let fileName of this.exampleData.files) {
         // Since the additional files refer to the original file name, we need to transform
         // the file name to match the highlighted HTML file that displays the source.
-        const fileSourceName = fileName.replace(fileExtensionRegex, '$1-$2.html');
+        const fileSourceName = fileName.replace(
+          fileExtensionRegex,
+          "$1-$2.html",
+        );
         const importPath = `${docsContentPath}/${fileSourceName}`;
 
         // Normalize the path to allow for more consistent displaying in the tabs,
@@ -253,11 +260,11 @@ export class ExampleViewer implements OnInit {
         fileName = normalizePath(fileName);
 
         if (fileName === tsPath) {
-          this.exampleTabs['TS'] = importPath;
+          this.exampleTabs["TS"] = importPath;
         } else if (fileName === cssPath) {
-          this.exampleTabs['CSS'] = importPath;
+          this.exampleTabs["CSS"] = importPath;
         } else if (fileName === htmlPath) {
-          this.exampleTabs['HTML'] = importPath;
+          this.exampleTabs["HTML"] = importPath;
         } else {
           this.exampleTabs[fileName] = importPath;
         }

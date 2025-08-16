@@ -1,4 +1,10 @@
-import { Directive, ElementRef, HostBinding, OnDestroy } from "@angular/core";
+import {
+  Directive,
+  ElementRef,
+  HostBinding,
+  OnDestroy,
+  inject,
+} from "@angular/core";
 import { NavigationFocusService } from "./navigation-focus.service";
 
 let uid = 0;
@@ -7,13 +13,15 @@ let uid = 0;
   selector: "[focusOnNavigation]",
 })
 export class NavigationFocus implements OnDestroy {
+  private el = inject(ElementRef);
+  private navigationFocusService = inject(NavigationFocusService);
+
   @HostBinding("tabindex") readonly tabindex = "-1";
   @HostBinding("style.outline") readonly outline = "none";
 
-  constructor(
-    private el: ElementRef,
-    private navigationFocusService: NavigationFocusService,
-  ) {
+  constructor() {
+    const el = this.el;
+
     if (!el.nativeElement.id) {
       el.nativeElement.id = `skip-link-target-${uid++}`;
     }

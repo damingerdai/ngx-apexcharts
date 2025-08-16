@@ -41,6 +41,8 @@ import type ApexCharts from "apexcharts";
   exportAs: "apxChart",
 })
 export class NgxApexchartsDirective {
+  private el = inject(ElementRef);
+
   public chart = input<ApexChart>();
 
   public annotations = input<ApexAnnotations>();
@@ -91,7 +93,7 @@ export class NgxApexchartsDirective {
   private hasPendingLoad = signal<boolean>(false);
   private destroyRef = inject(DestroyRef);
 
-  constructor(private el: ElementRef) {
+  constructor() {
     afterNextRender(async () => {
       this.hasPendingLoad.set(true);
       const ApexCharts = (await import("apexcharts")).default;

@@ -3,14 +3,13 @@ import {
   DestroyRef,
   Directive,
   ElementRef,
-  Inject,
   Input,
   NgZone,
   OnChanges,
   PLATFORM_ID,
   SimpleChanges,
   inject,
-} from '@angular/core';
+} from "@angular/core";
 import {
   ApexAnnotations,
   ApexAxisChartSeries,
@@ -33,11 +32,11 @@ import {
   ApexYAxis,
   ApexForecastDataPoints,
   ApexOptions,
-} from './model/apex-types';
-import { asapScheduler } from 'rxjs';
+} from "./model/apex-types";
+import { asapScheduler } from "rxjs";
 
-import type ApexCharts from 'apexcharts';
-import { isPlatformBrowser } from '@angular/common';
+import type ApexCharts from "apexcharts";
+import { isPlatformBrowser } from "@angular/common";
 
 declare global {
   interface Window {
@@ -46,11 +45,13 @@ declare global {
 }
 
 @Directive({
-  selector: '[apxChart]',
+  selector: "[apxChart]",
   standalone: true,
-  exportAs: 'apxChart',
+  exportAs: "apxChart",
 })
 export class NgxApexchartsDirective implements OnChanges {
+  private el = inject(ElementRef);
+
   private readonly ngZone = inject(NgZone);
 
   @Input()
@@ -127,22 +128,20 @@ export class NgxApexchartsDirective implements OnChanges {
   private chartObj?: ApexCharts;
   private hasPendingLoad = false;
 
-  constructor(
-    @Inject(PLATFORM_ID) platformId: object,
-    private el: ElementRef,
-  ) {
+  constructor() {
+    const platformId = inject(PLATFORM_ID);
+
     this.isBrowser = isPlatformBrowser(platformId);
     this.destroyRef.onDestroy(() => {
       this.chartObj?.destroy();
     });
-
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     asapScheduler.schedule(() => {
       if (
         this.autoUpdateSeries &&
-        Object.keys(changes).filter((c) => c !== 'series').length === 0
+        Object.keys(changes).filter((c) => c !== "series").length === 0
       ) {
         this.updateSeries(this.series, true);
         return;
@@ -162,7 +161,7 @@ export class NgxApexchartsDirective implements OnChanges {
     this.ngZone.runOutsideAngular(async () => {
       this.destroy();
 
-      const ApexCharts = (await import('apexcharts')).default;
+      const ApexCharts = (await import("apexcharts")).default;
       const options = this.buildOptions();
       this.chartObj = new ApexCharts(this.el.nativeElement, options);
       window.ApexCharts = ApexCharts;
