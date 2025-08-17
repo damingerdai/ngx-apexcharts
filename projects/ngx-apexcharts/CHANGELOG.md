@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.2](https://github.com/damingerdai/ngx-apexcharts/compare/v0.8.1...v0.8.2) (2025-08-17)
+
+
+### Features
+
+* bump @schematics/angular to 20.1 ([0783c28](https://github.com/damingerdai/ngx-apexcharts/commit/0783c28c8e9e7ffd4a5648f73443d41f8977c14d))
+* bump angular v20.1 ([7b5ace2](https://github.com/damingerdai/ngx-apexcharts/commit/7b5ace29f46e882d389317a4710a4e2e7bf3e304))
+
+
+### Bug Fixes
+
+* **deps:** update dependency tslib to v2.8.1 ([#270](https://github.com/damingerdai/ngx-apexcharts/issues/270)) ([cc61128](https://github.com/damingerdai/ngx-apexcharts/commit/cc61128955d0625949a46ddb9d04cd448de90938))
+
 ### [0.8.1](https://github.com/damingerdai/ngx-apexcharts/compare/v0.8.0...v0.8.1) (2025-08-16)
 
 
