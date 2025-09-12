@@ -1,2 +1,1 @@
-export const apexchartsVersion = "4.7.0";
-
+export const apexchartsVersion = "5.0.0";

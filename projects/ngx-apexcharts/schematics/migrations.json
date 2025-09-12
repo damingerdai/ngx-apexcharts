@@ -1,10 +1,10 @@
 {
   "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
-    "update-0-7-0": {
-      "version": "0.7.0",
-      "description": "Updates ngx-apexcharts to v0.7.0",
-      "factory": "./migrations/update-0-7-0/index"
+    "update-0-8-0": {
+      "version": "0.8.0",
+      "description": "Updates ngx-apexcharts to v0.8.0",
+      "factory": "./migrations/update-0-8-0/index"
     }
   }
 }
