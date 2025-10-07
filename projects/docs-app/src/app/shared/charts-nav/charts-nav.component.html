@@ -1,0 +1,18 @@
+<div class="docs-component-viewer-nav">
+  @if (items.length > 0) {
+    <div class="docs-component-viewer-nav-content">
+      <mat-nav-list>
+        @for (component of items; track component) {
+          <a mat-list-item #link="routerLinkActive"
+              [routerLink]="'/charts/' + component.link"
+              [activated]="link.isActive"
+              routerLinkActive="docs-component-viewer-sidenav-item-selected"
+              [attr.aria-current]="link.isActive ? 'page': 'false'">
+            {{component.name}}
+          </a>
+        }
+      </mat-nav-list>
+    </div>
+  }
+</div>
+

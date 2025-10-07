@@ -7,20 +7,21 @@
 <!--      </a>-->
 <!--    </div>-->
 <!--  }-->
-  <a mat-button routerLink="/" aria-label="Ngx Apexcharts">
+  <a matButton="text" routerLink="/" aria-label="Ngx Apexcharts">
     <app-logo matButtonIcon/>
     Apexcharts
   </a>
 
   <!-- @for (key of sectionKeys; track key) {
-    <a mat-button class="docs-navbar-hide-small"
+    <amatButton="text" class="docs-navbar-hide-small"
        [routerLink]="key"
        routerLinkActive="docs-navbar-header-item-selected">{{sections[key].name}}</a>
   } -->
-  <a mat-button class="docs-navbar-hide-small" routerLink="guides" routerLinkActive="docs-navbar-header-item-selected">Guides</a>
+  <a matButton="text" class="docs-navbar-hide-small" routerLink="charts" routerLinkActive="docs-navbar-header-item-selected">Charts</a>
+  <a matButton="text" class="docs-navbar-hide-small" routerLink="guides" routerLinkActive="docs-navbar-header-item-selected">Guides</a>
   <div class="flex-spacer"></div>
   <!-- <theme-picker></theme-picker> -->
-  <a mat-button class="docs-navbar-hide-small" href="https://github.com/damingerdai/ngx-apexcharts"
+  <a matButton="text" class="docs-navbar-hide-small" href="https://github.com/damingerdai/ngx-apexcharts"
      aria-label="GitHub Repository">
     <span matButtonIcon [ngTemplateOutlet]="githubIcon"></span>
     GitHub
@@ -32,10 +33,11 @@
 </nav>
 <nav class="docs-navbar docs-navbar-show-small" aria-label="Section Nav Bar">
   <!-- @for (key of sectionKeys; track key) {
-    <a mat-button class="docs-navbar-link"
+    <amatButton="text" class="docs-navbar-link"
       [routerLink]="key">{{sections[key].name}}</a>
   } -->
-  <a mat-button class="docs-navbar-link" routerLink="guides">Guides</a>
+  <a matButton="text" class="docs-navbar-link" routerLink="charts">Charts</a>
+  <a atButton="text" class="docs-navbar-link" routerLink="guides">Guides</a>
 </nav>
 
 

@@ -14,12 +14,13 @@ app-navbar {
   z-index: 2;
 }
 
-app-root > app-component-sidenav {
+app-root > app-charts {
   flex: 1;
 }
 
 app-root > router-outlet + .main-content,
-app-root > router-outlet + app-component-sidenav {
+app-root > router-outlet + app-charts {
+// app-root > router-outlet + app-component-sidenav {
   margin-top: 56px;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -27,7 +28,8 @@ app-root > router-outlet + app-component-sidenav {
 
 @media (max-width: constants.$extra-small-breakpoint-width) {
   app-root > router-outlet + .main-content,
-  app-root > router-outlet + app-component-sidenav {
+  app-root > router-outlet + app-charts {
+  // app-root > router-outlet + app-component-sidenav {
     margin-top: 92px;
     overflow-y: visible;
   }

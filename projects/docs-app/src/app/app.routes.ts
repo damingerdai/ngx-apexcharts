@@ -10,5 +10,9 @@ export const routes: Routes = [
     path: 'guide',
     loadChildren: () => import('./pages/guide-viewer/guide-viewer.routes').then(r => r.routes)
   },
+   {
+    path: 'charts',
+    loadChildren: () => import('./pages/charts/charts.routes').then(r => r.routes)
+  },
   {path: '**', redirectTo: '/guide'},
 ];
