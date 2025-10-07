@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.5](https://github.com/damingerdai/ngx-apexcharts/compare/v0.8.0...v0.8.5) (2025-10-07)
+
+
+### Features
+
+* bump @schematics/angular to 20.1 ([0783c28](https://github.com/damingerdai/ngx-apexcharts/commit/0783c28c8e9e7ffd4a5648f73443d41f8977c14d))
+* bump anguar fire to v20 ([f7b1909](https://github.com/damingerdai/ngx-apexcharts/commit/f7b190997c24b2abdfca36763decf62dbe3b988d))
+* bump angular 20.3.x ([aff9577](https://github.com/damingerdai/ngx-apexcharts/commit/aff95772392c759eaf41713641f11aac26fd903e))
+* bump angular eslint to v20 ([3a0569c](https://github.com/damingerdai/ngx-apexcharts/commit/3a0569c428ddf1e90f11f0f6fcb96cc31e59db62))
+* bump angular eslint to v20.3 ([ae8869b](https://github.com/damingerdai/ngx-apexcharts/commit/ae8869bba3a7bdc13490bd0e1520db85fcdd168c))
+* bump angular to 20.3.3 ([e26f75d](https://github.com/damingerdai/ngx-apexcharts/commit/e26f75d147bb22e1a9300c712e47a056b8135741))
+* bump angular v20.1 ([7b5ace2](https://github.com/damingerdai/ngx-apexcharts/commit/7b5ace29f46e882d389317a4710a4e2e7bf3e304))
+* bump angular v20.2 ([773a374](https://github.com/damingerdai/ngx-apexcharts/commit/773a374e236a4953dbf5af7b6a18a41aa94ddf27))
+* bump apexcharts to v5 ([bbedf0f](https://github.com/damingerdai/ngx-apexcharts/commit/bbedf0fdf5532d032e6ca092c019cf83120e29c1))
+* Prefer using the inject() function over constructor parameter injection ([97d5940](https://github.com/damingerdai/ngx-apexcharts/commit/97d5940e862754f6a5f6b6a3f51e8d70d1d65ead))
+* update schematics/angular@20.3.4 ([5137a95](https://github.com/damingerdai/ngx-apexcharts/commit/5137a953c5b37be712d2ee3240face584282f16d))
+
+
+### Bug Fixes
+
+* **deps:** update angular-cli monorepo to v20.2.0 ([#278](https://github.com/damingerdai/ngx-apexcharts/issues/278)) ([1caec1b](https://github.com/damingerdai/ngx-apexcharts/commit/1caec1b8ca3278fa38597604a443c4e198ef5003))
+* **deps:** update dependency apexcharts to v5 ([#275](https://github.com/damingerdai/ngx-apexcharts/issues/275)) ([e03ecdc](https://github.com/damingerdai/ngx-apexcharts/commit/e03ecdc058c4e2ff9b7d91037c17b06fb66d04dc))
+* **deps:** update dependency apexcharts to v5.3.4 ([#281](https://github.com/damingerdai/ngx-apexcharts/issues/281)) ([c33664d](https://github.com/damingerdai/ngx-apexcharts/commit/c33664d1e05bf8a427b498bf0b82a9b0301c7440))
+* **deps:** update dependency apexcharts to v5.3.5 ([#286](https://github.com/damingerdai/ngx-apexcharts/issues/286)) ([8b565bd](https://github.com/damingerdai/ngx-apexcharts/commit/8b565bd0c13b8101e1d44ff59583e34a371b73d1))
+* **deps:** update dependency tslib to v2.8.1 ([#270](https://github.com/damingerdai/ngx-apexcharts/issues/270)) ([cc61128](https://github.com/damingerdai/ngx-apexcharts/commit/cc61128955d0625949a46ddb9d04cd448de90938))
+
 ### [0.8.4](https://github.com/damingerdai/ngx-apexcharts/compare/v0.8.3...v0.8.4) (2025-09-14)
 
 
