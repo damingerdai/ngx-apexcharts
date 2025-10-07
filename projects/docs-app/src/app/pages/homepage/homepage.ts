@@ -3,6 +3,7 @@ import {RouterLink} from "@angular/router";
 import {MatButtonModule} from "@angular/material/button";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatIconModule} from "@angular/material/icon";
+import { FooterComponent } from '../../shared/footer/footer';
 
 @Component({
   selector: 'app-homepage',
@@ -11,9 +12,11 @@ import {MatIconModule} from "@angular/material/icon";
     RouterLink,
     MatDividerModule,
     MatIconModule,
+
+    FooterComponent,
   ],
-  templateUrl: './homepage.component.html',
-  styleUrl: './homepage.component.scss'
+  templateUrl: './homepage.html',
+  styleUrl: './homepage.scss'
 })
 export class HomepageComponent {
   @HostBinding('class.main-content') readonly mainContentClass = true;

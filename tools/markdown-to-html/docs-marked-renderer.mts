@@ -1,10 +1,16 @@
-import { basename, extname } from 'path';
-import marked from 'marked';
-
-const { Renderer, Slugger } = marked;
+import {Renderer, Tokens} from 'marked';
+import {basename, extname} from 'path';
+import slugify from 'slugify';
+import {highlightCodeBlock} from '../highlight-files/highlight-code-block.mjs';
 
 /** Regular expression that matches example comments. */
-const exampleCommentRegex = /<!--\s*example\(([^)]+)\)\s*-->/g;
+const exampleCommentRegex = /<!--\s*example\(\s*([^)]+)\)\s*-->/g;
+
+/** Marker inserted before the start of an example. */
+const exampleStartMarker = '<!-- ___exampleStart___ -->';
+
+/** Marker inserted after the end of an example. */
+const exampleEndMarker = '<!-- ___exampleEnd___ -->';
 
 /**
  * Custom renderer for marked that will be used to transform markdown files to HTML
@@ -14,38 +20,45 @@ export class DocsMarkdownRenderer extends Renderer {
   /** Set of fragment links discovered in the currently rendered file. */
   private _referencedFragments = new Set<string>();
 
-  /**
-   * Slugger provided by the `marked` package. Can be used to create unique
-   * ids  for headings.
-   */
-  private _slugger = new Slugger();
+  /** IDs that have been generated during Markdown parsing. */
+  private _seenIds = new Set<string>();
 
   /**
    * Transforms a markdown heading into the corresponding HTML output. In our case, we
    * want to create a header-link for each H2, H3, and H4 heading. This allows users to jump to
    * specific parts of the docs.
    */
-  heading(label: string, level: number, raw: string) {
-    if (level === 2 || level === 3 || level === 4 || level === 5 || level === 6) {
-      const headingId = this._slugger.slug(raw);
+  heading(tag: Tokens.Heading) {
+    const depth = tag.depth;
+    const content = this.parser.parseInline(tag.tokens);
+
+    if (depth === 2 || depth === 3 || depth === 4 || depth === 5 || depth === 6) {
+      const headingId = slugify.default(tag.text, {lower: true, strict: true});
+
+      this._seenIds.add(headingId);
       return `
-        <h${level} id="${headingId}" class="docs-header-link">
+        <h${depth} id="${headingId}" class="docs-header-link">
           <span header-link="${headingId}"></span>
-          ${label}
-        </h${level}>
+          ${content}
+        </h${depth}>
       `;
     }
 
-    return `<h${level}>${label}</h${level}>`;
+    return `<h${depth}>${content}</h${depth}>`;
   }
 
   /** Transforms markdown links into the corresponding HTML output. */
-  link(href: string, title: string, text: string) {
+  link(link: Tokens.Link) {
+    const {href} = link;
+
     // We only want to fix up markdown links that are relative and do not refer to guides already.
     // Otherwise we always map the link to the "guide/" path.
     // TODO(devversion): remove this logic and just disallow relative paths.
     if (!href.startsWith('http') && !href.startsWith('#') && !href.includes('guide/')) {
-      return super.link(`guide/${basename(href, extname(href))}`, title, text);
+      return super.link({
+        ...link,
+        href: `guide/${basename(href, extname(href))}`,
+      });
     }
 
     // Keep track of all fragments discovered in a file.
@@ -53,7 +66,7 @@ export class DocsMarkdownRenderer extends Renderer {
       this._referencedFragments.add(href.slice(1));
     }
 
-    return super.link(href, title, text);
+    return super.link(link);
   }
 
   /**
@@ -78,24 +91,31 @@ export class DocsMarkdownRenderer extends Renderer {
    *  turns into
    *  `<div material-docs-example="name"></div>`
    */
-  html(html: string) {
-    html = html.replace(exampleCommentRegex, (_match: string, content: string) => {
+  html(content: Tokens.HTML | Tokens.Tag) {
+    return content.raw.replace(exampleCommentRegex, (_match: string, content: string) => {
+      let replacement: string;
+
       // using [\s\S]* because .* does not match line breaks
       if (content.match(/\{[\s\S]*\}/g)) {
-        const { example, file, region } = JSON.parse(content) as {
+        const {example, file, region} = JSON.parse(content.trim()) as {
           example: string;
           file: string;
           region: string;
         };
-        return `<div material-docs-example="${example}"
+        replacement = `<div material-docs-example="${example}"
                              ${file ? `file="${file}"` : ''}
                              ${region ? `region="${region}"` : ''}></div>`;
       } else {
-        return `<div material-docs-example="${content}"></div>`;
+        replacement = `<div material-docs-example="${content}"></div>`;
       }
-    });
 
-    return super.html(html);
+      return `${exampleStartMarker}${replacement}${exampleEndMarker}`;
+    });
+  }
+
+  code(block: Tokens.Code): string {
+    const langClass = block.lang ? ` class="language-${block.lang}"` : '';
+    return `<pre><code${langClass}>${highlightCodeBlock(block.text, block.lang)}</code></pre>`;
   }
 
   /**
@@ -108,7 +128,7 @@ export class DocsMarkdownRenderer extends Renderer {
     // Collect any fragment links that do not resolve to existing fragments in the
     // rendered file. We want to error for broken fragment links.
     this._referencedFragments.forEach(id => {
-      if (this._slugger.seen[id] === undefined) {
+      if (!this._seenIds.has(id)) {
         failures.push(`Found link to "${id}". This heading does not exist.`);
       }
     });
@@ -119,9 +139,19 @@ export class DocsMarkdownRenderer extends Renderer {
       process.exit(1);
     }
 
-    this._slugger.seen = {};
+    this._seenIds.clear();
     this._referencedFragments.clear();
 
-    return `<div class="docs-markdown">${output}</div>`;
+    const markdownOpen = '<div class="docs-markdown">';
+
+    // The markdown styling can interfere with the example's styles, because we don't use
+    // encapsulation. We work around it by replacing the opening marker, left by the previous
+    // step, with a closing tag, and replacing the closing marker with an opening tag.
+    // The result is that we exclude the example code from the markdown styling.
+    output = output
+      .replace(new RegExp(exampleStartMarker, 'g'), '</div>')
+      .replace(new RegExp(exampleEndMarker, 'g'), markdownOpen);
+
+    return `${markdownOpen}${output}</div>`;
   }
 }

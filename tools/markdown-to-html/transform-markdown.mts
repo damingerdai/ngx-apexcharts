@@ -1,8 +1,7 @@
-import { readFileSync, writeFileSync } from 'fs';
-import marked from 'marked';
-import { fileURLToPath } from 'url';
-import { join, dirname } from 'path';
-import { highlightCodeBlock } from '../highlight-files/highlight-code-block.mjs';
+import { readFileSync, writeFileSync } from 'node:fs';
+import {marked} from 'marked';
+import { fileURLToPath } from 'node:url';
+import { join, dirname } from 'node:path';
 import { DocsMarkdownRenderer } from './docs-marked-renderer.mjs';
 
 // Regular expression that matches the markdown extension of a given path.
@@ -12,7 +11,7 @@ const markdownExtension = /.md$/;
 const markdownRenderer = new DocsMarkdownRenderer();
 
 // Setup our custom docs renderer by default.
-marked.setOptions({ renderer: markdownRenderer, highlight: highlightCodeBlock });
+marked.setOptions({renderer: markdownRenderer});
 
 const projectDir = join(dirname(fileURLToPath(import.meta.url)), '../');
 const inputFiles = [join(projectDir, '../docs/guide.md')];
@@ -20,7 +19,7 @@ const inputFiles = [join(projectDir, '../docs/guide.md')];
 inputFiles.forEach(inputPath => {
   const outputPath = inputPath.replace(markdownExtension, '.html');
   const htmlOutput = markdownRenderer.finalizeOutput(
-    marked(readFileSync(inputPath, 'utf8')),
+    marked.parse(readFileSync(inputPath, 'utf8'), {async: false}),
     inputPath,
   );
 

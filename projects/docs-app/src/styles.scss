@@ -1,6 +1,5 @@
 @use '@angular/material' as mat;
 @use '@angular/cdk';
-@use './app-theme';
 @use './styles/api';
 @use './styles/markdown';
 @use './styles/tables';
@@ -13,8 +12,10 @@ html {
   @include mat.theme((
     color: (
       theme-type: light,
-      primary: mat.$azure-palette,
-      tertiary: mat.$blue-palette,
+      // primary: mat.$azure-palette,
+      // tertiary: mat.$blue-palette,
+      primary: mat.$rose-palette,
+      tertiary: mat.$red-palette,
     ),
     typography: Roboto,
     density: 0,
@@ -23,21 +24,7 @@ html {
   @include cdk.a11y-visually-hidden();
 }
 
-//$theme: mat.define-theme((
-//  color: (
-//    theme-type: light,
-//    primary: mat.$azure-palette,
-//    tertiary: mat.$blue-palette,
-//  )
-//));
-//
-//// Include material core styles.
-//@include mat.elevation-classes();
-//@include mat.app-background();
-//@include mat.color-variants-backwards-compatibility($theme);
-//@include app-theme.theme($theme);
-//
-//:root {
-//  @include mat.all-component-themes($theme);
-//}
-
+@include general.structural-styles;
+@include api.api-styles;
+@include markdown.markdown-styles;
+@include tables.table-styles;
