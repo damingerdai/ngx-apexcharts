@@ -1,7 +1,10 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
-    "analytics": "3baaf504-dbc1-40db-9aea-56a6da334a34"
+    "analytics": "3baaf504-dbc1-40db-9aea-56a6da334a34",
+    "schematicCollections": [
+      "angular-eslint"
+    ]
   },
   "version": 1,
   "newProjectRoot": "projects",
@@ -106,7 +109,9 @@
           "builder": "@angular/build:karma",
           "options": {
             "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "src/polyfills.ts"
+            ],
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
@@ -116,6 +121,15 @@
             "assets": [
               "src/favicon.ico",
               "src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
             ]
           }
         }
@@ -140,6 +154,16 @@
             "main": "projects/ngx-apexcharts/src/test.ts",
             "tsConfig": "projects/ngx-apexcharts/tsconfig.spec.json",
             "karmaConfig": "projects/ngx-apexcharts/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/ngx-apexcharts/**/*.ts",
+              "projects/ngx-apexcharts/**/*.html"
+            ],
+            "eslintConfig": "projects/ngx-apexcharts/eslint.config.mjs"
           }
         }
       }
@@ -241,6 +265,16 @@
               "projects/dev-app/src/styles.scss"
             ],
             "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/dev-app/**/*.ts",
+              "projects/dev-app/**/*.html"
+            ],
+            "eslintConfig": "projects/dev-app/eslint.config.js"
           }
         }
       }
@@ -355,6 +389,16 @@
         "deploy": {
           "builder": "@angular/fire:deploy",
           "options": {}
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/docs-app/**/*.ts",
+              "projects/docs-app/**/*.html"
+            ],
+            "eslintConfig": "projects/docs-app/eslint.config.js"
+          }
         }
       }
     }
