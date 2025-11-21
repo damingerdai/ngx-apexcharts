@@ -1,7 +1,10 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
-    "analytics": "3baaf504-dbc1-40db-9aea-56a6da334a34"
+    "analytics": "3baaf504-dbc1-40db-9aea-56a6da334a34",
+    "schematicCollections": [
+      "angular-eslint"
+    ]
   },
   "version": 1,
   "newProjectRoot": "projects",
@@ -106,7 +109,9 @@
           "builder": "@angular/build:karma",
           "options": {
             "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "src/polyfills.ts"
+            ],
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
@@ -158,7 +163,7 @@
               "projects/ngx-apexcharts/**/*.ts",
               "projects/ngx-apexcharts/**/*.html"
             ],
-            "eslintConfig": "projects/ngx-apexcharts/eslint.config.js"
+            "eslintConfig": "projects/ngx-apexcharts/eslint.config.mjs"
           }
         }
       }
