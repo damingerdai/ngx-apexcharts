@@ -98,7 +98,7 @@
     "tsconfig-paths": "^4.2.0",
     "tsx": "^4.20.4",
     "typescript": "~5.9.0",
-    "typescript-eslint": "8.46.3"
+    "typescript-eslint": "8.47.0"
   },
   "resolutions": {
     "wrap-ansi": "7.0.0",
