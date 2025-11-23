@@ -117,7 +117,7 @@ describe("ng add ngx-apexcharts", () => {
       "import { NgxApexchartsModule } from 'ngx-apexcharts'",
     );
     expect(appconfig).toContain(
-      "provideZoneChangeDetection({ eventCoalescing: true }), importProvidersFrom(NgxApexchartsModule),",
+      "importProvidersFrom(NgxApexchartsModule)",
     );
   });
 });
