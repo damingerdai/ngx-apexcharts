@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.9.0](https://github.com/damingerdai/ngx-apexcharts/compare/v0.8.6...v0.9.0) (2025-11-23)
+
+
+### Features
+
+* bump angular v21 ([#308](https://github.com/damingerdai/ngx-apexcharts/issues/308)) ([ef60988](https://github.com/damingerdai/ngx-apexcharts/commit/ef60988dcba6185d7ae913f4dad708e39c41e843))
+* update apexcharts min version to 5.3.0 in schematic ([676cae3](https://github.com/damingerdai/ngx-apexcharts/commit/676cae3b5db3c2ea912a999a4dd2bb2501e46485))
+
+
+### Bug Fixes
+
+* **deps:** update dependency apexcharts to v5.3.6 ([#310](https://github.com/damingerdai/ngx-apexcharts/issues/310)) ([826f255](https://github.com/damingerdai/ngx-apexcharts/commit/826f255d51bb66b04df6e14eafc81555ae036e04))
+
 ### [0.8.6](https://github.com/damingerdai/ngx-apexcharts/compare/v0.8.5...v0.8.6) (2025-11-22)
 
 
