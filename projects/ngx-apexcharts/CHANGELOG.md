@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.9.1](https://github.com/damingerdai/ngx-apexcharts/compare/v0.9.0...v0.9.1) (2026-06-04)
+
+
+### Features
+
+* bump angular eslint to v21.0 ([#321](https://github.com/damingerdai/ngx-apexcharts/issues/321)) ([ec426d1](https://github.com/damingerdai/ngx-apexcharts/commit/ec426d1725b06deeb33e254e6d1622fffa39f07f))
+
 ## [0.9.0](https://github.com/damingerdai/ngx-apexcharts/compare/v0.8.6...v0.9.0) (2025-11-23)
 
 
