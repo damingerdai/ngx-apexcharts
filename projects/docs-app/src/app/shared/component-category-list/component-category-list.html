@@ -1,0 +1,18 @@
+<div class="docs-component-category-list-summary docs-markdown"
+     id="category-summary"
+     focusOnNavigation>
+  <div [innerHTML]="_categoryListSummary"></div>
+</div>
+@if (items.length > 0) {
+  <div class="docs-component-category-list">
+    @for (component of items; track component) {
+      <a class="docs-component-category-list-item"
+         [routerLink]="'/charts/' + component.id">
+        <div class="docs-component-category-list-card" matRipple>
+          <div class="docs-component-category-list-card-title">{{component.name}}</div>
+          <div class="docs-component-category-list-card-summary">{{component.summary}}</div>
+        </div>
+      </a>
+    }
+  </div>
+}
