@@ -13,11 +13,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: npm install -g yarn
-      - run: yarn
-      - run: yarn lint
-      - run: yarn package
-      - run: yarn build
+          cache: 'npm'
+      - run: npm ci --legacy-peer-deps
+      - run: npm run lint
+      - run: npm run package
+      - run: npm run build
 
   publish-npm:
     needs: tests
@@ -28,10 +28,10 @@ jobs:
         with:
           node-version: 22
           registry-url: https://registry.npmjs.org/
-      - run: npm install -g yarn
-      - run: yarn
-      - run: yarn package
-      - run: yarn copyfile
+          cache: 'npm'
+      - run: npm ci --legacy-peer-deps
+      - run: npm run package
+      - run: npm run copyfile
       - run: cd dist/ngx-apexcharts && npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}

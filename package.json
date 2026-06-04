@@ -16,20 +16,20 @@
     "test-lib": "ng test",
     "test:lib:ci": "ng test ngx-apexcharts --browsers=ChromeHeadless --watch=false --code-coverage",
     "test-schematics": "tsx node_modules/jasmine/bin/jasmine.js --config=jasmine.json",
-    "test": "yarn test-lib && yarn test-schematics",
-    "test:ci": "yarn test:lib:ci && yarn test-schematics",
+    "test": "npm run test-lib && npm run test-schematics",
+    "test:ci": "npm run test:lib:ci && npm run test-schematics",
     "lint": "ng lint ngx-apexcharts && ng lint ngx-apexcharts-demo && ng lint dev-app && ng lint docs-app",
     "lint:fix": "ng lint ngx-apexcharts --fix && ng lint ngx-apexcharts-demo --fix && ng lint dev-app --fix && ng lint docs-app --fix",
-    "package": "yarn build-pkg && yarn build-schematics",
+    "package": "npm run build-pkg && npm run build-schematics",
     "copyfile:lincense": "copyfiles ./LICENSE ./dist/ngx-apexcharts",
     "copyfile:schema": "copyfiles -f ./projects/ngx-apexcharts/schematics/ng-add/schema.json ./dist/ngx-apexcharts/schematics/ng-add",
     "copyfile:collection": "copyfiles -f ./projects/ngx-apexcharts/schematics/collection.json ./dist/ngx-apexcharts/schematics",
-    "copyfile": "yarn copyfile:lincense && yarn copyfile:schema && yarn copyfile:collection",
+    "copyfile": "npm run copyfile:lincense && npm run copyfile:schema && npm run copyfile:collection",
     "release": "cd ./projects/ngx-apexcharts && standard-version",
     "release:patch": "cd ./projects/ngx-apexcharts && standard-version --release-as patch",
     "release:minor": "cd ./projects/ngx-apexcharts && standard-version --release-as minor",
     "release:major": "cd ./projects/ngx-apexcharts && standard-version --release-as major",
-    "publish": "yarn package && yarn copyfile && npm publish dist/ngx-apexcharts/",
+    "publish": "npm run package && npm run copyfile && npm publish dist/ngx-apexcharts/",
     "prepare": "is-ci || husky",
     "serve:ssr:dev-app": "node dist/dev-app/server/server.mjs",
     "serve:ssr:docs-app": "node dist/docs-app/server/server.mjs"
@@ -55,7 +55,7 @@
     "path-normalize": "^6.0.13",
     "rxjs": "~7.8.0",
     "tslib": "2.8.1",
-    "zone.js": "~0.16.0"
+    "zone.js": "~0.15.0"
   },
   "devDependencies": {
     "@angular-devkit/core": "^21.0.0",
@@ -100,7 +100,7 @@
     "typescript": "~5.9.0",
     "typescript-eslint": "8.47.0"
   },
-  "resolutions": {
+  "overrides": {
     "wrap-ansi": "7.0.0",
     "string-width": "4.2.3"
   }

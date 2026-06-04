@@ -20,26 +20,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+          cache: 'npm'
 
-      - uses: actions/cache@v4
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
-        with:
-          path: |
-            ${{ steps.yarn-cache-dir-path.outputs.dir }}
-            .angular
-          Key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-      - name: Install yarn
-        run: npm install -g yarn@1.22.19
       - name: Install package
-        run: yarn install --frozen-lockfile --non-interactive
+        run: npm ci --legacy-peer-deps
       - name: Lint
-        run: yarn lint
+        run: npm run lint
       - name: Unit Schematics test
-        run: yarn test-schematics
+        run: npm run test-schematics
       - name: Build
-        run: yarn package && yarn build
+        run: npm run package && npm run build
