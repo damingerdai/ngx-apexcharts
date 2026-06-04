@@ -59,7 +59,7 @@
   "devDependencies": {
     "@angular-devkit/core": "^21.0.0",
     "@angular-devkit/schematics": "^21.0.0",
-    "@angular-eslint/builder": "20.6.0",
+    "@angular-eslint/builder": "21.4.0",
     "@angular/build": "^21.0.0",
     "@angular/cli": "^21.0.0",
     "@angular/compiler-cli": "^21.0.0",
@@ -71,7 +71,7 @@
     "@types/jasmine": "~5.1.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^24.7.0",
-    "angular-eslint": "20.6.0",
+    "angular-eslint": "21.4.0",
     "copyfiles": "^2.4.1",
     "eslint": "^9.39.0",
     "highlight.js": "11",
