@@ -63,7 +63,7 @@ await Promise.all([
     )
 ]);
 
-const ngCmd = 'yarn ng'
+const ngCmd = 'npx ng'
 exec(`${ngCmd} lint ngx-apexcharts --fix`);
 //fs.rmdir('./ng-apexcharts');
 const diffResult = exec('git diff --exit-code', true);
@@ -76,9 +76,9 @@ const currentDate = getFormattedDate();
 const branch = `apex-type-pr-${currentDate}`
 exec('git config user.name github-actions');
 exec('git config user.email github-actions@github.com');
-exec('yarn install --frozen-lockfile');
-exec('yarn lint:fix');
-exec('yarn package && yarn build');
+exec('npm ci');
+exec('npm run lint:fix');
+exec('npm run package && npm run build');
 exec(`git checkout ${branch}`);
 exec('git add projects/ngx-apexcharts/src/lib/model/apex-types.ts');
 exec('git add projects/ngx-apexcharts/signals/apex-types.ts');
