@@ -13,7 +13,7 @@ import {
 import { addImportToModule } from '@schematics/angular/utility/ast-utils';
 import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
 
-import * as ts from '@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript';
+import * as ts from 'typescript';
 
 export function readJsonInTree<T = unknown>(host: Tree, path: string): T {
   if (!host.exists(path)) {
@@ -97,10 +97,11 @@ export function addPackageToPackageJson(
 }
 
 
-function sortObjectByKeys<T extends object>(obj: T): T {
-  return Object.keys(obj)
-    .sort()
-    .reduce((result: T, key: string & keyof T) => (result[key] = obj[key]) && result, {} as T);
+function sortObjectByKeys<T extends Record<string, unknown>>(obj: T): T {
+  return (Object.keys(obj).sort() as (keyof T)[]).reduce((result, key) => {
+    result[key] = obj[key];
+    return result;
+  }, {} as T);
 }
 
  
