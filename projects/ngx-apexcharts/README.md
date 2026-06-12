@@ -32,17 +32,6 @@ The `ng add` command will additionally perform the following actions:
 - add apexcharts and ngx-apexcharts to package.json
 - add NgxApexchartsModule to the AppModule in no-standalone application or the AppComponent in standalone application
 
-##  Angular Signals Experimental Support
-
-`ngx-apexcharts` is experimentally supporting Angular signals and zoneless. If you want to try Angular signals or use ngx-apexcharts in zoneless mode, you can change the import statement from *'ngx-apexcharts'* to *'ngx-apexcharts/signals'*. All other aspects remain the same.
-
-```diff
-- import { ChartComponent, ChartType } from 'ngx-apexcharts';
-+ import { ChartComponent, ChartType } from 'ngx-apexcharts/signals';
-```
-
- ngx-apexcharts
-
 ## Usage
 
 In any component you can use the chart using:
