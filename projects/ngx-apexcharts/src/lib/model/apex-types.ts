@@ -14,6 +14,7 @@ export interface ApexOptions {
   responsive?: ApexResponsive[];
   markers?: ApexMarkers;
   noData?: ApexNoData;
+  parsing?: ApexParsing;
   xaxis?: ApexXAxis;
   yaxis?: ApexYAxis | ApexYAxis[];
   forecastDataPoints?: ApexForecastDataPoints;
@@ -70,6 +71,8 @@ export interface ApexChart {
     zoomed?(chart: any, options?: any): void;
     scrolled?(chart: any, options?: any): void;
     brushScrolled?(chart: any, options?: any): void;
+    keyDown?(e: KeyboardEvent, chart?: any, options?: any): void;
+    keyUp?(e: KeyboardEvent, chart?: any, options?: any): void;
   };
   brush?: {
     enabled?: boolean;
@@ -78,6 +81,7 @@ export interface ApexChart {
     targets?: string[];
   };
   id?: string;
+  injectStyleSheet?: boolean;
   group?: string;
   nonce?: string;
   locales?: ApexLocale[];
@@ -117,8 +121,8 @@ export interface ApexChart {
         columnDelimiter?: string;
         headerCategory?: string;
         headerValue?: string;
-        categoryFormatter?(value?: number): any;
-        valueFormatter?(value?: number): any;
+        categoryFormatter?(value?: string | number): any;
+        valueFormatter?(value?: string | number): any;
       };
       svg?: {
         filename?: undefined | string;
@@ -182,6 +186,16 @@ export interface ApexChart {
       speed?: number;
     };
   };
+  accessibility?: {
+    enabled?: boolean;
+    description?: string;
+    announcements?: {
+      enabled?: boolean;
+    };
+    keyboard?: {
+      enabled?: boolean;
+    };
+  };
 }
 
 export interface ApexStates {
@@ -219,7 +233,6 @@ export interface ApexTitleSubtitle {
 
 /**
  * Chart Series options.
- * Use ApexNonAxisChartSeries for Pie and Donut charts.
  * See https://apexcharts.com/docs/options/series/
  */
 export type ApexAxisChartSeries = {
@@ -227,8 +240,9 @@ export type ApexAxisChartSeries = {
   type?: string;
   color?: string;
   group?: string;
-  zIndex?: number;
   hidden?: boolean;
+  zIndex?: number;
+  parsing?: ApexParsing;
   data:
     | (number | null)[]
     | {
@@ -252,10 +266,11 @@ export type ApexAxisChartSeries = {
       }[]
     | [number, number | null][]
     | [number, (number | null)[]][]
-    | number[][];
+    | number[][]
+    | Record<string, any>[];
 }[];
 
-export type ApexNonAxisChartSeries = number[];
+export type ApexNonAxisChartSeries = number[] | ApexAxisChartSeries;
 
 /**
  * Options for the line drawn on line and area charts.
@@ -268,7 +283,8 @@ export interface ApexStroke {
     | "straight"
     | "stepline"
     | "monotoneCubic"
-    | ("smooth" | "straight" | "stepline" | "monotoneCubic")[];
+    | "linestep"
+    | ("smooth" | "straight" | "stepline" | "monotoneCubic" | "linestep")[];
   lineCap?: "butt" | "square" | "round";
   colors?: any[];
   width?: number | number[];
@@ -287,7 +303,7 @@ export interface AnnotationLabel {
   borderColor?: string;
   borderWidth?: number;
   borderRadius?: number;
-  text?: string;
+  text?: string | string[];
   textAnchor?: string;
   offsetX?: number;
   offsetY?: number;
@@ -491,9 +507,10 @@ export interface ApexPlotOptions {
     maxBubbleRadius?: number;
   };
   candlestick?: {
+    type?: string;
     colors?: {
-      upward?: string;
-      downward?: string;
+      upward?: string | string[];
+      downward?: string | string[];
     };
     wick?: {
       useFillColor?: boolean;
@@ -501,8 +518,8 @@ export interface ApexPlotOptions {
   };
   boxPlot?: {
     colors?: {
-      upper?: string;
-      lower?: string;
+      upper?: string | string[];
+      lower?: string | string[];
     };
   };
   heatmap?: {
@@ -545,6 +562,28 @@ export interface ApexPlotOptions {
       min?: number;
       max?: number;
     };
+    seriesTitle?: {
+      show?: boolean;
+      offsetY?: number;
+      offsetX?: number;
+      borderColor?: string;
+      borderWidth?: number;
+      borderRadius?: number;
+      style?: {
+        background?: string;
+        color?: string;
+        fontSize?: string;
+        fontFamily?: string;
+        fontWeight?: number | string;
+        cssClass?: string;
+        padding?: {
+          left?: number;
+          right?: number;
+          top?: number;
+          bottom?: number;
+        };
+      };
+    };
   };
   pie?: {
     startAngle?: number;
@@ -578,7 +617,7 @@ export interface ApexPlotOptions {
           fontWeight?: string | number;
           color?: string;
           offsetY?: number;
-          formatter?(val: string): string;
+          formatter?(val: string | number): string;
         };
         total?: {
           show?: boolean;
@@ -742,11 +781,14 @@ export interface ApexLegend {
   offsetX?: number;
   offsetY?: number;
   customLegendItems?: string[];
+  clusterGroupedSeries?: boolean;
+  clusterGroupedSeriesOrientation?: string;
   labels?: {
     colors?: string | string[];
     useSeriesColors?: boolean;
   };
   markers?: {
+    size?: number;
     strokeWidth?: number;
     fillColors?: string[];
     shape?: ApexMarkerShape;
@@ -789,6 +831,7 @@ export interface ApexDataLabels {
   background?: {
     enabled?: boolean;
     foreColor?: string;
+    backgroundColor?: string;
     borderRadius?: number;
     padding?: number;
     opacity?: number;
@@ -799,8 +842,8 @@ export interface ApexDataLabels {
   dropShadow?: ApexDropShadow;
   formatter?(
     val: string | number | number[],
-    opts?: any
-  ): string | number | string[];
+    opts?: any,
+  ): string | number | (string | number)[];
 }
 
 export interface ApexResponsive {
@@ -840,7 +883,7 @@ export interface ApexTooltip {
   x?: {
     show?: boolean;
     format?: string;
-    formatter?(val: number, opts?: any): string;
+    formatter?(val: string | number, opts?: any): string;
   };
   y?: ApexTooltipY | ApexTooltipY[];
   z?: {
@@ -902,9 +945,9 @@ export interface ApexXAxis {
       second?: string;
     };
     formatter?(
-      value: string,
+      value: string | number,
       timestamp?: number,
-      opts?: any
+      opts?: any,
     ): string | string[];
   };
   group?: {
@@ -920,6 +963,7 @@ export interface ApexXAxis {
   axisBorder?: {
     show?: boolean;
     color?: string;
+    height?: number;
     offsetX?: number;
     offsetY?: number;
     strokeWidth?: number;
@@ -983,7 +1027,7 @@ export interface ApexXAxis {
       fontSize?: string;
       fontFamily?: string;
     };
-    formatter?(value: string, opts?: object): string;
+    formatter?(value: string | number, opts?: object): string;
   };
 }
 
@@ -1150,7 +1194,7 @@ interface ApexDiscretePoint {
 
 export interface ApexMarkers {
   size?: number | number[];
-  colors?: string[];
+  colors?: string | string[];
   strokeColors?: string | string[];
   strokeWidth?: number | number[];
   strokeOpacity?: number | number[];
@@ -1180,6 +1224,12 @@ export interface ApexNoData {
     fontSize?: string;
     fontFamily?: string;
   };
+}
+
+export interface ApexParsing {
+  x?: string;
+  y?: string | string[];
+  z?: string;
 }
 
 export type ChartType =

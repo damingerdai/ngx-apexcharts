@@ -1,7 +1,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "esModuleInterop": true,
     "sourceMap": true,
@@ -16,13 +15,13 @@
     ],
     "paths": {
       "ngx-apexcharts": [
-        "projects/ngx-apexcharts/src/public_api.ts"
+        "./projects/ngx-apexcharts/src/public_api.ts"
       ],
       "ngx-apexcharts/signals": [
-        "projects/ngx-apexcharts/signals/public_api.ts"
+        "./projects/ngx-apexcharts/signals/public_api.ts"
       ],
       "ngx-apexcharts/*": [
-        "projects/ngx-apexcharts/src/lib/*"
+        "./projects/ngx-apexcharts/src/lib/*"
       ]
     },
     "useDefineForClassFields": false

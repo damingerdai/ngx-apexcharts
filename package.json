@@ -48,8 +48,8 @@
     "@angular/platform-server": "^22.0.1",
     "@angular/router": "^22.0.1",
     "@angular/ssr": "^22.0.1",
-    "@schematics/angular": "^21.0.0",
-    "apexcharts": "5.3.6",
+    "@schematics/angular": "^22.0.1",
+    "apexcharts": "5.15.0",
     "express": "^4.21.0",
     "path-normalize": "^6.0.13",
     "rxjs": "~7.8.0",
@@ -98,7 +98,7 @@
     "tsconfig-paths": "^4.2.0",
     "tsx": "^4.20.4",
     "typescript": "~6.0.3",
-    "typescript-eslint": "8.47.0",
+    "typescript-eslint": "~8.59.4",
     "vitest": "^4.0.8"
   },
   "overrides": {

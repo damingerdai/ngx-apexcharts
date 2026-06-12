@@ -1,27 +1,37 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { isPlatformBrowser } from "@angular/common";
 import {
+  afterEveryRender,
+  afterNextRender,
+  AfterRenderRef,
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
-  Input,
+  inject,
+  Injector,
+  input,
+  NgZone,
   OnChanges,
   OnDestroy,
+  output,
+  PLATFORM_ID,
+  signal,
   SimpleChanges,
-  ViewChild,
-  NgZone,
-  ChangeDetectionStrategy,
-  inject,
-} from '@angular/core';
+  viewChild,
+} from "@angular/core";
 import {
   ApexAnnotations,
   ApexAxisChartSeries,
   ApexChart,
   ApexDataLabels,
   ApexFill,
+  ApexForecastDataPoints,
   ApexGrid,
   ApexLegend,
-  ApexNonAxisChartSeries,
   ApexMarkers,
   ApexNoData,
+  ApexParsing,
+  ApexNonAxisChartSeries,
   ApexPlotOptions,
   ApexResponsive,
   ApexStates,
@@ -31,341 +41,332 @@ import {
   ApexTooltip,
   ApexXAxis,
   ApexYAxis,
-  ApexForecastDataPoints,
-  ApexOptions,
-} from '../model/apex-types';
-import { asapScheduler } from 'rxjs';
-
-import type ApexCharts from 'apexcharts';
-
-declare global {
-  interface Window {
-    ApexCharts: any;
-  }
-}
+} from "../model/apex-types";
+import type ApexChartsType from "apexcharts";
 
 @Component({
-  selector: 'apx-chart',
-  template: '<div #chart></div>',
-  standalone: true,
+  selector: "apx-chart",
+  template: `<div #chart></div>`,
+  exportAs: "apxChart",
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
 })
 export class ChartComponent implements OnChanges, OnDestroy {
-  private readonly ngZone = inject(NgZone);
+  readonly chart = input<ApexChart>();
+  readonly annotations = input<ApexAnnotations>();
+  readonly colors = input<any[]>();
+  readonly dataLabels = input<ApexDataLabels>();
+  readonly series = input<ApexAxisChartSeries | ApexNonAxisChartSeries>();
+  readonly stroke = input<ApexStroke>();
+  readonly labels = input<string[]>();
+  readonly legend = input<ApexLegend>();
+  readonly markers = input<ApexMarkers>();
+  readonly noData = input<ApexNoData>();
+  readonly parsing = input<ApexParsing>();
+  readonly fill = input<ApexFill>();
+  readonly tooltip = input<ApexTooltip>();
+  readonly plotOptions = input<ApexPlotOptions>();
+  readonly responsive = input<ApexResponsive[]>();
+  readonly xaxis = input<ApexXAxis>();
+  readonly yaxis = input<ApexYAxis | ApexYAxis[]>();
+  readonly forecastDataPoints = input<ApexForecastDataPoints>();
+  readonly grid = input<ApexGrid>();
+  readonly states = input<ApexStates>();
+  readonly title = input<ApexTitleSubtitle>();
+  readonly subtitle = input<ApexTitleSubtitle>();
+  readonly theme = input<ApexTheme>();
 
-  @Input()
-  public chart!: ApexChart;
+  readonly autoUpdateSeries = input(true);
 
-  @Input()
-  public annotations!: ApexAnnotations;
+  readonly chartReady = output<{ chartObj: ApexChartsType }>();
 
-  @Input()
-  public colors!: any[];
+  // If consumers need to capture the `chartInstance` for use, consumers
+  // can access the component instance through `viewChild` and use `computed`
+  // or `effect` on `component.chartInstance()` to monitor its changes and
+  // recompute effects or computations whenever `chartInstance` is updated.
+  readonly chartInstance = signal<ApexChartsType | null>(null);
 
-  @Input()
-  public dataLabels!: ApexDataLabels;
+  private readonly chartElement =
+    viewChild.required<ElementRef<HTMLElement>>("chart");
 
-  @Input()
-  public series!: ApexAxisChartSeries | ApexNonAxisChartSeries;
+  private ngZone = inject(NgZone);
+  private isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
-  @Input()
-  public stroke!: ApexStroke;
+  private _destroyed = false;
+  private readonly _injector = inject(Injector);
+  private waitingForConnectedRef: AfterRenderRef | null = null;
 
-  @Input()
-  public labels!: string[];
-
-  @Input()
-  public legend!: ApexLegend;
-
-  @Input()
-  public markers!: ApexMarkers;
-
-  @Input()
-  public noData!: ApexNoData;
-
-  @Input()
-  public fill!: ApexFill;
-
-  @Input()
-  public tooltip!: ApexTooltip;
-
-  @Input()
-  public plotOptions!: ApexPlotOptions;
-
-  @Input()
-  public responsive!: ApexResponsive[];
-
-  @Input()
-  public xaxis!: ApexXAxis;
-
-  @Input()
-  public yaxis!: ApexYAxis | ApexYAxis[];
-
-  @Input()
-  public forecastDataPoints!: ApexForecastDataPoints;
-
-  @Input()
-  public grid!: ApexGrid;
-
-  @Input()
-  public states!: ApexStates;
-
-  @Input()
-  public title!: ApexTitleSubtitle;
-
-  @Input()
-  public subtitle!: ApexTitleSubtitle;
-
-  @Input()
-  public theme!: ApexTheme;
-
-  @Input()
-  public autoUpdateSeries = true;
-
-  @ViewChild('chart', { static: true })
-  public readonly chartElement!: ElementRef;
-
-  private chartObj?: ApexCharts;
-  private hasPendingLoad = false;
 
   ngOnChanges(changes: SimpleChanges): void {
-    asapScheduler.schedule(() => {
-      if (
-        this.autoUpdateSeries &&
-        Object.keys(changes).filter((c) => c !== 'series').length === 0
-      ) {
-        this.updateSeries(this.series, true);
-        return;
-      }
+    if (!this.isBrowser) return;
 
-      this.createElement();
-    });
+    this.hydrate(changes);
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.destroy();
+    this._destroyed = true;
   }
 
-  private createElement(): void {
-    // Do not run on server
-    if (typeof window === 'undefined' || this.hasPendingLoad) {
+  /** Determine if the host element is connected to the document */
+  private get isConnected() {
+    return this.chartElement()?.nativeElement.isConnected;
+  }
+
+  private hydrate(changes: SimpleChanges): void {
+    if (this.waitingForConnectedRef) {
       return;
     }
 
-    this.hasPendingLoad = true;
-    this.ngZone.runOutsideAngular(async () => {
-      this.destroy();
+    const shouldUpdateSeries =
+      this.chartInstance() &&
+      this.autoUpdateSeries() &&
+      Object.keys(changes).filter((c) => c !== "series").length === 0;
 
-      const ApexCharts = (await import('apexcharts')).default;
-      const options = this.buildOptions();
-      this.chartObj = new ApexCharts(this.chartElement.nativeElement, options);
-      window.ApexCharts = ApexCharts;
+    if (shouldUpdateSeries) {
+      const newSeries = this.series();
+      if (newSeries) {
+        this.updateSeries(newSeries, true);
+      }
+      return;
+    }
 
-      await this.render();
-      this.hasPendingLoad = false;
+    // Create the chart after the layout is finalized and ready to be measured.
+    afterNextRender({
+      read: () => this.createElement(),
+    }, { injector: this._injector });
+  }
+
+  /** @internal Extracted to allow subclasses and tests to swap the ApexCharts bundle. */
+  protected importApexCharts(): Promise<{ default: typeof ApexChartsType }> {
+    return import("apexcharts/client");
+  }
+
+  private async createElement() {
+    const { default: ApexCharts } = await this.importApexCharts();
+    (window as any).ApexCharts ||= ApexCharts;
+
+    if (this._destroyed) return;
+    if (!this.isConnected) {
+      this.waitForConnected();
+      return;
+    }
+
+    const options: any = {};
+
+    const properties = [
+      "annotations",
+      "chart",
+      "colors",
+      "dataLabels",
+      "series",
+      "stroke",
+      "labels",
+      "legend",
+      "fill",
+      "tooltip",
+      "plotOptions",
+      "responsive",
+      "markers",
+      "noData",
+      "parsing",
+      "xaxis",
+      "yaxis",
+      "forecastDataPoints",
+      "grid",
+      "states",
+      "title",
+      "subtitle",
+      "theme",
+    ] as const;
+
+    properties.forEach((property) => {
+      const value = this[property]();
+      if (value) {
+        options[property] = value;
+      }
     });
+
+    this.destroy();
+
+    const chartInstance = this.ngZone.runOutsideAngular(
+      () => new ApexCharts(this.chartElement().nativeElement, options)
+    );
+
+    this.chartInstance.set(chartInstance);
+
+    this.render();
+    this.chartReady.emit({ chartObj: chartInstance });
   }
 
-  render(): Promise<void> | undefined {
-    return this.ngZone.runOutsideAngular(() => this.chartObj?.render());
+  public render() {
+    if (this.isConnected) {
+      return this.ngZone.runOutsideAngular(() => this.chartInstance()?.render());
+    } else {
+      this.waitForConnected();
+    }
   }
 
-  updateOptions(
+  public updateOptions(
     options: any,
     redrawPaths?: boolean,
     animate?: boolean,
-    updateSyncedCharts?: boolean,
-  ): Promise<void> | undefined {
+    updateSyncedCharts?: boolean
+  ) {
     return this.ngZone.runOutsideAngular(() =>
-      this.chartObj?.updateOptions(
+      this.chartInstance()?.updateOptions(
         options,
         redrawPaths,
         animate,
-        updateSyncedCharts,
-      ),
+        updateSyncedCharts
+      )
     );
   }
 
-  updateSeries(
+  public updateSeries(
     newSeries: ApexAxisChartSeries | ApexNonAxisChartSeries,
-    animate?: boolean,
-  ): Promise<void> | undefined {
+    animate?: boolean
+  ) {
     return this.ngZone.runOutsideAngular(() =>
-      this.chartObj?.updateSeries(newSeries, animate),
+      this.chartInstance()?.updateSeries(newSeries as any, animate)
     );
   }
 
-  appendSeries(
+  public appendSeries(
     newSeries: ApexAxisChartSeries | ApexNonAxisChartSeries,
-    animate?: boolean,
-  ): void {
+    animate?: boolean
+  ) {
     this.ngZone.runOutsideAngular(() =>
-      this.chartObj?.appendSeries(newSeries, animate),
+      this.chartInstance()?.appendSeries(newSeries as any, animate)
     );
   }
 
-  appendData(newData: any[]): void {
-    this.ngZone.runOutsideAngular(() => this.chartObj?.appendData(newData));
+  public appendData(newData: any[]) {
+    this.ngZone.runOutsideAngular(() =>
+      this.chartInstance()?.appendData(newData)
+    );
   }
 
-  toggleSeries(seriesName: string): Promise<void> {
+  public highlightSeries(seriesName: string): any {
     return this.ngZone.runOutsideAngular(() =>
-      this.chartObj?.toggleSeries(seriesName),
+      this.chartInstance()?.highlightSeries(seriesName)
     );
   }
 
-  showSeries(seriesName: string): void {
-    this.ngZone.runOutsideAngular(() => this.chartObj?.showSeries(seriesName));
+  public toggleSeries(seriesName: string): any {
+    return this.ngZone.runOutsideAngular(() =>
+      this.chartInstance()?.toggleSeries(seriesName)
+    );
   }
 
-  hideSeries(seriesName: string): void {
-    this.ngZone.runOutsideAngular(() => this.chartObj?.hideSeries(seriesName));
-  }
-
-  resetSeries(): void {
-    this.ngZone.runOutsideAngular(() => this.chartObj?.resetSeries());
-  }
-
-  zoomX(min: number, max: number): void {
-    this.ngZone.runOutsideAngular(() => this.chartObj?.zoomX(min, max));
-  }
-
-  toggleDataPointSelection(seriesIndex: number, dataPointIndex?: number): void {
+  public showSeries(seriesName: string) {
     this.ngZone.runOutsideAngular(() =>
-      this.chartObj?.toggleDataPointSelection(seriesIndex, dataPointIndex),
+      this.chartInstance()?.showSeries(seriesName)
     );
   }
 
-  destroy(): void {
-    this.chartObj?.destroy();
+  public hideSeries(seriesName: string) {
+    this.ngZone.runOutsideAngular(() =>
+      this.chartInstance()?.hideSeries(seriesName)
+    );
   }
 
-  setLocale(localeName: string): void {
-    this.ngZone.runOutsideAngular(() => this.chartObj?.setLocale(localeName));
+  public resetSeries() {
+    this.ngZone.runOutsideAngular(() => this.chartInstance()?.resetSeries());
   }
 
-  paper(): void {
-    this.ngZone.runOutsideAngular(() => this.chartObj?.paper());
+  public zoomX(min: number, max: number) {
+    this.ngZone.runOutsideAngular(() => this.chartInstance()?.zoomX(min, max));
   }
 
-  addXaxisAnnotation(
+  public toggleDataPointSelection(
+    seriesIndex: number,
+    dataPointIndex?: number
+  ) {
+    this.ngZone.runOutsideAngular(() =>
+      this.chartInstance()?.toggleDataPointSelection(
+        seriesIndex,
+        dataPointIndex
+      )
+    );
+  }
+
+  public destroy() {
+    this.chartInstance()?.destroy();
+    this.chartInstance.set(null);
+  }
+
+  public setLocale(localeName: string) {
+    this.ngZone.runOutsideAngular(() =>
+      this.chartInstance()?.setLocale(localeName)
+    );
+  }
+
+  public paper() {
+    this.ngZone.runOutsideAngular(() => (this.chartInstance() as any)?.paper());
+  }
+
+  public addXaxisAnnotation(
     options: any,
     pushToMemory?: boolean,
-    context?: any,
-  ): void {
+    context?: any
+  ) {
     this.ngZone.runOutsideAngular(() =>
-      this.chartObj?.addXaxisAnnotation(options, pushToMemory, context),
+      this.chartInstance()?.addXaxisAnnotation(options, pushToMemory, context)
     );
   }
 
-  addYaxisAnnotation(
+  public addYaxisAnnotation(
     options: any,
     pushToMemory?: boolean,
-    context?: any,
-  ): void {
+    context?: any
+  ) {
     this.ngZone.runOutsideAngular(() =>
-      this.chartObj?.addYaxisAnnotation(options, pushToMemory, context),
+      this.chartInstance()?.addYaxisAnnotation(options, pushToMemory, context)
     );
   }
 
-  addPointAnnotation(
+  public addPointAnnotation(
     options: any,
     pushToMemory?: boolean,
-    context?: any,
-  ): void {
+    context?: any
+  ) {
     this.ngZone.runOutsideAngular(() =>
-      this.chartObj?.addPointAnnotation(options, pushToMemory, context),
+      this.chartInstance()?.addPointAnnotation(options, pushToMemory, context)
     );
   }
 
-  removeAnnotation(id: string, options?: any): void {
+  public removeAnnotation(id: string, options?: any) {
     this.ngZone.runOutsideAngular(() =>
-      this.chartObj?.removeAnnotation(id, options),
+      this.chartInstance()?.removeAnnotation(id, options)
     );
   }
 
-  clearAnnotations(options?: any): void {
+  public clearAnnotations(options?: any) {
     this.ngZone.runOutsideAngular(() =>
-      this.chartObj?.clearAnnotations(options),
+      this.chartInstance()?.clearAnnotations(options)
     );
   }
 
-  dataURI(
-    options?: any,
-  ): Promise<{ imgURI: string } | { blob: Blob }> | undefined {
-    return this.chartObj?.dataURI(options);
+  public dataURI(options?: any) {
+    return this.chartInstance()?.dataURI(options);
   }
 
-  private buildOptions(): ApexOptions {
-    const options: ApexOptions = {};
-
-    if (this.annotations) {
-      options.annotations = this.annotations;
-    }
-    if (this.chart) {
-      options.chart = this.chart;
-    }
-    if (this.colors) {
-      options.colors = this.colors;
-    }
-    if (this.dataLabels) {
-      options.dataLabels = this.dataLabels;
-    }
-    if (this.series) {
-      options.series = this.series;
-    }
-    if (this.stroke) {
-      options.stroke = this.stroke;
-    }
-    if (this.labels) {
-      options.labels = this.labels;
-    }
-    if (this.legend) {
-      options.legend = this.legend;
-    }
-    if (this.fill) {
-      options.fill = this.fill;
-    }
-    if (this.tooltip) {
-      options.tooltip = this.tooltip;
-    }
-    if (this.plotOptions) {
-      options.plotOptions = this.plotOptions;
-    }
-    if (this.responsive) {
-      options.responsive = this.responsive;
-    }
-    if (this.markers) {
-      options.markers = this.markers;
-    }
-    if (this.noData) {
-      options.noData = this.noData;
-    }
-    if (this.xaxis) {
-      options.xaxis = this.xaxis;
-    }
-    if (this.yaxis) {
-      options.yaxis = this.yaxis;
-    }
-    if (this.forecastDataPoints) {
-      options.forecastDataPoints = this.forecastDataPoints;
-    }
-    if (this.grid) {
-      options.grid = this.grid;
-    }
-    if (this.states) {
-      options.states = this.states;
-    }
-    if (this.title) {
-      options.title = this.title;
-    }
-    if (this.subtitle) {
-      options.subtitle = this.subtitle;
-    }
-    if (this.theme) {
-      options.theme = this.theme;
+  private waitForConnected() {
+    if (this.waitingForConnectedRef) {
+      return;
     }
 
-    return options;
+    this.waitingForConnectedRef = afterEveryRender({
+      read: () => {
+        if (this.isConnected) {
+          if (this.waitingForConnectedRef) {
+            this.waitingForConnectedRef.destroy();
+            this.waitingForConnectedRef = null;
+          }
+          this.createElement();
+        }
+      },
+    }, { injector: this._injector });
   }
 }

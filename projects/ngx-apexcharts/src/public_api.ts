@@ -4,7 +4,6 @@
 
 export { NgxApexchartsModule } from './lib/ngx-apexcharts.module';
 export { ChartComponent } from './lib/chart/chart.component';
-export { NgxApexchartsDirective } from './lib/ngx-apexcharts.directive';
 export {
   ChartType,
   ApexNoData,
