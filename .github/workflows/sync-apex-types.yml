@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout damingerdai/ngx-apexcharts
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           repository: "damingerdai/ngx-apexcharts"
           path: "ngx-apexcharts"
@@ -18,7 +18,7 @@ jobs:
           token: ${{ secrets.SYNC_TOKEN }}
 
       - name: Checkout apexcharts/ng-apexcharts
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           repository: "apexcharts/ng-apexcharts"
           path: "ng-apexcharts"
