@@ -30,14 +30,11 @@ export default tseslint.config(
           style: "kebab-case",
         },
       ],
+      "@angular-eslint/prefer-on-push-component-change-detection": "off"
     },
   },
   {
     files: ["**/*.html"],
-    extends: [
-      ...angular.configs.templateRecommended,
-      ...angular.configs.templateAccessibility,
-    ],
     rules: {},
   }
 );
