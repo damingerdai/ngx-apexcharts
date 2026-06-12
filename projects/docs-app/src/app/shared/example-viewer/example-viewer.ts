@@ -8,6 +8,7 @@ import {
   Type,
   ViewChildren,
   inject,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Clipboard } from "@angular/cdk/clipboard";
@@ -51,6 +52,7 @@ const preferredExampleFileOrder = ["HTML", "TS", "CSS"];
   selector: "example-viewer",
   templateUrl: "./example-viewer.html",
   styleUrls: ["./example-viewer.scss"],
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     MatButtonModule,
     MatTooltipModule,

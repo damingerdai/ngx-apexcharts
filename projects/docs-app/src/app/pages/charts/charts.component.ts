@@ -1,4 +1,4 @@
-import { Component, inject, viewChild, ViewEncapsulation } from '@angular/core';
+import { Component, inject, viewChild, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { RouterModule } from '@angular/router';
@@ -30,6 +30,7 @@ const SMALL_WIDTH_BREAKPOINT = 959;
   ],
   templateUrl: './charts.component.html',
   styleUrl: './charts.component.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class ChartsComponent {

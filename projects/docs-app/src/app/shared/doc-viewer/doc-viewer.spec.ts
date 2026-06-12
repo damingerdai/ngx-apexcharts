@@ -1,5 +1,5 @@
 import {HttpTestingController} from '@angular/common/http/testing';
-import {Component} from '@angular/core';
+import {Component, ChangeDetectionStrategy} from '@angular/core';
 import {waitForAsync, inject, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
 import {DocsAppTestingModule} from '../../testing/testing-module';
@@ -146,6 +146,7 @@ describe('DocViewer', () => {
 @Component({
     selector: 'test-app',
     template: `<doc-viewer [documentUrl]="documentUrl"></doc-viewer>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [DocViewerModule, DocsAppTestingModule]
 })
 class DocViewerTestComponent {

@@ -16,6 +16,7 @@ import {
   ViewContainerRef,
   input,
   inject,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { Observable, Subscription } from "rxjs";
 import { shareReplay, take, tap } from "rxjs/operators";
@@ -43,6 +44,7 @@ class DocFetcher {
 @Component({
   selector: "doc-viewer",
   template: "Loading document...",
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true,
 })
 export class DocViewer implements OnDestroy {

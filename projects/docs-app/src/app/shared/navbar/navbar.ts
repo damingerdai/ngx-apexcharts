@@ -1,4 +1,4 @@
-import {Component, OnDestroy} from '@angular/core';
+import {Component, OnDestroy, ChangeDetectionStrategy} from '@angular/core';
 import {NgTemplateOutlet} from '@angular/common';
 import {MatButtonModule} from '@angular/material/button';
 import {RouterLink, RouterLinkActive} from '@angular/router';
@@ -15,6 +15,7 @@ import {AppLogo} from '../logo/logo';
     selector: 'app-navbar',
     templateUrl: './navbar.html',
     styleUrls: ['./navbar.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
         MatButtonModule,
         RouterLink,

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   FormsModule,
   ReactiveFormsModule,
@@ -16,6 +16,7 @@ import { SeriesPipe } from './series.pipe';
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
         FormsModule,
         ReactiveFormsModule,

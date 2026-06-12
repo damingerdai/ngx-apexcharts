@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import { Router } from "@angular/router";
 import { MatIconModule } from "@angular/material/icon";
 
@@ -27,6 +27,7 @@ import { MatIconModule } from "@angular/material/icon";
       <mat-icon>link</mat-icon>
     </a>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [MatIconModule],
 })
 export class HeaderLink {

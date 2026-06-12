@@ -75,6 +75,11 @@
                   "maximumError": "5mb"
                 }
               ]
+            },
+            "testing": {
+              "aot": false,
+              "optimization": false,
+              "extractLicenses": false
             }
           },
           "defaultConfiguration": ""
@@ -97,15 +102,22 @@
           }
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": ["src/polyfills.ts"],
             "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
-            "styles": ["src/styles.scss"],
-            "scripts": [],
-            "assets": ["src/favicon.ico", "src/assets"]
+            "reporters": [
+              "default"
+            ],
+            "coverageReporters": [
+              "html",
+              "text-summary",
+              "lcovonly"
+            ],
+            "setupFiles": [
+              "src/test.ts"
+            ],
+            "buildTarget": ":build:testing",
+            "runner": "vitest"
           }
         },
         "lint": {
@@ -203,6 +215,15 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "testing": {
+              "aot": false,
+              "optimization": false,
+              "extractLicenses": false,
+              "polyfills": [
+                "zone.js",
+                "zone.js/testing"
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -226,19 +247,11 @@
           "builder": "@angular/build:extract-i18n"
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
-            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "projects/dev-app/tsconfig.spec.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
-            ],
-            "styles": ["projects/dev-app/src/styles.scss"],
-            "scripts": []
+            "buildTarget": ":build:testing",
+            "runner": "vitest"
           }
         },
         "lint": {
@@ -317,6 +330,25 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "testing": {
+              "aot": false,
+              "optimization": false,
+              "extractLicenses": false,
+              "assets": [
+                {
+                  "glob": "**/*",
+                  "input": "projects/docs-app/public"
+                }
+              ],
+              "styles": [
+                "@angular/material/prebuilt-themes/azure-blue.css",
+                "projects/docs-app/src/styles.scss"
+              ],
+              "polyfills": [
+                "zone.js",
+                "zone.js/testing"
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -337,22 +369,11 @@
           "builder": "@angular/build:extract-i18n"
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
-            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "projects/docs-app/tsconfig.spec.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "projects/docs-app/public"
-              }
-            ],
-            "styles": [
-              "@angular/material/prebuilt-themes/azure-blue.css",
-              "projects/docs-app/src/styles.scss"
-            ],
-            "scripts": []
+            "buildTarget": ":build:testing",
+            "runner": "vitest"
           }
         },
         "lint": {

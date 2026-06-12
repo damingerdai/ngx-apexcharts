@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 
@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
     RouterModule,
   ],
   templateUrl: './charts-nav.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './charts-nav.component.scss'
 })
 export class ChartsNavComponent {

@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit, inject } from "@angular/core";
+import { Component, HostBinding, OnInit, inject, ChangeDetectionStrategy } from "@angular/core";
 import { TableOfContents } from "../../shared/table-of-contents/table-of-contents";
 import { DocViewer } from "../../shared/doc-viewer/doc-viewer";
 import { NavigationFocus } from "../../shared/navigation-focus/navigation-focus";
@@ -17,6 +17,7 @@ export interface GuideItem {
   templateUrl: "./guide-viewer.component.html",
   styleUrl: "./guide-viewer.component.scss",
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   host: { ngSkipHydration: "true" },
 })
 export class GuideViewerComponent implements OnInit {

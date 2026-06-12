@@ -1,4 +1,4 @@
-import {Component, HostBinding} from '@angular/core';
+import {Component, HostBinding, ChangeDetectionStrategy} from '@angular/core';
 import {RouterLink} from "@angular/router";
 import {MatButtonModule} from "@angular/material/button";
 import {MatDividerModule} from "@angular/material/divider";
@@ -16,6 +16,7 @@ import { FooterComponent } from '../../shared/footer/footer';
     FooterComponent,
   ],
   templateUrl: './homepage.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './homepage.scss'
 })
 export class HomepageComponent {

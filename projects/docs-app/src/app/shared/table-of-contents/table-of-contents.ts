@@ -10,6 +10,7 @@ import {
   PLATFORM_ID,
   DOCUMENT,
   inject,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { isPlatformBrowser } from "@angular/common";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -43,6 +44,7 @@ interface Link {
   selector: "table-of-contents",
   styleUrls: ["./table-of-contents.scss"],
   templateUrl: "./table-of-contents.html",
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true,
 })
 export class TableOfContents implements OnInit, AfterViewInit, OnDestroy {

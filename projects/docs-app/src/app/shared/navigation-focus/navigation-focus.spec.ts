@@ -1,4 +1,4 @@
-import {Component, NgZone} from '@angular/core';
+import {Component, NgZone, ChangeDetectionStrategy} from '@angular/core';
 import {ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
 import {Router} from '@angular/router';
 import {RouterTestingModule} from '@angular/router/testing';
@@ -124,6 +124,7 @@ describe('Navigation focus service', () => {
 
 @Component({
     selector: 'navigation-focus-test',
+    changeDetection: ChangeDetectionStrategy.Eager,
     template: `
     <button id="target1">Target 1</button>
     <button id="target2">Target 2</button>
@@ -136,6 +137,7 @@ class NavigationFocusTest {
 
 @Component({
     selector: 'route-test',
+    changeDetection: ChangeDetectionStrategy.Eager,
     template: '',
     
 })

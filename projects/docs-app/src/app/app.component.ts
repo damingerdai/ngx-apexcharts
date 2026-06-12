@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { NavBar } from './shared/navbar';
@@ -8,6 +8,7 @@ import { NavBar } from './shared/navbar';
     imports: [RouterOutlet, NavBar],
     encapsulation: ViewEncapsulation.None,
     templateUrl: './app.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './app.component.scss'
 })
 export class AppComponent {
