@@ -8,12 +8,9 @@ import {
 } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { JsonPipe } from '@angular/common';
-import {
-  ChartType,
-  NgxApexchartsDirective,
-} from 'ngx-apexcharts/signals';
 
 import { SeriesPipe } from './series.pipe';
+import { ChartType, NgxApexchartsModule, } from 'ngx-apexcharts';
 
 @Component({
     selector: 'app-root',
@@ -21,12 +18,12 @@ import { SeriesPipe } from './series.pipe';
     styleUrls: ['./app.component.scss'],
     changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
-        NgxApexchartsDirective,
         FormsModule,
         ReactiveFormsModule,
         RouterOutlet,
         JsonPipe,
         SeriesPipe,
+        NgxApexchartsModule,
     ]
 })
 export class AppComponent {

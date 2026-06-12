@@ -21,6 +21,6 @@ import { FooterComponent } from '../../shared/footer/footer';
 })
 export class HomepageComponent {
   @HostBinding('class.main-content') readonly mainContentClass = true;
-  @HostBinding('class.animations-disabled') readonly animationsDisabled: boolean;
+  @HostBinding('class.animations-disabled') readonly animationsDisabled: boolean | undefined;
 
 }
