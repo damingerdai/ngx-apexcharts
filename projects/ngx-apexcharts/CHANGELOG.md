@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.10.0](https://github.com/damingerdai/ngx-apexcharts/compare/v0.9.1...v0.10.0) (2026-06-12)
+
+
+### Features
+
+* bump angular 22 ([99a5b8d](https://github.com/damingerdai/ngx-apexcharts/commit/99a5b8de31ed320d19e40be2b918858a33cac505))
+* remove signals endpoint ([16731ed](https://github.com/damingerdai/ngx-apexcharts/commit/16731edb6cf6851a666f835fad67400eb2dedb3f))
+
+
+### Bug Fixes
+
+* **schematics:** fix typescript compilation errors in utils ([3c61ceb](https://github.com/damingerdai/ngx-apexcharts/commit/3c61cebf9b006b9fa1700c8bff087cc1755cba40))
+
 ### [0.9.1](https://github.com/damingerdai/ngx-apexcharts/compare/v0.9.0...v0.9.1) (2026-06-04)
 
 
