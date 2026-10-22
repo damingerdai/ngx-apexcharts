@@ -5,6 +5,11 @@
       "version": "0.10.0",
       "description": "Updates ngx-apexcharts to v0.10.0",
       "factory": "./migrations/update-0-10-0/index"
+    },
+    "update-1-0-0": {
+      "version": "1.0.0",
+      "description": "Updates ngx-apexcharts to v1.0.0",
+      "factory": "./migrations/update-1-0-0/index"
     }
   }
 }
