@@ -6,6 +6,7 @@ export { NgxApexchartsModule } from './lib/ngx-apexcharts.module';
 export { ChartComponent } from './lib/chart/chart.component';
 export {
   ChartType,
+  ApexParsing,
   ApexNoData,
   ApexMarkers,
   ApexTheme,
