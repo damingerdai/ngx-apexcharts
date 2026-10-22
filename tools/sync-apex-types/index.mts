@@ -52,16 +52,10 @@ function getFormattedDate() {
 
 const content = await fs.readFile('./ng-apexcharts/projects/ng-apexcharts/src/lib/model/apex-types.ts')
 const newContent = `/* eslint-disable */\n${content}`;
-await Promise.all([
-    fs.writeFile(
-        './projects/ngx-apexcharts/src/lib/model/apex-types.ts',
-        newContent,
-    ),
-    fs.writeFile(
-        './projects/ngx-apexcharts/signals/apex-types.ts',
-        newContent
-    )
-]);
+await fs.writeFile(
+    './projects/ngx-apexcharts/src/lib/model/apex-types.ts',
+    newContent,
+);
 
 const ngCmd = 'npx ng'
 exec(`${ngCmd} lint ngx-apexcharts --fix`);
@@ -81,7 +75,6 @@ exec('npm run lint:fix');
 exec('npm run package && npm run build');
 exec(`git checkout ${branch}`);
 exec('git add projects/ngx-apexcharts/src/lib/model/apex-types.ts');
-exec('git add projects/ngx-apexcharts/signals/apex-types.ts');
 exec(`git commit -m "feat: update apex type from upstream on ${currentDate}."`)
 console.log('Changes detected')
 const data = {
