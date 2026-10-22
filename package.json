@@ -23,7 +23,7 @@
     "package": "npm run build-pkg && npm run build-schematics",
     "copyfile:lincense": "copyfiles ./LICENSE ./dist/ngx-apexcharts",
     "copyfile:schema": "copyfiles -f ./projects/ngx-apexcharts/schematics/ng-add/schema.json ./dist/ngx-apexcharts/schematics/ng-add",
-    "copyfile:collection": "copyfiles -f ./projects/ngx-apexcharts/schematics/collection.json ./dist/ngx-apexcharts/schematics",
+    "copyfile:collection": "copyfiles -f ./projects/ngx-apexcharts/schematics/collection.json ./projects/ngx-apexcharts/schematics/migrations.json ./projects/ngx-apexcharts/schematics/package.json ./dist/ngx-apexcharts/schematics",
     "copyfile": "npm run copyfile:lincense && npm run copyfile:schema && npm run copyfile:collection",
     "release": "cd ./projects/ngx-apexcharts && standard-version",
     "release:patch": "cd ./projects/ngx-apexcharts && standard-version --release-as patch",
