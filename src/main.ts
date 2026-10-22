@@ -8,5 +8,6 @@ if (environment.production) {
   enableProdMode();
 }
 
-bootstrapApplication(AppComponent, {providers: [provideZoneChangeDetection()]})
-  .catch(err => console.error(err));
+bootstrapApplication(AppComponent, {
+  providers: [provideZoneChangeDetection()],
+}).catch((err) => console.error(err));
