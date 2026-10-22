@@ -1,24 +1,34 @@
 <mat-sidenav-container class="docs-component-viewer-sidenav-container">
   @if (isScreenSmall | async) {
-    <mat-sidenav #sidenav class="docs-component-viewer-sidenav"
-                [opened]="(isScreenSmall | async) === false"
-                [mode]="(isScreenSmall | async) ? 'over' : 'side'"
-                [fixedInViewport]="(isScreenSmall | async)"
-                [fixedTopGap]="(isExtraScreenSmall | async) ? 92 : 56">
-       <app-charts-nav/>
+    <mat-sidenav
+      #sidenav
+      class="docs-component-viewer-sidenav"
+      [opened]="(isScreenSmall | async) === false"
+      [mode]="(isScreenSmall | async) ? 'over' : 'side'"
+      [fixedInViewport]="(isScreenSmall | async)"
+      [fixedTopGap]="(isExtraScreenSmall | async) ? 92 : 56">
+      <app-charts-nav />
     </mat-sidenav>
   }
   <div class="docs-component-sidenav-content">
-    <!-- <component-page-header (toggleSidenav)="toggleSidenav()" /> -->
+    @if (isScreenSmall | async) {
+      <div class="docs-component-page-header">
+        <button
+          mat-icon-button
+          type="button"
+          (click)="toggleSidenav()"
+          aria-label="Toggle charts navigation">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>Chart Examples</span>
+      </div>
+    }
     <div class="docs-component-sidenav-inner-content">
       <main class="docs-component-sidenav-body-content">
-        <!-- If on large screen, menu resides to left of content -->
-        <!-- @if ((isScreenSmall | async) === false) {
-          <app-component-nav/>
-        } -->
-        <app-charts-nav/>
-        <!-- <router-outlet /> -->
-         <div>hello, this is charts view</div>
+        @if ((isScreenSmall | async) === false) {
+          <app-charts-nav />
+        }
+        <router-outlet />
       </main>
       <app-footer class="docs-component-viewer-footer" />
     </div>

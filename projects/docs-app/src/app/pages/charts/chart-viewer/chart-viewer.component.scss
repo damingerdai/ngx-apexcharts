@@ -1,0 +1,82 @@
+@use '../../../../styles/constants';
+
+:host {
+  display: block;
+  flex: 1;
+  min-width: 0;
+}
+
+.docs-component-viewer {
+  font-weight: 400;
+  padding: 20px 50px 60px;
+
+  @media (max-width: constants.$small-breakpoint-width) {
+    padding: 16px 20px 40px;
+  }
+}
+
+.docs-component-viewer-tabbed-content {
+  margin-bottom: 28px;
+}
+
+.docs-component-overview {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+
+  @media (max-width: constants.$small-breakpoint-width) {
+    flex-direction: column;
+  }
+}
+
+.docs-component-view-text-content {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.docs-component-title {
+  margin-top: 8px !important;
+}
+
+.docs-component-lead {
+  color: var(--mat-sys-on-surface-variant);
+  font-size: 17px;
+}
+
+.docs-component-toc {
+  position: sticky;
+  top: 24px;
+  width: 200px;
+  flex-shrink: 0;
+  padding-left: 20px;
+  border-left: 4px solid var(--mat-sys-outline-variant);
+
+  @media (max-width: constants.$small-breakpoint-width) {
+    display: none;
+  }
+}
+
+.docs-toc-heading {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--mat-sys-on-surface);
+}
+
+.docs-toc-link {
+  display: block;
+  padding: 5px 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--mat-sys-on-surface-variant);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--mat-sys-primary);
+  }
+}
+
+.docs-component-api,
+.docs-component-examples {
+  max-width: 960px;
+}

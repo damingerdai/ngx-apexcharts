@@ -1,0 +1,146 @@
+<div class="docs-component-viewer">
+  <nav
+    mat-tab-nav-bar
+    class="docs-component-viewer-tabbed-content"
+    [tabPanel]="tabPanel"
+    aria-label="Chart documentation sections">
+    @for (section of sections; track section.id) {
+      <a
+        mat-tab-link
+        class="docs-component-viewer-section-tab"
+        [routerLink]="['/charts', category().id, section.id]"
+        routerLinkActive
+        #rla="routerLinkActive"
+        [active]="rla.isActive">
+        {{ section.label }}
+      </a>
+    }
+  </nav>
+
+  <mat-tab-nav-panel #tabPanel class="docs-component-viewer-content">
+    @if (activeTab() === 'overview') {
+      <div class="docs-component-overview">
+        <div class="docs-component-view-text-content docs-markdown">
+          <h1 class="docs-component-title">{{ category().name }}</h1>
+          <p class="docs-component-lead">{{ category().summary }}</p>
+
+          @for (paragraph of category().overview; track paragraph) {
+            <p [innerHTML]="paragraph"></p>
+          }
+
+          @for (example of category().examples; track example.id) {
+            <h3 [attr.id]="example.id" class="docs-header-link">
+              <span header-link>
+                <a
+                  [attr.href]="'/charts/' + category().id + '/overview#' + example.id"
+                  [attr.aria-label]="'Link to ' + example.sectionTitle"
+                  (click)="scrollToSection(example.id, $event)">
+                  <i class="material-icons">link</i>
+                </a>
+              </span>
+              {{ example.sectionTitle }}
+            </h3>
+            <p [innerHTML]="example.description"></p>
+            <app-chart-example-viewer [example]="example" />
+          }
+        </div>
+
+        <aside class="docs-component-toc" aria-label="On this page">
+          <div class="docs-toc-container">
+            <div class="docs-toc-heading">Content</div>
+            <nav aria-label="Section links">
+              @for (example of category().examples; track example.id) {
+                <a
+                  class="docs-toc-link"
+                  [attr.href]="'/charts/' + category().id + '/overview#' + example.id"
+                  (click)="scrollToSection(example.id, $event)">
+                  {{ example.sectionTitle }}
+                </a>
+              }
+            </nav>
+          </div>
+        </aside>
+      </div>
+    } @else if (activeTab() === 'api') {
+      <div class="docs-component-api docs-api docs-markdown">
+        <h2>API reference for {{ category().name }}</h2>
+
+        <p class="docs-api-module">
+          <code class="docs-api-module-import">
+            import &#123; ChartComponent, NgxApexchartsModule &#125; from 'ngx-apexcharts';
+          </code>
+        </p>
+
+        <h3 class="docs-api-h3">Component</h3>
+        <h4><code>ChartComponent</code></h4>
+        <p>
+          <span>Selector: </span>
+          <code class="docs-api-class-selector-name">apx-chart</code>
+          <span> &nbsp;|&nbsp; Exported as: </span>
+          <code class="docs-api-class-export-name">apxChart</code>
+        </p>
+
+        <h3 class="docs-api-h3">{{ category().name }} Specific Options</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Option Path</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (prop of category().apiProperties; track prop.name) {
+              <tr>
+                <td class="docs-api-properties-name-cell">
+                  <code>{{ prop.name }}</code>
+                </td>
+                <td class="docs-api-method-parameter-type">
+                  <code>{{ prop.type }}</code>
+                </td>
+                <td>{{ prop.description }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+
+        <h3 class="docs-api-h3">Core ChartComponent Inputs &amp; Outputs</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (prop of commonApiInputs; track prop.name) {
+              <tr>
+                <td class="docs-api-properties-name-cell">
+                  <code>{{ prop.name }}</code>
+                </td>
+                <td class="docs-api-method-parameter-type">
+                  <code>{{ prop.type }}</code>
+                </td>
+                <td>{{ prop.description }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else {
+      <div class="docs-component-examples docs-markdown">
+        <h1 class="docs-component-title">{{ category().name }} Examples</h1>
+        <p class="docs-component-lead">
+          Interactive examples demonstrating {{ category().name.toLowerCase() }} configurations with
+          <code>&lt;apx-chart&gt;</code>. Click the <code>&lt;/&gt;</code> icon on any card to inspect
+          and copy the HTML, TypeScript, and SCSS source.
+        </p>
+
+        @for (example of category().examples; track example.id) {
+          <app-chart-example-viewer [example]="example" />
+        }
+      </div>
+    }
+  </mat-tab-nav-panel>
+</div>

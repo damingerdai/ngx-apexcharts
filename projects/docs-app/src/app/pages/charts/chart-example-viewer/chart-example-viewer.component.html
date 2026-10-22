@@ -1,0 +1,76 @@
+<div class="docs-example-viewer-wrapper" [attr.id]="example().id + '-card'">
+  <div class="docs-example-viewer-title">
+    <div class="docs-example-viewer-title-spacer">{{ example().title }}</div>
+
+    <button
+      mat-icon-button
+      type="button"
+      [attr.aria-label]="'Copy link to ' + example().title + ' example'"
+      matTooltip="Copy link to example"
+      (click)="copyLink()">
+      <mat-icon>link</mat-icon>
+    </button>
+
+    <button
+      mat-icon-button
+      type="button"
+      (click)="toggleSourceView()"
+      [matTooltip]="showSource() ? 'Hide code' : 'View code'"
+      aria-label="View source">
+      <mat-icon>code</mat-icon>
+    </button>
+  </div>
+
+  @if (showSource()) {
+    <div class="docs-example-viewer-source">
+      <mat-tab-group
+        animationDuration="0ms"
+        [selectedIndex]="selectedTab()"
+        (selectedIndexChange)="selectedTab.set($event)"
+        mat-stretch-tabs="false">
+        @for (tab of tabs(); track tab.label) {
+          <mat-tab [label]="tab.label">
+            <div class="docs-example-source-container">
+              <div class="button-bar">
+                <button
+                  mat-icon-button
+                  type="button"
+                  (click)="copyCode(tab.code)"
+                  class="docs-example-source-copy"
+                  matTooltip="Copy example source"
+                  aria-label="Copy example source to clipboard">
+                  <mat-icon>content_copy</mat-icon>
+                </button>
+              </div>
+              <pre class="docs-example-source"><code>{{ tab.code }}</code></pre>
+            </div>
+          </mat-tab>
+        }
+      </mat-tab-group>
+    </div>
+  }
+
+  <div class="docs-example-viewer-body">
+    <apx-chart
+      [series]="example().options.series!"
+      [chart]="example().options.chart!"
+      [xaxis]="example().options.xaxis!"
+      [yaxis]="example().options.yaxis!"
+      [stroke]="example().options.stroke!"
+      [dataLabels]="example().options.dataLabels!"
+      [plotOptions]="example().options.plotOptions!"
+      [fill]="example().options.fill!"
+      [labels]="example().options.labels!"
+      [markers]="example().options.markers!"
+      [colors]="example().options.colors!"
+      [legend]="example().options.legend!"
+      [tooltip]="example().options.tooltip!"
+      [grid]="example().options.grid!"
+      [title]="example().options.title!"
+      [subtitle]="example().options.subtitle!"
+      [annotations]="example().options.annotations!"
+      [responsive]="example().options.responsive!"
+      [theme]="example().options.theme!">
+    </apx-chart>
+  </div>
+</div>

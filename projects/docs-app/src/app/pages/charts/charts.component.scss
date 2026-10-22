@@ -19,11 +19,6 @@ app-charts {
   overflow: auto;
 }
 
-.docs-component-sidenav-inner-content {
-  display: flex;
-  flex-direction: row;
-}
-
 .mat-drawer {
   &::-webkit-scrollbar {
     height: 4px;
@@ -83,6 +78,15 @@ app-charts {
 .docs-component-sidenav-body-content {
   display: flex;
   flex: 1 1 auto;
+}
+
+.docs-component-page-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--mat-sys-outline-variant);
+  font-weight: 500;
 }
 
 div .mat-mdc-list-base {
