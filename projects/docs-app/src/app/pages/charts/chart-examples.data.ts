@@ -70,18 +70,18 @@ export function getExampleHtmlCode(example: ChartExample): string {
 
   for (const key of keys) {
     if (opts[key] !== undefined) {
-      bindings.push(`    [${key}]="chartOptions.${key}!"`);
+      bindings.push(`    [${key}]="chartOptions().${key}!"`);
     }
   }
 
-  return `<div class="chart-box">\n  <apx-chart\n${bindings.join('\n')}\n  ></apx-chart>\n</div>`;
+  return `<div class="chart-box">\n  <apx-chart\n${bindings.join('\n')}\n  />\n</div>`;
 }
 
 export function getExampleTsCode(example: ChartExample): string {
   if (example.tsCode) {
     return example.tsCode;
   }
-  return `import { Component } from '@angular/core';
+  return `import { Component, signal } from '@angular/core';
 import { ChartComponent, ApexOptions } from 'ngx-apexcharts';
 
 @Component({
@@ -92,7 +92,7 @@ import { ChartComponent, ApexOptions } from 'ngx-apexcharts';
   styleUrl: './${example.selectorName}.component.scss',
 })
 export class ${example.componentName} {
-  public chartOptions: Partial<ApexOptions> = ${formatTsValue(example.options, 2)};
+  readonly chartOptions = signal<Partial<ApexOptions>>(${formatTsValue(example.options, 2)});
 }`;
 }
 
@@ -108,76 +108,82 @@ export function getExampleScssCode(example: ChartExample): string {
 
 export const COMMON_CHART_API_INPUTS: ChartApiProperty[] = [
   {
-    name: '@Input() series: ApexAxisChartSeries | ApexNonAxisChartSeries',
-    type: 'ApexAxisChartSeries | ApexNonAxisChartSeries',
+    name: 'series = input<ApexAxisChartSeries | ApexNonAxisChartSeries>()',
+    type: 'InputSignal<ApexAxisChartSeries | ApexNonAxisChartSeries | undefined>',
     description:
       'The data series array to render. Axis charts accept objects with name and data; non-axis charts (pie, donut, radialBar) accept a numeric array.',
   },
   {
-    name: '@Input() chart: ApexChart',
-    type: 'ApexChart',
+    name: 'chart = input<ApexChart>()',
+    type: 'InputSignal<ApexChart | undefined>',
     description:
       'Core chart configuration including type, height, width, animations, toolbar, zoom, stacked mode, and dropShadow.',
   },
   {
-    name: '@Input() xaxis: ApexXAxis',
-    type: 'ApexXAxis',
+    name: 'xaxis = input<ApexXAxis>()',
+    type: 'InputSignal<ApexXAxis | undefined>',
     description:
       'X-axis configuration including categories, type ("category" | "datetime" | "numeric"), labels, and axis borders.',
   },
   {
-    name: '@Input() yaxis: ApexYAxis | ApexYAxis[]',
-    type: 'ApexYAxis | ApexYAxis[]',
+    name: 'yaxis = input<ApexYAxis | ApexYAxis[]>()',
+    type: 'InputSignal<ApexYAxis | ApexYAxis[] | undefined>',
     description:
       'Single or multiple Y-axis definitions with min/max bounds, label formatters, and opposite axis positioning.',
   },
   {
-    name: '@Input() plotOptions: ApexPlotOptions',
-    type: 'ApexPlotOptions',
+    name: 'plotOptions = input<ApexPlotOptions>()',
+    type: 'InputSignal<ApexPlotOptions | undefined>',
     description:
       'Chart-type specific configuration options for bar, pie, radialBar, radar, candlestick, heatmap, and treemap charts.',
   },
   {
-    name: '@Input() dataLabels: ApexDataLabels',
-    type: 'ApexDataLabels',
+    name: 'dataLabels = input<ApexDataLabels>()',
+    type: 'InputSignal<ApexDataLabels | undefined>',
     description:
       'Controls visibility, formatting, offset, and styling of value labels directly on data points or bars.',
   },
   {
-    name: '@Input() stroke: ApexStroke',
-    type: 'ApexStroke',
+    name: 'stroke = input<ApexStroke>()',
+    type: 'InputSignal<ApexStroke | undefined>',
     description:
       'Line and border stroke configuration including curve ("smooth" | "straight" | "stepline"), width, colors, and dashArray.',
   },
   {
-    name: '@Input() fill: ApexFill',
-    type: 'ApexFill',
+    name: 'fill = input<ApexFill>()',
+    type: 'InputSignal<ApexFill | undefined>',
     description:
       'Fill styling for areas, bars, and slices ("solid" | "gradient" | "pattern") along with gradient stops and opacity.',
   },
   {
-    name: '@Input() legend: ApexLegend',
-    type: 'ApexLegend',
+    name: 'legend = input<ApexLegend>()',
+    type: 'InputSignal<ApexLegend | undefined>',
     description:
       'Configures legend placement ("top" | "right" | "bottom" | "left"), alignment, markers, and interactive series toggling.',
   },
   {
-    name: '@Input() tooltip: ApexTooltip',
-    type: 'ApexTooltip',
+    name: 'tooltip = input<ApexTooltip>()',
+    type: 'InputSignal<ApexTooltip | undefined>',
     description:
       'Hover tooltip behavior including shared multi-series tooltips, custom value formatters, and theme.',
   },
   {
-    name: '@Input() autoUpdateSeries: boolean',
-    type: 'boolean',
+    name: 'autoUpdateSeries = input(true)',
+    type: 'InputSignal<boolean>',
     description:
       'When true (default), changes to the [series] input automatically invoke updateSeries() without recreating the chart.',
   },
   {
-    name: '@Output() chartReady: EventEmitter<{ chartObj: ApexCharts }>',
+    name: 'chartReady = output<{ chartObj: ApexCharts }>()',
     type: 'OutputEmitterRef<{ chartObj: ApexCharts }>',
     description:
       'Emits once the underlying ApexCharts instance has been created and rendered in the browser.',
+  },
+  {
+    name: 'chartInstance = signal<ApexCharts | null>(null)',
+    type: 'WritableSignal<ApexCharts | null>',
+    description:
+      'Signal holding the underlying ApexCharts instance after rendering; can be observed with computed() or effect().',
   },
 ];
 

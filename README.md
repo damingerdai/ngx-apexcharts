@@ -1,178 +1,236 @@
 <p align="center">
-  <img src="https://apexcharts.com/media/ng-apexcharts.png" height="150" />
+  <img src="https://apexcharts.com/media/ng-apexcharts.png" height="150" alt="ngx-apexcharts" />
 </p>
 
 <p align="center">
-  <a href="https://github.com/apexcharts/ng-apexcharts/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-MIT-brightgreen.svg" alt="License"></a>
-  <a href="https://www.npmjs.com/package/ng-apexcharts"><img src="https://img.shields.io/npm/v/ng-apexcharts.svg" alt="ver"></a>
+  <a href="https://github.com/damingerdai/ngx-apexcharts/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-MIT-brightgreen.svg" alt="License"></a>
+  <a href="https://www.npmjs.com/package/ngx-apexcharts"><img src="https://img.shields.io/npm/v/ngx-apexcharts.svg" alt="npm version"></a>
 </p>
 
-<p align="center">
-  <a href="https://twitter.com/intent/tweet?text=ng-ApexCharts%20An%20Angular%20Chart%20library%20built%20on%20ApexCharts.js&url=https://www.apexcharts.com&hashtags=javascript,charts,angular,apexcharts"><img src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social"> </a>
-</p>
+<p align="center">Modern Angular wrapper for <a href="https://github.com/apexcharts/apexcharts.js">ApexCharts</a> built with Standalone Components and Angular Signals.</p>
 
-<p align="center">Angular wrapper for <a href="https://github.com/apexcharts/apexcharts.js">ApexCharts</a> to build interactive visualizations in Angular 13+.</p>
+<p align="center"><a href="https://apexcharts.com/angular-chart-demos/"><img src="https://apexcharts.com/media/apexcharts-banner.png" alt="ApexCharts Banner"></a></p>
 
-<p align="center"><a href="https://apexcharts.com/angular-chart-demos/"><img src="https://apexcharts.com/media/apexcharts-banner.png"></a></p>
+## Features
 
-## Examples
-
-More than 80+ examples of all the chart types with sample codes can be found on the <a href="https://apexcharts.com/angular-chart-demos/">Angular Demos</a> page of the website. Here's a basic <a href="https://codesandbox.io/s/apx-line-basic-o2mwb">line chart</a> example built in codesandbox.
+- **Standalone Component**: Import `ChartComponent` (or `NgxApexchartsModule`) directly into any standalone component.
+- **Angular Signals Native**: Built with Signal-based `input()`, `output()`, `viewChild()`, and reactive `chartInstance` signal.
+- **SSR Ready**: Lazily loads `apexcharts/client` in the browser after render, working out of the box with `@angular/ssr` and prerendering without extra `angular.json` script configuration.
+- ** Angular Schematics**: Quick setup and automated version migrations via `ng add` and `ng update`.
 
 ## Download and Installation
 
-Use the Angular CLI's install [schematics](https://angular.io/guide/schematics) to set up ngx-apexcharts by running the following command:
+### Option 1: Angular CLI Schematics (Recommended)
+
+Use Angular CLI's [schematics](https://angular.dev/tools/cli/schematics) to install and configure `ngx-apexcharts` automatically:
 
 ```bash
 ng add ngx-apexcharts
 ```
 
-if you don't like the above way, the following is also supported.
+The `ng add` command will:
+- Add `apexcharts` and `ngx-apexcharts` to `package.json` and install dependencies.
+- Register `NgxApexchartsModule` in your root standalone component or `AppModule`.
 
-1. Install using npm:
+### Option 2: Manual Installation
 
-```ts
+Install `apexcharts` and `ngx-apexcharts` via npm:
+
+```bash
 npm install apexcharts ngx-apexcharts --save
 ```
 
-2. Open angular.json and under scripts add:
-
-```ts
-"scripts": [
-  "node_modules/apexcharts/dist/apexcharts.min.js"
-]
-```
-
-3. Add ngx-apexcharts-module to imports
-```ts
-import { NgxApexchartsModule } from "ngx-apexcharts";
-
-...
-
-imports: [
-  BrowserModule,
-  FormsModule,
-  ReactiveFormsModule,
-  NgxApexchartsModule,
-  ...
-]
-```
+> **Note:** You do **not** need to add `apexcharts.min.js` to the `scripts` array in `angular.json`. `ngx-apexcharts` automatically loads ApexCharts on the client.
 
 ## Usage
 
-In any component you can use the chart using:
+### Standalone Component with Angular Signals (Recommended)
 
-```html
-<apx-chart [series]="series" [chart]="chart" [title]="title"></apx-chart>
-```
-
-You need to provide at least the series and chart attribute to make sure the
-chart can get created.
-
-You can also use any other attribute from the following options.
-
-### Options
-
-All options of the chart can be inserted using the attributes.
-This is a list of all available attributes:
+Import `ChartComponent` (or `NgxApexchartsModule`) directly into your standalone component and bind chart options using Angular Signals:
 
 ```ts
-@Input() chart: ApexChart;
-@Input() annotations: ApexAnnotations;
-@Input() colors: string[];
-@Input() dataLabels: ApexDataLabels;
-@Input() series: ApexAxisChartSeries | ApexNonAxisChartSeries;
-@Input() stroke: ApexStroke;
-@Input() labels: string[];
-@Input() legend: ApexLegend;
-@Input() fill: ApexFill;
-@Input() tooltip: ApexTooltip;
-@Input() plotOptions: ApexPlotOptions;
-@Input() responsive: ApexResponsive[];
-@Input() xaxis: ApexXAxis;
-@Input() yaxis: ApexYAxis | ApexYAxis[];
-@Input() grid: ApexGrid;
-@Input() states: ApexStates;
-@Input() title: ApexTitleSubtitle;
-@Input() subtitle: ApexTitleSubtitle;
-@Input() theme: ApexTheme;
-```
+import { Component, signal, viewChild } from '@angular/core';
+import {
+  ChartComponent,
+  ApexAxisChartSeries,
+  ApexChart,
+  ApexXAxis,
+  ApexTitleSubtitle,
+} from 'ngx-apexcharts';
 
-You can visit the [docs](https://apexcharts.com/docs/) to read more about all the options listed above.
+@Component({
+  selector: 'app-chart-demo',
+  standalone: true,
+  imports: [ChartComponent],
+  template: `
+    <apx-chart
+      #chartObj
+      [series]="series()"
+      [chart]="chart()"
+      [xaxis]="xaxis()"
+      [title]="title()"
+      (chartReady)="onChartReady($event)"
+    />
+  `,
+})
+export class ChartDemoComponent {
+  readonly chartRef = viewChild.required<ChartComponent>('chartObj');
 
-### Updating the chart
+  readonly series = signal<ApexAxisChartSeries>([
+    {
+      name: 'Sales',
+      data: [10, 41, 35, 51, 49, 62, 69, 91, 148],
+    },
+  ]);
 
-Changing the attributes will automatically call the relevant update methods of ApexCharts and re-render it.
+  readonly chart = signal<ApexChart>({
+    height: 350,
+    type: 'line',
+  });
 
-### Calling core ApexCharts methods
+  readonly xaxis = signal<ApexXAxis>({
+    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+  });
 
-You don't actually need to call updateSeries() or updateOptions() manually. Changing the props will automatically update the chart. But, in certain cases you may need to call these methods, so here's the reference.
+  readonly title = signal<ApexTitleSubtitle>({
+    text: 'Monthly Sales Trend',
+  });
 
-| Method                                                                                   | Description                                                                                        |
-| ---------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| <a href="https://apexcharts.com/docs/methods/#updateSeries">updateSeries</a>             | Allows you to update the series array overriding the existing one                                  |
-| <a href="https://apexcharts.com/docs/methods/#updateOptions">updateOptions</a>           | Allows you to update the configuration object                                                      |
-| <a href="https://apexcharts.com/docs/methods/#toggleSeries">toggleSeries</a>             | Allows you to toggle the visibility of series programatically. Useful when you have custom legend. |
-| <a href="https://apexcharts.com/docs/methods/#appendData">appendData</a>                 | Allows you to append new data to the series array.                                                 |
-| <a href="https://apexcharts.com/docs/methods/#addtext">addText</a>                       | The addText() method can be used to draw text after chart is rendered.                             |
-| <a href="https://apexcharts.com/docs/methods/#addxaxisannotation">addXaxisAnnotation</a> | Draw x-axis annotations after chart is rendered.                                                   |
-| <a href="https://apexcharts.com/docs/methods/#addyaxisannotation">addYaxisAnnotation</a> | Draw y-axis annotations after chart is rendered.                                                   |
-| <a href="https://apexcharts.com/docs/methods/#addpointannotation">addPointAnnotation</a> | Draw point (xy) annotations after chart is rendered.                                               |
-
-All the methods are proxied through the component so that you dont need to access the DOM by yourself.
-
-Just reference the component as a ViewChild in your Component by using:
-
-```ts
-@ViewChild('chartObj') chart: ChartComponent;
-```
-
-and changing the template to this:
-
-```html
-<apx-chart #chartObj></apx-chart>
-```
-
-Now you're able to call methods from your Component.
-
-```javascript
-this.chart.toggleSeries("series-1");
-```
-
-## How to call the methods of ApexCharts without referencing the chart component?
-
-Sometimes, you may want to call methods of the core ApexCharts library from some other place, and you can do so on `this.$apexcharts` global variable directly. You need to target the chart by <code>chart.id</code> while calling this method
-
-Example
-
-```js
-window.ApexCharts.exec("ngx-chart-example", "updateSeries", [
-  {
-    data: [40, 55, 65, 11, 23, 44, 54, 33]
+  updateData(): void {
+    // Updating the signal automatically updates the chart!
+    this.series.set([
+      {
+        name: 'Sales',
+        data: [25, 50, 42, 68, 55, 80, 74, 95, 130],
+      },
+    ]);
   }
+
+  onChartReady(event: { chartObj: unknown }): void {
+    console.log('ApexCharts instance ready:', event.chartObj);
+  }
+}
+```
+
+### Using with `NgModule` (Legacy Support)
+
+If your application still uses `NgModule`, import `NgxApexchartsModule`:
+
+```ts
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgxApexchartsModule } from 'ngx-apexcharts';
+
+@NgModule({
+  imports: [
+    BrowserModule,
+    NgxApexchartsModule,
+  ],
+})
+export class AppModule {}
+```
+
+### Inputs & Outputs
+
+All inputs on `<apx-chart>` (`ChartComponent`) are defined using Angular's `input()` API:
+
+```ts
+readonly chart = input<ApexChart>();
+readonly annotations = input<ApexAnnotations>();
+readonly colors = input<any[]>();
+readonly dataLabels = input<ApexDataLabels>();
+readonly series = input<ApexAxisChartSeries | ApexNonAxisChartSeries>();
+readonly stroke = input<ApexStroke>();
+readonly labels = input<string[]>();
+readonly legend = input<ApexLegend>();
+readonly markers = input<ApexMarkers>();
+readonly noData = input<ApexNoData>();
+readonly parsing = input<ApexParsing>();
+readonly fill = input<ApexFill>();
+readonly tooltip = input<ApexTooltip>();
+readonly plotOptions = input<ApexPlotOptions>();
+readonly responsive = input<ApexResponsive[]>();
+readonly xaxis = input<ApexXAxis>();
+readonly yaxis = input<ApexYAxis | ApexYAxis[]>();
+readonly forecastDataPoints = input<ApexForecastDataPoints>();
+readonly grid = input<ApexGrid>();
+readonly states = input<ApexStates>();
+readonly title = input<ApexTitleSubtitle>();
+readonly subtitle = input<ApexTitleSubtitle>();
+readonly theme = input<ApexTheme>();
+readonly autoUpdateSeries = input<boolean>(true);
+
+// Emits when the underlying ApexCharts instance is initialized and rendered
+readonly chartReady = output<{ chartObj: ApexCharts }>();
+
+// Signal holding the underlying ApexCharts instance (or null before render)
+readonly chartInstance = signal<ApexCharts | null>(null);
+```
+
+Visit the [ApexCharts Documentation](https://apexcharts.com/docs/) to read more about all available configuration options.
+
+### Calling Core ApexCharts Methods
+
+Updating your bound signals or properties will automatically update and re-render the chart. When you need imperative control over the chart, query `ChartComponent` using Angular's `viewChild()` signal query:
+
+```html
+<apx-chart #chartObj [series]="series()" [chart]="chart()" />
+```
+
+```ts
+import { Component, computed, viewChild } from '@angular/core';
+import { ChartComponent } from 'ngx-apexcharts';
+
+export class MyChartComponent {
+  readonly chart = viewChild.required<ChartComponent>('chartObj');
+
+  // Optional: track the underlying ApexCharts instance reactively via computed() or effect()
+  readonly rawApexInstance = computed(() => this.chart().chartInstance());
+
+  toggleFirstSeries(): void {
+    this.chart().toggleSeries('Series 1');
+  }
+}
+```
+
+| Method | Description |
+| --- | --- |
+| <a href="https://apexcharts.com/docs/methods/#updateSeries">updateSeries</a> | Updates the series array, overriding the existing one. |
+| <a href="https://apexcharts.com/docs/methods/#updateOptions">updateOptions</a> | Merges new configuration options into the existing chart. |
+| <a href="https://apexcharts.com/docs/methods/#appendSeries">appendSeries</a> | Appends a new series to the chart. |
+| <a href="https://apexcharts.com/docs/methods/#appendData">appendData</a> | Appends new data points to existing series arrays. |
+| <a href="https://apexcharts.com/docs/methods/#toggleSeries">toggleSeries</a> | Toggles the visibility of a series programmatically. |
+| <a href="https://apexcharts.com/docs/methods/#showSeries">showSeries</a> / <a href="https://apexcharts.com/docs/methods/#hideSeries">hideSeries</a> | Explicitly shows or hides a series by name. |
+| <a href="https://apexcharts.com/docs/methods/#resetSeries">resetSeries</a> | Resets the chart series to its initial state. |
+| <a href="https://apexcharts.com/docs/methods/#zoomX">zoomX</a> | Zooms the X-axis between `min` and `max` timestamps/indices. |
+| <a href="https://apexcharts.com/docs/methods/#addxaxisannotation">addXaxisAnnotation</a> | Draws an X-axis annotation after the chart is rendered. |
+| <a href="https://apexcharts.com/docs/methods/#addyaxisannotation">addYaxisAnnotation</a> | Draws a Y-axis annotation after the chart is rendered. |
+| <a href="https://apexcharts.com/docs/methods/#addpointannotation">addPointAnnotation</a> | Draws a point (`xy`) annotation after the chart is rendered. |
+| <a href="https://apexcharts.com/docs/methods/#clearAnnotations">clearAnnotations</a> / `removeAnnotation` | Clears all annotations or removes a specific annotation by ID. |
+| <a href="https://apexcharts.com/docs/methods/#dataURI">dataURI</a> | Exports the rendered chart to a base64 data URI. |
+
+### Calling ApexCharts Methods Globally by Chart ID
+
+You can also invoke methods directly on `window.ApexCharts` by targeting the `chart.id` configured on your chart:
+
+```ts
+window.ApexCharts.exec('ngx-chart-example', 'updateSeries', [
+  {
+    data: [40, 55, 65, 11, 23, 44, 54, 33],
+  },
 ]);
 ```
 
-In the above method, `ngx-chart-example` is the ID of chart, `updateSeries` is the name of the method you want to call and the third parameter is the new Series you want to update.
+More info on `.exec()` can be found in the [ApexCharts `.exec()` documentation](https://apexcharts.com/docs/methods/#exec).
 
-More info on the `.exec()` method can be found <a href="https://apexcharts.com/docs/methods/#exec">here</a>
+#### Turning Off Auto-Update of Series
 
-All other methods of ApexCharts can be called the same way.
-
-#### Turning off auto update of the series
-
-With the attribute `autoUpdateSeries` you can control if the chart component should call the `updateSeries` function automatically if the series attribute is changed. It is set to true by default, but in a mixed/combo chart, set this attribute to false if you are using and changing the type property in your series. This only has the effect that the whole chart rerenders even if only the series changes.
-
-## Supporting ApexCharts
-
-ApexCharts is an open source project. <br /> You can help by becoming a sponsor on <a href="https://patreon.com/junedchhipa">Patreon</a> or doing a one time donation on <a href="https://paypal.me/junedchhipa">PayPal</a> <br />
-
-<a href="https://patreon.com/junedchhipa"><img src="https://c5.patreon.com/external/logo/become_a_patron_button.png" alt="Become a Patron" /> </a>
+With `[autoUpdateSeries]="false"`, you can control whether `<apx-chart>` calls `updateSeries()` automatically when only the `series` input changes. It defaults to `true`. In mixed/combo charts where `series[i].type` changes dynamically, set `[autoUpdateSeries]="false"` so the chart re-creates cleanly.
 
 ## License
 
-ngx-ApexCharts is released under MIT license. You are free to use, modify and distribute this software, as long as the copyright header is left intact.
+`ngx-apexcharts` is released under the MIT license.
 
-### Submitted by
+### Credits
 
-Special thanks to [Morris Janatzek](http://morrisj.net) for contributing to ApexCharts project by creating this angular wrapper.
+Originally created by [Morris Janatzek](http://morrisj.net) and maintained for modern Angular.
