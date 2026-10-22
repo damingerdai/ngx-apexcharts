@@ -1,83 +1,174 @@
-<apx-chart #chart [title]="{ text: form.value.title! }" [autoUpdateSeries]="false"
-  [series]="form.value.series | series: form.value.type" [xaxis]="{ categories: form.value.xaxis }" [chart]="{
-    id: 'ngx-chart-example',
-    height: form.value.height!,
-    type: form.value.type!,
-    zoom: {
-      enabled: false,
-    },
-    dropShadow: {
-      enabled: true,
-      color: '#000',
-      top: 18,
-      left: 7,
-      blur: 10,
-      opacity: 1,
-    },
-  }"></apx-chart>
+<div class="playground">
+  <header class="playground-header">
+    <div class="brand">
+      <span class="brand-badge">Playground</span>
+      <h1>ngx-apexcharts Dev App</h1>
+      <p>Interactive chart configuration &amp; real-time reactive form state</p>
+    </div>
+    <div class="header-actions">
+      <button type="button" class="btn btn-secondary" (click)="addValue()">
+        + Add Value
+      </button>
+      <button type="button" class="btn btn-primary" (click)="addSeries()">
+        + Add Series
+      </button>
+    </div>
+  </header>
 
-<form [formGroup]="form" [class.tes]="changeDet()">
-  Title: <input type="text" formControlName="title" /><br />
-  Height: <input type="number" formControlName="height" /><br />
-  Type:
-  <select formControlName="type">
-    <option value="line">Line</option>
-    <option value="area">Area</option>
-    <option value="bar">Bar</option>
-    <option value="radar">Radar</option>
-  </select>
+  <section class="card chart-card">
+    <div class="card-header">
+      <div>
+        <h2>Chart Preview</h2>
+        <span class="subtitle">Live rendered ApexCharts instance</span>
+      </div>
+      <span class="type-pill">{{ form.value.type }}</span>
+    </div>
+    <div class="chart-viewport">
+      <apx-chart
+        #chart
+        [title]="{ text: form.value.title! }"
+        [autoUpdateSeries]="false"
+        [series]="form.value.series | series: form.value.type"
+        [xaxis]="{ categories: form.value.xaxis }"
+        [chart]="{
+          id: 'ngx-chart-example',
+          height: form.value.height!,
+          type: form.value.type!,
+          zoom: {
+            enabled: false,
+          },
+          dropShadow: {
+            enabled: true,
+            color: '#000',
+            top: 18,
+            left: 7,
+            blur: 10,
+            opacity: 0.2,
+          },
+        }"
+      ></apx-chart>
+    </div>
+  </section>
 
-  <h3>Values</h3>
-  <button (click)="addSeries()">Add series</button>
-  <button (click)="addValue()">Add value</button>
+  <form class="config-form" [formGroup]="form" [class.tes]="changeDet()">
+    <section class="card">
+      <div class="card-header">
+        <div>
+          <h2>Chart Settings</h2>
+          <span class="subtitle">General appearance and chart type</span>
+        </div>
+      </div>
 
-  <div>
-    <div style="width: 80%; display: inline-block" formArrayName="series">
-      <h4>Data</h4>
+      <div class="settings-grid">
+        <label class="field">
+          <span class="field-label">Chart Title</span>
+          <input type="text" formControlName="title" placeholder="Enter chart title" />
+        </label>
 
-      @for (serie of series.controls; track serie; let i = $index) {
-      <div style="width: 20%; display: inline-block">
-        <div [formGroupName]="i">
-          Name: <input type="text" formControlName="name" /><br />
-          Type:
+        <label class="field">
+          <span class="field-label">Height (px)</span>
+          <input type="number" formControlName="height" placeholder="350" />
+        </label>
+
+        <label class="field">
+          <span class="field-label">Chart Type</span>
           <select formControlName="type">
             <option value="line">Line</option>
             <option value="area">Area</option>
             <option value="bar">Bar</option>
+            <option value="radar">Radar</option>
           </select>
-          <div formArrayName="data">
-            @for (
-            alias of $any(series.controls[i].get("data")).controls;
-            track alias;
-            let y = $index
-            ) {
-            <div>
-              <label>
-                Value: <input type="number" [formControlName]="y" />
-              </label>
-            </div>
-            }
-          </div>
-        </div>
-      </div>
-      }
-    </div>
-
-    <div formArrayName="xaxis" style="width: 20%; display: inline-block">
-      <h4>XAxis</h4>
-      @for (alias of xaxis.controls; track alias; let i = $index) {
-      <div>
-        <label>
-          Value:
-          <input type="text" [formControlName]="i" />
         </label>
       </div>
-      }
+    </section>
+
+    <div class="data-workspace">
+      <section class="card series-panel" formArrayName="series">
+        <div class="card-header">
+          <div>
+            <h3>Series Data</h3>
+            <span class="subtitle">{{ series.controls.length }} active series</span>
+          </div>
+          <div class="panel-actions">
+            <button type="button" class="btn btn-sm btn-secondary" (click)="addValue()">
+              + Add Value
+            </button>
+            <button type="button" class="btn btn-sm btn-primary" (click)="addSeries()">
+              + Add Series
+            </button>
+          </div>
+        </div>
+
+        <div class="series-grid">
+          @for (serie of series.controls; track serie; let i = $index) {
+            <div class="series-card" [formGroupName]="i">
+              <div class="series-card-header">
+                <span class="series-index">Series #{{ i + 1 }}</span>
+              </div>
+
+              <div class="series-meta">
+                <label class="field">
+                  <span class="field-label">Name</span>
+                  <input type="text" formControlName="name" />
+                </label>
+
+                <label class="field">
+                  <span class="field-label">Series Type</span>
+                  <select formControlName="type">
+                    <option value="line">Line</option>
+                    <option value="area">Area</option>
+                    <option value="bar">Bar</option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="values-list" formArrayName="data">
+                <span class="section-caption">Data Points</span>
+                @for (
+                  alias of $any(series.controls[i].get("data")).controls;
+                  track alias;
+                  let y = $index
+                ) {
+                  <label class="value-row">
+                    <span class="point-badge">#{{ y + 1 }}</span>
+                    <input type="number" [formControlName]="y" />
+                  </label>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      </section>
+
+      <section class="card xaxis-panel" formArrayName="xaxis">
+        <div class="card-header">
+          <div>
+            <h3>X-Axis Categories</h3>
+            <span class="subtitle">{{ xaxis.controls.length }} labels</span>
+          </div>
+        </div>
+
+        <div class="values-list">
+          @for (alias of xaxis.controls; track alias; let i = $index) {
+            <label class="value-row">
+              <span class="point-badge">#{{ i + 1 }}</span>
+              <input type="text" [formControlName]="i" />
+            </label>
+          }
+        </div>
+      </section>
     </div>
-  </div>
-</form>
+  </form>
 
-{{ form.value | json }}
+  <section class="card code-card">
+    <div class="card-header">
+      <div>
+        <h3>Form State (JSON)</h3>
+        <span class="subtitle">Real-time serialized configuration</span>
+      </div>
+    </div>
+    <pre class="json-preview"><code>{{ form.value | json }}</code></pre>
+  </section>
 
-<router-outlet></router-outlet>
-<div>hello world</div>
+  <router-outlet></router-outlet>
+</div>
