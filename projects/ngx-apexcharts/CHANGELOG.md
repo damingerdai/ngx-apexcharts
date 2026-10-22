@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/damingerdai/ngx-apexcharts/compare/v0.10.0...v1.0.0) (2026-10-22)
+
+
+### Features
+
+* add ApexCharts v8 chart types to ChartType ([685f509](https://github.com/damingerdai/ngx-apexcharts/commit/685f5092378a0390418624b0154e73a654a5bbec))
+* bump apexcharts to v8 ([20c1bf5](https://github.com/damingerdai/ngx-apexcharts/commit/20c1bf5d5364ba24e632f60fd637305e486c46d8))
+* **docs:** add chart categories, interactive examples, and material doc viewer ([b9ecf6f](https://github.com/damingerdai/ngx-apexcharts/commit/b9ecf6fd12746666ccbbc7c62fa3d5c860907be4))
+* export ApexParsing type from public_api ([b497720](https://github.com/damingerdai/ngx-apexcharts/commit/b4977201f66c8c53dea5b1751b3f7c77caa943af))
+* **schematics:** add ng update migration for v1.0.0 ([1e5ba1b](https://github.com/damingerdai/ngx-apexcharts/commit/1e5ba1bca5954facf3bef5224e4f6a878daf977e))
+
+
+### Bug Fixes
+
+* **docs:** remove unused stack-blitz-button from example viewer template ([985b879](https://github.com/damingerdai/ngx-apexcharts/commit/985b879a8762bbfa6353d71de9f9a32c22984a35))
+* **schematics:** mark schematics directory as commonjs for packaged output ([11d2464](https://github.com/damingerdai/ngx-apexcharts/commit/11d24647569c5b8d049dce4be0c37d42ab85a676))
+* **test:** remove deprecated @angular-devkit/build-angular plugin from karma config ([1530eb1](https://github.com/damingerdai/ngx-apexcharts/commit/1530eb101f69d17cc0af7a6547da3318b8556835))
+
 ## [0.10.0](https://github.com/damingerdai/ngx-apexcharts/compare/v0.9.1...v0.10.0) (2026-06-12)
 
 
