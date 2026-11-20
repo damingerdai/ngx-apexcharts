@@ -45,7 +45,7 @@ import {
 import type ApexChartsType from "apexcharts";
 
 @Component({
-  selector: "apx-chart",
+  selector: "apx-chart, [apexChart]",
   template: `<div #chart></div>`,
   exportAs: "apxChart",
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -96,7 +96,6 @@ export class ChartComponent implements OnChanges, OnDestroy {
   private readonly _injector = inject(Injector);
   private waitingForConnectedRef: AfterRenderRef | null = null;
 
-
   ngOnChanges(changes: SimpleChanges): void {
     if (!this.isBrowser) return;
 
@@ -132,9 +131,12 @@ export class ChartComponent implements OnChanges, OnDestroy {
     }
 
     // Create the chart after the layout is finalized and ready to be measured.
-    afterNextRender({
-      read: () => this.createElement(),
-    }, { injector: this._injector });
+    afterNextRender(
+      {
+        read: () => this.createElement(),
+      },
+      { injector: this._injector },
+    );
   }
 
   /** @internal Extracted to allow subclasses and tests to swap the ApexCharts bundle. */
@@ -190,7 +192,7 @@ export class ChartComponent implements OnChanges, OnDestroy {
     this.destroy();
 
     const chartInstance = this.ngZone.runOutsideAngular(
-      () => new ApexCharts(this.chartElement().nativeElement, options)
+      () => new ApexCharts(this.chartElement().nativeElement, options),
     );
 
     this.chartInstance.set(chartInstance);
@@ -201,7 +203,9 @@ export class ChartComponent implements OnChanges, OnDestroy {
 
   public render() {
     if (this.isConnected) {
-      return this.ngZone.runOutsideAngular(() => this.chartInstance()?.render());
+      return this.ngZone.runOutsideAngular(() =>
+        this.chartInstance()?.render(),
+      );
     } else {
       this.waitForConnected();
     }
@@ -211,63 +215,63 @@ export class ChartComponent implements OnChanges, OnDestroy {
     options: any,
     redrawPaths?: boolean,
     animate?: boolean,
-    updateSyncedCharts?: boolean
+    updateSyncedCharts?: boolean,
   ) {
     return this.ngZone.runOutsideAngular(() =>
       this.chartInstance()?.updateOptions(
         options,
         redrawPaths,
         animate,
-        updateSyncedCharts
-      )
+        updateSyncedCharts,
+      ),
     );
   }
 
   public updateSeries(
     newSeries: ApexAxisChartSeries | ApexNonAxisChartSeries,
-    animate?: boolean
+    animate?: boolean,
   ) {
     return this.ngZone.runOutsideAngular(() =>
-      this.chartInstance()?.updateSeries(newSeries as any, animate)
+      this.chartInstance()?.updateSeries(newSeries as any, animate),
     );
   }
 
   public appendSeries(
     newSeries: ApexAxisChartSeries | ApexNonAxisChartSeries,
-    animate?: boolean
+    animate?: boolean,
   ) {
     this.ngZone.runOutsideAngular(() =>
-      this.chartInstance()?.appendSeries(newSeries as any, animate)
+      this.chartInstance()?.appendSeries(newSeries as any, animate),
     );
   }
 
   public appendData(newData: any[]) {
     this.ngZone.runOutsideAngular(() =>
-      this.chartInstance()?.appendData(newData)
+      this.chartInstance()?.appendData(newData),
     );
   }
 
   public highlightSeries(seriesName: string): any {
     return this.ngZone.runOutsideAngular(() =>
-      this.chartInstance()?.highlightSeries(seriesName)
+      this.chartInstance()?.highlightSeries(seriesName),
     );
   }
 
   public toggleSeries(seriesName: string): any {
     return this.ngZone.runOutsideAngular(() =>
-      this.chartInstance()?.toggleSeries(seriesName)
+      this.chartInstance()?.toggleSeries(seriesName),
     );
   }
 
   public showSeries(seriesName: string) {
     this.ngZone.runOutsideAngular(() =>
-      this.chartInstance()?.showSeries(seriesName)
+      this.chartInstance()?.showSeries(seriesName),
     );
   }
 
   public hideSeries(seriesName: string) {
     this.ngZone.runOutsideAngular(() =>
-      this.chartInstance()?.hideSeries(seriesName)
+      this.chartInstance()?.hideSeries(seriesName),
     );
   }
 
@@ -281,13 +285,13 @@ export class ChartComponent implements OnChanges, OnDestroy {
 
   public toggleDataPointSelection(
     seriesIndex: number,
-    dataPointIndex?: number
+    dataPointIndex?: number,
   ) {
     this.ngZone.runOutsideAngular(() =>
       this.chartInstance()?.toggleDataPointSelection(
         seriesIndex,
-        dataPointIndex
-      )
+        dataPointIndex,
+      ),
     );
   }
 
@@ -298,7 +302,7 @@ export class ChartComponent implements OnChanges, OnDestroy {
 
   public setLocale(localeName: string) {
     this.ngZone.runOutsideAngular(() =>
-      this.chartInstance()?.setLocale(localeName)
+      this.chartInstance()?.setLocale(localeName),
     );
   }
 
@@ -309,42 +313,42 @@ export class ChartComponent implements OnChanges, OnDestroy {
   public addXaxisAnnotation(
     options: any,
     pushToMemory?: boolean,
-    context?: any
+    context?: any,
   ) {
     this.ngZone.runOutsideAngular(() =>
-      this.chartInstance()?.addXaxisAnnotation(options, pushToMemory, context)
+      this.chartInstance()?.addXaxisAnnotation(options, pushToMemory, context),
     );
   }
 
   public addYaxisAnnotation(
     options: any,
     pushToMemory?: boolean,
-    context?: any
+    context?: any,
   ) {
     this.ngZone.runOutsideAngular(() =>
-      this.chartInstance()?.addYaxisAnnotation(options, pushToMemory, context)
+      this.chartInstance()?.addYaxisAnnotation(options, pushToMemory, context),
     );
   }
 
   public addPointAnnotation(
     options: any,
     pushToMemory?: boolean,
-    context?: any
+    context?: any,
   ) {
     this.ngZone.runOutsideAngular(() =>
-      this.chartInstance()?.addPointAnnotation(options, pushToMemory, context)
+      this.chartInstance()?.addPointAnnotation(options, pushToMemory, context),
     );
   }
 
   public removeAnnotation(id: string, options?: any) {
     this.ngZone.runOutsideAngular(() =>
-      this.chartInstance()?.removeAnnotation(id, options)
+      this.chartInstance()?.removeAnnotation(id, options),
     );
   }
 
   public clearAnnotations(options?: any) {
     this.ngZone.runOutsideAngular(() =>
-      this.chartInstance()?.clearAnnotations(options)
+      this.chartInstance()?.clearAnnotations(options),
     );
   }
 
@@ -357,16 +361,19 @@ export class ChartComponent implements OnChanges, OnDestroy {
       return;
     }
 
-    this.waitingForConnectedRef = afterEveryRender({
-      read: () => {
-        if (this.isConnected) {
-          if (this.waitingForConnectedRef) {
-            this.waitingForConnectedRef.destroy();
-            this.waitingForConnectedRef = null;
+    this.waitingForConnectedRef = afterEveryRender(
+      {
+        read: () => {
+          if (this.isConnected) {
+            if (this.waitingForConnectedRef) {
+              this.waitingForConnectedRef.destroy();
+              this.waitingForConnectedRef = null;
+            }
+            this.createElement();
           }
-          this.createElement();
-        }
+        },
       },
-    }, { injector: this._injector });
+      { injector: this._injector },
+    );
   }
 }
