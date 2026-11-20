@@ -17,11 +17,10 @@ export default tseslint.config(
       ],
       "@angular-eslint/component-selector": [
         "error",
-        {
-          type: "element",
-          prefix: "apx",
-          style: "kebab-case",
-        },
+        [
+          { type: "element", prefix: "apx", style: "kebab-case" },
+          { type: "attribute", prefix: "apex", style: "camelCase" },
+        ],
       ],
     },
   },
