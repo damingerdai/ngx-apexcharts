@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/damingerdai/ngx-apexcharts/compare/v1.0.0...v1.1.0) (2026-11-20)
+
+
+### Features
+
+* **schematics:** add migration for ngx-apexcharts/signals specifier ([#330](https://github.com/damingerdai/ngx-apexcharts/issues/330)) ([e8f80c4](https://github.com/damingerdai/ngx-apexcharts/commit/e8f80c431022de24ba4c01b28c043a5e5f5afb63))
+* support attribute selector for chart component ([#331](https://github.com/damingerdai/ngx-apexcharts/issues/331)) ([63267a7](https://github.com/damingerdai/ngx-apexcharts/commit/63267a74f265cfe44ae75c6b1ebdc9746cfd7440))
+
 ## [1.0.0](https://github.com/damingerdai/ngx-apexcharts/compare/v0.10.0...v1.0.0) (2026-10-22)
 
 
