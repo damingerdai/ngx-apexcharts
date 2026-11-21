@@ -1,0 +1,5 @@
+# Nested package.json's are only needed for development.
+**/package.json
+
+# Schematics are CommonJS and need their nested package.json at runtime.
+!schematics/package.json
