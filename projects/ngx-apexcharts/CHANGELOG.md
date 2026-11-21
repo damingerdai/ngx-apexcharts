@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://github.com/damingerdai/ngx-apexcharts/compare/v1.1.1...v1.1.2) (2026-11-21)
+
+
+### Bug Fixes
+
+* **schematics:** skip node_modules in v1.1.0 migration ([#338](https://github.com/damingerdai/ngx-apexcharts/issues/338)) ([812eede](https://github.com/damingerdai/ngx-apexcharts/commit/812eeded91b67f683fd371e63146134ac3df7968))
+
 ### [1.1.1](https://github.com/damingerdai/ngx-apexcharts/compare/v1.1.0...v1.1.1) (2026-11-21)
 
 
