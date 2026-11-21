@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/damingerdai/ngx-apexcharts/compare/v1.1.0...v1.1.1) (2026-11-21)
+
+
+### Bug Fixes
+
+* **deps:** update dependency express to v5 ([#218](https://github.com/damingerdai/ngx-apexcharts/issues/218)) ([9775f41](https://github.com/damingerdai/ngx-apexcharts/commit/9775f41b53b061c5e6cfc5248c35856a2c22d992))
+* **schematics:** keep nested package.json in published npm tarball ([#335](https://github.com/damingerdai/ngx-apexcharts/issues/335)) ([239f5de](https://github.com/damingerdai/ngx-apexcharts/commit/239f5de5e47630519bc3d20e6de552b099921d5b))
+
 ## [1.1.0](https://github.com/damingerdai/ngx-apexcharts/compare/v1.0.0...v1.1.0) (2026-11-20)
 
 
