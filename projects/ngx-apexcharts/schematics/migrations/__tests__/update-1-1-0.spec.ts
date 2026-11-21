@@ -38,6 +38,28 @@ describe("migration to v1.1.0", () => {
     );
   });
 
+  it("should not modify files inside node_modules", async () => {
+    const tree = new UnitTestTree(Tree.empty());
+    const migrationSource = `const oldModuleSpecifier = "ngx-apexcharts/signals";\n`;
+    const packageJson = `{"paths":{"ngx-apexcharts/signals":["./src/signals"]}}`;
+    tree.create(
+      "/node_modules/ngx-apexcharts/schematics/migrations/update-1-1-0/index.js",
+      migrationSource,
+    );
+    tree.create("/node_modules/some-package/package.json", packageJson);
+
+    const updatedTree = await runner.runSchematic("update-1-1-0", {}, tree);
+
+    expect(
+      updatedTree.readContent(
+        "/node_modules/ngx-apexcharts/schematics/migrations/update-1-1-0/index.js",
+      ),
+    ).toBe(migrationSource);
+    expect(updatedTree.readContent("/node_modules/some-package/package.json")).toBe(
+      packageJson,
+    );
+  });
+
   it("should leave files without the legacy module specifier unchanged", async () => {
     const tree = new UnitTestTree(Tree.empty());
     tree.create(
