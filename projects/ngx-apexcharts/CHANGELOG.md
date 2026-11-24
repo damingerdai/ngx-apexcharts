@@ -1,6 +1,19 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
+
+## [1.2.0](https://github.com/damingerdai/ngx-apexcharts/compare/v1.1.2...v1.2.0) (2026-11-24)
+
+
+### Features
+
+* bump angular 22.3 ([a1c39fb](https://github.com/damingerdai/ngx-apexcharts/commit/a1c39fb2a0807db94280e77f6b72596c151956a1))
+
+
+### Bug Fixes
+
+* **deps:** update angularmaterial monorepo to v22.3.0 ([#341](https://github.com/damingerdai/ngx-apexcharts/issues/341)) ([08cbfa0](https://github.com/damingerdai/ngx-apexcharts/commit/08cbfa0a3b76a50cc633b29fd01862d2c2633146))
+* **deps:** update dependency zone.js to ~0.16.0 ([#324](https://github.com/damingerdai/ngx-apexcharts/issues/324)) ([fd9ad77](https://github.com/damingerdai/ngx-apexcharts/commit/fd9ad77581c6b2ba681d39b8a2ab2319fff2daf7))
 
 ### [1.1.2](https://github.com/damingerdai/ngx-apexcharts/compare/v1.1.1...v1.1.2) (2026-11-21)
 
