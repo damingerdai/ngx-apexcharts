@@ -1,4 +1,4 @@
-import "jasmine";
+import { describe, expect, it } from "vitest";
 import { Tree } from "@angular-devkit/schematics";
 import {
   SchematicTestRunner,

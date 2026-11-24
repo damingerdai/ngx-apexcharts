@@ -21,7 +21,6 @@
     "strictNullChecks": true,
     "target": "es6",
     "types": [
-      "jasmine",
       "node"
     ],
     "resolveJsonModule":true
@@ -32,6 +31,7 @@
   ],
   "exclude": [
     "tsconfig.json",
+    "test-setup.ts",
     "**/__tests__/**"
   ]
 }

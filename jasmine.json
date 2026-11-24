@@ -1,5 +1,0 @@
-{
-  "spec_files": [
-    "projects/ngx-apexcharts/schematics/**/*[sS]pec.ts"
-  ]
-}
