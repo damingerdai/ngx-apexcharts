@@ -20,7 +20,7 @@ Use Node.js 24 to match CI. Install dependencies with `npm ci --legacy-peer-deps
 - `npm run build`: build the development and documentation apps.
 - `npm run lint`: lint all four projects; `npm run lint:fix` applies automatic fixes.
 - `npm run test-schematics`: run schematic tests.
-- `npm run test:ci`: run headless library tests with coverage, then schematic tests; requires Chrome.
+- `npm run test:ci`: run Vitest library tests with coverage, then schematic tests.
 
 ## Coding Style & Naming Conventions
 
@@ -28,7 +28,7 @@ Follow `.editorconfig`: two-space indentation, UTF-8, final newlines, and no tra
 
 ## Testing Guidelines
 
-Library tests use Jasmine/Karma; application targets use Vitest; schematic tests use Jasmine through `tsx`. Name tests `*.spec.ts`, colocated with implementation or in schematic `__tests__/` directories. Add regression tests for behavior changes. Run application tests with `npx ng test dev-app --watch=false` or the corresponding project name. Library coverage is generated in `coverage/`; no numeric threshold is configured.
+Library and application tests use Angular’s Vitest runner; schematic tests use Vitest in Node with `tsx` for schematic factory loading. Name tests `*.spec.ts`, colocated with implementation or in schematic `__tests__/` directories. Add regression tests for behavior changes. Run application tests with `npx ng test dev-app --watch=false` or the corresponding project name. Library coverage is generated in `coverage/`; no numeric threshold is configured.
 
 ## Commit & Pull Request Guidelines
 

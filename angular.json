@@ -2,7 +2,9 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
     "analytics": "3baaf504-dbc1-40db-9aea-56a6da334a34",
-    "schematicCollections": ["angular-eslint"]
+    "schematicCollections": [
+      "angular-eslint"
+    ]
   },
   "version": 1,
   "newProjectRoot": "projects",
@@ -42,10 +44,17 @@
               "base": "dist/ngx-apexcharts-demo"
             },
             "index": "src/index.html",
-            "polyfills": ["src/polyfills.ts"],
+            "polyfills": [
+              "src/polyfills.ts"
+            ],
             "tsConfig": "src/tsconfig.app.json",
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
             "scripts": [],
             "aot": true,
             "extractLicenses": true,
@@ -123,7 +132,10 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
           }
         }
       }
@@ -145,11 +157,14 @@
           }
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
-            "main": "projects/ngx-apexcharts/src/test.ts",
             "tsConfig": "projects/ngx-apexcharts/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-apexcharts/karma.conf.js"
+            "runner": "vitest",
+            "include": [
+              "src/**/*.spec.ts"
+            ],
+            "polyfills": []
           }
         },
         "lint": {
@@ -190,7 +205,9 @@
                 "input": "public"
               }
             ],
-            "styles": ["projects/dev-app/src/styles.scss"],
+            "styles": [
+              "projects/dev-app/src/styles.scss"
+            ],
             "scripts": [],
             "server": "projects/dev-app/src/main.server.ts",
             "prerender": true,
@@ -286,7 +303,9 @@
             "outputPath": "dist/docs-app",
             "index": "projects/docs-app/src/index.html",
             "browser": "projects/docs-app/src/main.ts",
-            "polyfills": ["zone.js"],
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "projects/docs-app/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [

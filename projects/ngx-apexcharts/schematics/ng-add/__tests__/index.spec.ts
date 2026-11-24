@@ -1,4 +1,4 @@
-import "jasmine";
+import { beforeAll, describe, expect, it } from "vitest";
 import {
   SchematicTestRunner,
   UnitTestTree,
@@ -69,13 +69,9 @@ describe("ng add ngx-apexcharts", () => {
   it("should add apexcharts to package.json", async () => {
     const options = { project: "ngx-apexcharts-app" };
     const tree = await runner.runSchematic("ng-add", options, appTree);
-    expect(runner.tasks.some((task) => task.name === "node-package"))
-      .withContext(
-        "Expected the package manager to be scheduled in order to update lock files.",
-      )
+    expect(runner.tasks.some((task) => task.name === "node-package"), "Expected the package manager to be scheduled in order to update lock files.")
       .toBe(true);
-    expect(runner.tasks.some((task) => task.name === "run-schematic"))
-      .withContext("Expected the setup-project schematic to be scheduled.")
+    expect(runner.tasks.some((task) => task.name === "run-schematic"), "Expected the setup-project schematic to be scheduled.")
       .toBe(true);
     const packageJson = JSON.parse(
       tree.readContent("/package.json"),
