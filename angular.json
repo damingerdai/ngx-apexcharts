@@ -130,15 +130,18 @@
     },
     "ngx-apexcharts": {
       "root": "projects/ngx-apexcharts",
-      "sourceRoot": "projects/ngx-apexcharts/src",
+      "sourceRoot": "projects/ngx-apexcharts",
       "projectType": "library",
       "prefix": "apx",
       "architect": {
         "build": {
-          "builder": "@angular/build:ng-packagr",
+          "builder": "@angular/build:library",
           "options": {
             "tsConfig": "projects/ngx-apexcharts/tsconfig.lib.json",
-            "project": "projects/ngx-apexcharts/ng-package.json"
+            "outputPath": "dist/ngx-apexcharts"
+          },
+          "configurations": {
+            "development": {}
           }
         },
         "test": {
